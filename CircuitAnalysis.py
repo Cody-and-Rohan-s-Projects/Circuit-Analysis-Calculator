@@ -99,7 +99,6 @@ def create_input_fields():
 def parse_complex(value: str) -> complex:
     """
     Parses a string representing a complex number where 'j' or 'i' can be before or after the coefficient.
-    Examples of valid input: '3+4j', '4j+3', 'j4+3', '3+j4', '3+i4', 'i4+3'
     """
     try:
         val = value.replace(" ", "").lower().replace("i", "j")
