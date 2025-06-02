@@ -11,7 +11,7 @@ ctk.set_default_color_theme("blue")
 # Create main window
 root = ctk.CTk()
 root.title("Circuit Analysis Calculator")
-root.geometry("600x800")
+root.geometry("550x850")
 
 # Set custom window icon
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
@@ -29,6 +29,9 @@ matrix_frame = None
 vector_frame = None
 result_label = None
 kvl_label = None
+
+def toggle_always_on_top():
+    root.attributes("-topmost", topmost_switch.get())
 
 def toggle_theme():
     mode = "dark" if theme_switch.get() else "light"
@@ -51,7 +54,7 @@ def clear_previous_inputs():
         vector_frame.destroy()
     matrix_entries = []
     vector_entries = []
-    result_label.configure(text="Enter number of equations and click Set Size")
+    result_label.configure(text="Enter coefficient values (real or complex rectangular) into the matrices and click Solve")
     kvl_label.configure(text="")
 
 def create_input_fields():
@@ -157,7 +160,7 @@ def solve_and_display():
                 kvl_equations.append(equation)
             kvl_label.configure(text="KVL Equations:\n" + "\n".join(kvl_equations))
         else:
-            result_label.configure(text="Error: System cannot be solved (Singular matrix).")
+            result_label.configure(text="Error: Solution does not exist. (Singular matrix).")
             kvl_label.configure(text="")
 
     except Exception as e:
@@ -170,12 +173,23 @@ def solve_and_display():
 title_label = ctk.CTkLabel(root, text="Nodal Analysis Calculator", font=("Franklin Gothic Medium", 20))
 title_label.pack(pady=10)
 
-# Theme switch
-theme_switch = ctk.CTkSwitch(root, text="Dark Mode", command=toggle_theme)
-theme_switch.pack(pady=10)
+# Subtitle
+subtitle_label = ctk.CTkLabel(root, text="by Cody Carter and Rohan Patel", font=("Franklin Gothic Medium", 14))
+subtitle_label.pack(pady=(0, 5))
+
+
+# Switches frame (Theme and Always on Top)
+switch_frame = ctk.CTkFrame(root)
+switch_frame.pack(pady=10)
+
+theme_switch = ctk.CTkSwitch(switch_frame, text="Dark Mode", command=toggle_theme)
+theme_switch.pack(side="left", padx=10)
+
+topmost_switch = ctk.CTkSwitch(switch_frame, text="Always on Top", command=toggle_always_on_top)
+topmost_switch.pack(side="left", padx=10)
 
 # Result label
-result_label = ctk.CTkLabel(root, text="Enter number of equations and click Set Size", font=("Franklin Gothic Medium", 14))
+result_label = ctk.CTkLabel(root, text="Select number of equations and click Set Size", font=("Franklin Gothic Medium", 14))
 result_label.pack(pady=10)
 
 # KVL equations label
