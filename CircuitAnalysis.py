@@ -169,13 +169,12 @@ def solve_and_display():
 # ------------------------- GUI ELEMENTS --------------------------
 
 # Title
-title_label = ctk.CTkLabel(root, text="Nodal Analysis Calculator", font=("Franklin Gothic Medium", 20))
+title_label = ctk.CTkLabel(root, text="AC and DC Circuit Analysis Calculator", font=("Franklin Gothic Medium", 20))
 title_label.pack(pady=10)
 
 # Subtitle
 subtitle_label = ctk.CTkLabel(root, text="by Cody Carter and Rohan Patel", font=("Franklin Gothic Medium", 14))
 subtitle_label.pack(pady=(0, 5))
-
 
 # Switches frame (Theme and Always on Top)
 switch_frame = ctk.CTkFrame(root)
