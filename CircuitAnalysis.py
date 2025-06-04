@@ -11,7 +11,7 @@ ctk.set_default_color_theme("blue")
 # Create main window
 root = ctk.CTk()
 root.title("Circuit Analysis Calculator")
-root.geometry("550x850")
+root.geometry("550x900")
 
 # Set custom window icon
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
@@ -29,6 +29,7 @@ matrix_frame = None
 vector_frame = None
 result_label = None
 kvl_label = None
+precision_var = ctk.StringVar(value="3")  # Default precision
 
 def toggle_always_on_top():
     root.attributes("-topmost", topmost_switch.get())
@@ -54,7 +55,7 @@ def clear_previous_inputs():
         vector_frame.destroy()
     matrix_entries = []
     vector_entries = []
-    result_label.configure(text="Enter coefficient values (real or complex rectangular) into the matrices and click Solve")
+    result_label.configure(text="Enter values (real or complex rectangular) into the matrices and click Solve")
     kvl_label.configure(text="")
 
 def create_input_fields():
@@ -97,72 +98,98 @@ def create_input_fields():
         vector_entries.append(entry)
 
 def parse_complex(value: str) -> complex:
-    """
-    Parses a string representing a complex number where 'j' or 'i' can be before or after the coefficient.
-    """
+    """Parses a string representing a complex number."""
     try:
         val = value.replace(" ", "").lower().replace("i", "j")
-
-        # Handle cases like 'j4' or 'j4+3' → convert to '4j+3'
         val = re.sub(r'\bj(\d+)', r'\1j', val)
-        val = re.sub(r'\b(\d+)j\b', r'\1j', val)  # already valid, keep as-is
-        val = re.sub(r'\bj\b', '1j', val)  # lone 'j'
-
-        # Handle cases like '4+j5' or '4+j' → convert to '4+5j' or '4+1j'
+        val = re.sub(r'\bj\b', '1j', val)
         val = re.sub(r'([+\-])j(\d*)', lambda m: f"{m.group(1)}{m.group(2) if m.group(2) else '1'}j", val)
-
         return complex(val)
     except Exception:
         raise ValueError(f"Invalid complex number format: {value}")
 
 def solve_and_display():
-    """Solve the system and display results and KVL equations (supports complex numbers)."""
+    """Solve the system and display results and KVL equations."""
     try:
         n = len(matrix_entries)
         if n == 0:
             result_label.configure(text="Error: Please create input fields first.")
             return
 
-        # Initialize A and b as complex arrays
+        precision = int(precision_var.get())
+        fmt = f".{precision}f"
+
         A = np.zeros((n, n), dtype=complex)
         b = np.zeros(n, dtype=complex)
 
-        # Fill A
         for i in range(n):
             for j in range(n):
                 val = matrix_entries[i][j].get()
                 A[i, j] = parse_complex(val) if val else 0
 
-        # Fill b
         for i in range(n):
             val = vector_entries[i].get()
             b[i] = parse_complex(val) if val else 0
 
-        # Solve system
         x = solve_linear_system(A, b)
         if x is not None:
-            result_lines = [f"I{i+1} = {x[i].real:.3f} + {x[i].imag:.3f}j A" for i in range(n)]
+            result_lines = []
+            for i in range(n):
+                real_part = x[i].real
+                imag_part = x[i].imag
+
+                magnitude = np.abs(x[i])
+                angle_deg = np.degrees(np.angle(x[i]))
+
+                mag_str = format(magnitude, fmt)
+                angle_str = format(angle_deg, fmt)
+
+                if abs(imag_part) < 1e-10:
+                    result_lines.append(f"I{i + 1} = {format(real_part, fmt)} Amps  ({mag_str} ∠ {angle_str}°)")
+                elif abs(real_part) < 1e-10:
+                    result_lines.append(f"I{i + 1} = {format(imag_part, fmt)}j Amps  ({mag_str} ∠ {angle_str}°)")
+                else:
+                    result_lines.append(
+                        f"I{i + 1} = {format(real_part, fmt)} + {format(imag_part, fmt)}j Amps  ({mag_str} ∠ {angle_str}°)")
+
             result_text = "Solution:\n" + "\n".join(result_lines)
             result_label.configure(text=result_text)
 
-            # Generate KVL equations
             kvl_equations = []
             for i in range(n):
                 terms = []
                 for j in range(n):
                     coeff = A[i, j]
                     if coeff != 0:
-                        term = f"({coeff.real:.2f}{'+' if coeff.imag >= 0 else '-'}{abs(coeff.imag):.2f}j) Ohms * I{j+1}"
+                        if abs(coeff.imag) < 1e-10:
+                            term = f"{format(coeff.real, fmt)} Ohms * I{j + 1}"
+                        elif abs(coeff.real) < 1e-10:
+                            term = f"{format(coeff.imag, fmt)}j Ohms * I{j + 1}"
+                        else:
+                            sign = '+' if coeff.imag >= 0 else '-'
+                            term = f"({format(coeff.real, fmt)} {sign} {format(abs(coeff.imag), fmt)}j) Ohms * I{j + 1}"
                         terms.append(term)
-                rhs = f"{b[i].real:.2f}{'+' if b[i].imag >= 0 else '-'}{abs(b[i].imag):.2f}j"
+
+                rhs_real = b[i].real
+                rhs_imag = b[i].imag
+
+                if abs(rhs_imag) < 1e-10:
+                    rhs = f"{format(rhs_real, fmt)}"
+                elif abs(rhs_real) < 1e-10:
+                    rhs = f"{format(rhs_imag, fmt)}j"
+                else:
+                    sign = '+' if rhs_imag >= 0 else '-'
+                    rhs = f"{format(rhs_real, fmt)} {sign} {format(abs(rhs_imag), fmt)}j"
+
                 equation = " + ".join(terms) + f" = {rhs} Volts"
                 kvl_equations.append(equation)
+
             kvl_label.configure(text="KVL Equations:\n" + "\n".join(kvl_equations))
         else:
-            result_label.configure(text="Error: Solution does not exist. (Singular matrix).")
+            result_label.configure(text="Error: Solution does not exist. (Either invalid inputs or the determinant is zero).")
             kvl_label.configure(text="")
 
-    except Exception as e:
+    except Exception:
         result_label.configure(text="Error: Invalid input. Type a real or complex number such as 3+4j or -5.")
         kvl_label.configure(text="")
 
@@ -198,12 +225,26 @@ kvl_label.pack(pady=10)
 size_frame = ctk.CTkFrame(root)
 size_frame.pack(pady=10)
 
-ctk.CTkLabel(size_frame, text="Number of Equations:").pack(side="left", padx=5)
-size_dropdown = ctk.CTkOptionMenu(size_frame, values=["1", "2", "3", "4"])
+# Row 1: Number of Equations and Set Size button
+size_row1 = ctk.CTkFrame(size_frame)
+size_row1.pack(pady=5, fill="x")
+
+ctk.CTkLabel(size_row1, text="Number of Equations:").pack(side="left", padx=5)
+size_dropdown = ctk.CTkOptionMenu(size_row1, values=["1", "2", "3", "4"])
 size_dropdown.set("3")  # Default
 size_dropdown.pack(side="left", padx=5)
-size_button = ctk.CTkButton(size_frame, text="Set Size", command=create_input_fields)
+
+size_button = ctk.CTkButton(size_row1, text="Set Size", command=create_input_fields)
 size_button.pack(side="left", padx=5)
+
+# Row 2: Decimal Precision dropdown
+size_row2 = ctk.CTkFrame(size_frame)
+size_row2.pack(pady=5, fill="x")
+
+ctk.CTkLabel(size_row2, text="Decimal Precision:").pack(side="left", padx=5)
+precision_dropdown = ctk.CTkOptionMenu(size_row2, values=["0","1", "2", "3", "4", "5","6"], variable=precision_var)
+precision_dropdown.set("3")
+precision_dropdown.pack(side="left", padx=23)
 
 # Placeholder for matrix and vector frames
 matrix_frame = ctk.CTkFrame(root)
