@@ -31,6 +31,10 @@ result_label = None
 kvl_label = None
 precision_var = ctk.StringVar(value="3")  # Default precision
 
+# Create a scrollable frame as the main container
+scrollable_frame = ctk.CTkScrollableFrame(root, width=530, height=880)  # Adjust size to fit window
+scrollable_frame.pack(padx=10, pady=10, fill="both", expand=True)
+
 def toggle_always_on_top():
     root.attributes("-topmost", topmost_switch.get())
 
@@ -72,10 +76,10 @@ def create_input_fields():
 
     clear_previous_inputs()
 
-    # Create new frames
-    matrix_frame = ctk.CTkFrame(root)
+    # Create new frames inside scrollable_frame
+    matrix_frame = ctk.CTkFrame(scrollable_frame)
     matrix_frame.pack(pady=10)
-    vector_frame = ctk.CTkFrame(root)
+    vector_frame = ctk.CTkFrame(scrollable_frame)
     vector_frame.pack(pady=10)
 
     # Matrix A label and inputs
@@ -196,15 +200,15 @@ def solve_and_display():
 # ------------------------- GUI ELEMENTS --------------------------
 
 # Title
-title_label = ctk.CTkLabel(root, text="AC and DC Circuit Analysis Calculator", font=("Franklin Gothic Medium", 20))
+title_label = ctk.CTkLabel(scrollable_frame, text="AC and DC Circuit Analysis Calculator", font=("Franklin Gothic Medium", 20))
 title_label.pack(pady=10)
 
 # Subtitle
-subtitle_label = ctk.CTkLabel(root, text="by Cody Carter and Rohan Patel", font=("Franklin Gothic Medium", 14))
+subtitle_label = ctk.CTkLabel(scrollable_frame, text="by Cody Carter and Rohan Patel", font=("Franklin Gothic Medium", 14))
 subtitle_label.pack(pady=(0, 5))
 
 # Switches frame (Theme and Always on Top)
-switch_frame = ctk.CTkFrame(root)
+switch_frame = ctk.CTkFrame(scrollable_frame)
 switch_frame.pack(pady=10)
 
 theme_switch = ctk.CTkSwitch(switch_frame, text="Dark Mode", command=toggle_theme)
@@ -214,15 +218,15 @@ topmost_switch = ctk.CTkSwitch(switch_frame, text="Always on Top", command=toggl
 topmost_switch.pack(side="left", padx=10)
 
 # Result label
-result_label = ctk.CTkLabel(root, text="Select number of equations and click Set Size", font=("Franklin Gothic Medium", 14))
+result_label = ctk.CTkLabel(scrollable_frame, text="Select number of equations and click Set Size", font=("Franklin Gothic Medium", 14))
 result_label.pack(pady=10)
 
 # KVL equations label
-kvl_label = ctk.CTkLabel(root, text="", font=("Franklin Gothic Medium", 12), wraplength=580, justify="left")
+kvl_label = ctk.CTkLabel(scrollable_frame, text="", font=("Franklin Gothic Medium", 12), wraplength=500, justify="left")
 kvl_label.pack(pady=10)
 
 # Size input with dropdown
-size_frame = ctk.CTkFrame(root)
+size_frame = ctk.CTkFrame(scrollable_frame)
 size_frame.pack(pady=10)
 
 # Row 1: Number of Equations and Set Size button
@@ -242,21 +246,21 @@ size_row2 = ctk.CTkFrame(size_frame)
 size_row2.pack(pady=5, fill="x")
 
 ctk.CTkLabel(size_row2, text="Decimal Precision:").pack(side="left", padx=5)
-precision_dropdown = ctk.CTkOptionMenu(size_row2, values=["0","1", "2", "3", "4", "5","6"], variable=precision_var)
+precision_dropdown = ctk.CTkOptionMenu(size_row2, values=["0", "1", "2", "3", "4", "5", "6"], variable=precision_var)
 precision_dropdown.set("3")
 precision_dropdown.pack(side="left", padx=23)
 
 # Placeholder for matrix and vector frames
-matrix_frame = ctk.CTkFrame(root)
+matrix_frame = ctk.CTkFrame(scrollable_frame)
 matrix_frame.pack(pady=10)
-vector_frame = ctk.CTkFrame(root)
+vector_frame = ctk.CTkFrame(scrollable_frame)
 vector_frame.pack(pady=10)
 
 # Solve and Reset buttons
-solve_button = ctk.CTkButton(root, text="Solve", command=solve_and_display)
+solve_button = ctk.CTkButton(scrollable_frame, text="Solve", command=solve_and_display)
 solve_button.pack(pady=10)
 
-reset_button = ctk.CTkButton(root, text="Reset", command=create_input_fields)
+reset_button = ctk.CTkButton(scrollable_frame, text="Reset", command=create_input_fields)
 reset_button.pack(pady=10)
 
 # Start the main loop
