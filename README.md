@@ -8,8 +8,10 @@ Rohan focused on creating the backend and additional UI features, while Cody imp
 
 Connect with us on GitHub for more projects:                                                        
 Cody: [![Cody](https://avatars.githubusercontent.com/u/143746407?s=50)](https://github.com/codycarter1763)
+https://www.linkedin.com/in/cody-carter-a8a747293/
 
 Rohan: [![Rohan](https://avatars.githubusercontent.com/u/38637209?s=50)](https://github.com/immmadeus)
+https://www.linkedin.com/in/rohan-patel-15a211256/
 
 # How To Install
 
