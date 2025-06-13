@@ -1,6 +1,8 @@
 # Nodal Analysis Calculator Application
 
-![image](https://github.com/user-attachments/assets/af9e64e3-f59a-43f5-a451-c9e0af8ba46d)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/8b3eb796-ddbb-44cc-a87c-1832e1726443" alt="image" width="400">
+</div>
 
 # About Us
 This calculator was designed by Cody Carter and Rohan Patel, two computer engineering students with a goal of creating an application to simplify and solve nodal analysis linear equations.
