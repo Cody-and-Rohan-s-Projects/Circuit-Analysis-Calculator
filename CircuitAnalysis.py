@@ -161,12 +161,12 @@ def solve_and_display():
                 angle_str = format(angle_deg, fmt)
 
                 if abs(imag_part) < 1e-10:
-                    result_lines.append(f"I{i + 1} = {format(real_part, fmt)} Amps  ({mag_str} ∠ {angle_str}°)")
+                    result_lines.append(f"I{i + 1} = {format(real_part, fmt)} Amps  ({mag_str} ∠ {angle_str}° Amps)")
                 elif abs(real_part) < 1e-10:
-                    result_lines.append(f"I{i + 1} = {format(imag_part, fmt)}j Amps  ({mag_str} ∠ {angle_str}°)")
+                    result_lines.append(f"I{i + 1} = {format(imag_part, fmt)}j Amps  ({mag_str} ∠ {angle_str}° Amps)")
                 else:
                     result_lines.append(
-                        f"I{i + 1} = {format(real_part, fmt)} + {format(imag_part, fmt)}j Amps  ({mag_str} ∠ {angle_str}°)")
+                        f"I{i + 1} = {format(real_part, fmt)} + {format(imag_part, fmt)}j Amps  ({mag_str} ∠ {angle_str}° Amps)")
 
             result_text = "Solution:\n" + "\n".join(result_lines)
             result_label.configure(text=result_text)
@@ -269,14 +269,14 @@ vector_frame = ctk.CTkFrame(scrollable_frame)
 vector_frame.pack(pady=10)
 
 # Solve and Reset buttons
-solve_button = ctk.CTkButton(scrollable_frame, text="Solve (Enter or Spacebar)", command=solve_and_display)
+solve_button = ctk.CTkButton(scrollable_frame, text="Solve (Enter)", command=solve_and_display)
 solve_button.pack(pady=10)
 
 reset_button = ctk.CTkButton(scrollable_frame, text="Reset (R)", command=create_input_fields)
 reset_button.pack(pady=10)
 
 def on_key_press(event):
-    if event.keysym in ("Return", "space","KP_Enter"):
+    if event.keysym in ("Return","KP_Enter"):
         solve_and_display()
     elif event.keysym in ("r"):
         create_input_fields()
