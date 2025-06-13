@@ -9,7 +9,6 @@ Rohan focused on creating the backend and additional UI features, while Cody hel
 <br/>
 <br/>
 ### Connect with us on GitHub for more projects:
-
 <div align="Left">
   <h3>Cody Carter</h3>
   <img src="https://github.com/user-attachments/assets/2808f0ad-6c56-464c-abdd-6ece9a4be026" alt="Profile Photo" width="100" style="border-radius:50%">
