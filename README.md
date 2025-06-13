@@ -110,6 +110,7 @@ Nodal analysis is a really handy circuit analysis technique that allows you to s
 2. The linear system will then be solved using a technique like Cramers Rule from the last example.
   
 3. Using the customtkinter library, a gui was designed for a modern and lightweight look and feel. When calculated, your equations will be displayed so you can check your work, and the currents in amps and polar form for AC analysis.
+
 ![image](https://github.com/user-attachments/assets/8370c4e5-92ef-4ead-9609-01eb1425318b)
 
 ## Releases and Feature Updates
