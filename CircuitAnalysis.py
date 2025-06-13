@@ -1,6 +1,7 @@
 import numpy as np
 import customtkinter as ctk
 from tkinter import PhotoImage
+import webbrowser
 import os
 import re
 
@@ -11,7 +12,7 @@ ctk.set_default_color_theme("blue")
 # Create main window
 root = ctk.CTk()
 root.title("Circuit Analysis Calculator")
-root.geometry("550x900")
+root.geometry("600x900")
 
 # Set custom window icon
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
@@ -59,7 +60,7 @@ def clear_previous_inputs():
         vector_frame.destroy()
     matrix_entries = []
     vector_entries = []
-    result_label.configure(text="Enter values (real or complex rectangular) into the matrices and click Solve")
+    result_label.configure(text="Enter values (can be either real or complex rectangular) \n into the matrices and click Solve or press the Enter key.")
     kvl_label.configure(text="")
 
 def create_input_fields():
@@ -83,23 +84,35 @@ def create_input_fields():
     vector_frame.pack(pady=10)
 
     # Matrix A label and inputs
-    ctk.CTkLabel(matrix_frame, text=f"Coefficient Matrix A ({n}x{n}):").grid(row=0, column=0, columnspan=n, pady=5)
+    ctk.CTkLabel(matrix_frame, text=f"Coefficient Matrix A ({n}x{n}):").grid(row=0, column=0, columnspan=n + 2, pady=5)
     matrix_entries = []
     for i in range(n):
         row_entries = []
+        # Left bracket
+        ctk.CTkLabel(matrix_frame, text="[", font=("Courier", 25,"bold"), width=10).grid(row=i + 1, column=0, padx=(5, 0))
+        # Matrix entries
         for j in range(n):
-            entry = ctk.CTkEntry(matrix_frame, width=60, placeholder_text=f"A{i+1}{j+1}")
-            entry.grid(row=i+1, column=j, padx=5, pady=5)
+            entry = ctk.CTkEntry(matrix_frame, width=60, placeholder_text=f"A{i + 1}{j + 1}", justify="center")
+            entry.grid(row=i + 1, column=j + 1, padx=5, pady=2)
             row_entries.append(entry)
+        # Right bracket
+        ctk.CTkLabel(matrix_frame, text="]", font=("Courier", 25,"bold"), width=10).grid(row=i + 1, column=n + 1, padx=(0, 5))
         matrix_entries.append(row_entries)
 
-    # Vector b label and inputs
-    ctk.CTkLabel(vector_frame, text=f"Constants Vector b ({n}x1):").grid(row=0, column=0, pady=5)
+    # Vector b label and inputs with brackets
+    ctk.CTkLabel(vector_frame, text=f"Constants Vector b ({n}x1):").grid(row=0, column=0, columnspan=3, pady=5)
     vector_entries = []
     for i in range(n):
-        entry = ctk.CTkEntry(vector_frame, width=60, placeholder_text=f"b{i+1}")
-        entry.grid(row=i+1, column=0, padx=5, pady=5)
+        # Left bracket
+        ctk.CTkLabel(vector_frame, text="[", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=0,
+                                                                                          padx=(0, 0))
+        # Vector entry
+        entry = ctk.CTkEntry(vector_frame, width=60, placeholder_text=f"b{i + 1}", justify="center")
+        entry.grid(row=i + 1, column=1, padx=5, pady=5)
         vector_entries.append(entry)
+        # Right bracket
+        ctk.CTkLabel(vector_frame, text="]", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=2,
+                                                                                          padx=(0, 0))
 
 def parse_complex(value: str) -> complex:
     """Parses a string representing a complex number."""
@@ -190,11 +203,11 @@ def solve_and_display():
 
             kvl_label.configure(text="KVL Equations:\n" + "\n".join(kvl_equations))
         else:
-            result_label.configure(text="Error: Solution does not exist. (Either invalid inputs or the determinant is zero).")
+            result_label.configure(text="Error: Solution does not exist. \n (Either invalid inputs or the determinant is zero).")
             kvl_label.configure(text="")
 
     except Exception:
-        result_label.configure(text="Error: Invalid input. Type a real or complex number such as 3+4j or -5.")
+        result_label.configure(text="Error: Invalid input. \n Type a real or complex number such as 3+4j or -5.")
         kvl_label.configure(text="")
 
 # ------------------------- GUI ELEMENTS --------------------------
@@ -257,11 +270,20 @@ vector_frame = ctk.CTkFrame(scrollable_frame)
 vector_frame.pack(pady=10)
 
 # Solve and Reset buttons
-solve_button = ctk.CTkButton(scrollable_frame, text="Solve", command=solve_and_display)
+solve_button = ctk.CTkButton(scrollable_frame, text="Solve (Enter or Spacebar)", command=solve_and_display)
 solve_button.pack(pady=10)
 
-reset_button = ctk.CTkButton(scrollable_frame, text="Reset", command=create_input_fields)
+reset_button = ctk.CTkButton(scrollable_frame, text="Reset (Backspace)", command=create_input_fields)
 reset_button.pack(pady=10)
+
+def on_key_press(event):
+    if event.keysym in ("Return", "space","KP_Enter"):
+        solve_and_display()
+    elif event.keysym in ("BackSpace"):
+        create_input_fields()
+
+root.bind("<Key>", on_key_press)
+
 
 # Start the main loop
 root.mainloop()
