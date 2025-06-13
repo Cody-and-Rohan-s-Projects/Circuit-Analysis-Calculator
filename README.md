@@ -8,8 +8,6 @@
 This calculator was designed by Cody Carter and Rohan Patel, two computer engineering students with a goal of creating an all-in-one application to simplify and solve nodal analysis linear equations as an GUI based alternative to MATLAB.
 Rohan focused on creating the backend and additional UI features, while Cody helped implemented the backend into an intuitive UI. We built this calculator to help users quickly solve nodal or mesh analysis equations in an easy to use and lightweight standalone application that anyone can use. 
 <br/>
-<br/>
-<br/>
 ### Connect with us for more projects:
 <div align="Left">
   <h3>Cody Carter</h3>
