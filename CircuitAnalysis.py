@@ -250,7 +250,7 @@ size_dropdown = ctk.CTkOptionMenu(size_row1, values=["1", "2", "3", "4"])
 size_dropdown.set("3")  # Default
 size_dropdown.pack(side="left", padx=5)
 
-size_button = ctk.CTkButton(size_row1, text="Set Size", command=create_input_fields)
+size_button = ctk.CTkButton(size_row1, text="Set Size (R)", command=create_input_fields)
 size_button.pack(side="left", padx=5)
 
 # Row 2: Decimal Precision dropdown
