@@ -5,9 +5,13 @@ Put photo of some sort here, probably of the final version
 # About Us
 This calculator was designed by Cody Carter and Rohan Patel, two computer engineering students with a goal of creating an application to simplify and solve nodal analysis linear equations.
 Rohan focused on creating the backend and additional UI features, while Cody helped implemented the backend into an intuitive UI. We built this calculator to help users quickly solve nodal analysis equations in an easy to use and lightweight standalone application that anyone can use. 
+<br/>
+<br/>
+<br/>
+### Connect with us on GitHub for more projects:
 
-Connect with us on GitHub for more projects:
-<div align="center">
+<div align="Left">
+  <h3>Cody Carter</h3>
   <img src="https://github.com/user-attachments/assets/2808f0ad-6c56-464c-abdd-6ece9a4be026" alt="Profile Photo" width="100" style="border-radius:50%">
   <p>
     <a href="https://github.com/codycarter1763">
@@ -19,7 +23,10 @@ Connect with us on GitHub for more projects:
   </p>
 </div>
 
-<div align="center">
+<br/>
+
+<div align="Left">
+  <h3>Rohan Patel</h3>
   <img src="https://github.com/user-attachments/assets/aeeb9ad5-5e8f-4719-afb1-21235dbe0086" alt="Profile Photo" width="100" style="border-radius:50%">
   <p>
     <a href="https://github.com/immmadeus">
