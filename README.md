@@ -13,7 +13,7 @@ Connect with us on GitHub for more projects:
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/immmadeus)
 
 <div align="Center">
-  <img src="https://raw.githubusercontent.com/your-username/your-username/main/assets/profile.jpg" alt="Profile Photo" width="150" style="border-radius:50%">
+  <img src="https://drive.google.com/file/d/1W5JP7YIR6sM4O_yCJrIJM2mFIX8Gfy3b/view?usp=sharing" alt="Profile Photo" width="150" style="border-radius:50%">
   <p>
     <a href="https://github.com/codycarter1763">
       <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
@@ -25,7 +25,7 @@ Connect with us on GitHub for more projects:
 </div>
 
 <div align="Center">
-  <img src="https://raw.githubusercontent.com/your-username/your-username/main/assets/profile.jpg" alt="Profile Photo" width="150" style="border-radius:50%">
+  <img src="https://drive.google.com/file/d/1O5f1DftgLU4efq7pXvx3aAfNwIieVHBt/view?usp=sharing" alt="Profile Photo" width="150" style="border-radius:50%">
   <p>
     <a href="https://github.com/immmadeus">
       <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
