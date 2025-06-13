@@ -82,16 +82,22 @@ For this project, we wanted to create an all-in-one application to simplify and 
 ## How Nodal Analysis Is Calculated
 Nodal analysis is a really handy circuit analysis technique that allows you to solve unknown currents and voltages.
 ### Example
+
 ![image](https://github.com/user-attachments/assets/7cf70958-ac26-4d58-a83d-550a72b8d58f)
+
 1. Locate node
 ![Step 1](https://github.com/user-attachments/assets/82bac9aa-aa20-44e0-99bb-f08987520698)
-2. Set current directions
+
+3. Set current directions
 ![Screenshot 2025-06-13 105432](https://github.com/user-attachments/assets/939ad2f2-6051-4fb0-9ddc-8d00e495c9cf)
-3. Create KVL equations for each branch of the node in terms of ohms law
+
+4. Create KVL equations for each branch of the node in terms of ohms law
 ![equations](https://github.com/user-attachments/assets/a06c1643-5092-4bbc-b3e3-1b3d14302615)
-4. Here is where our calculator application comes in handy. Normally, to solve for I1 and I2, you would use solving techniques like Cramers Rule to input the KVL equations into a matrix and solve for I1 and I2. For proof of concept, the steps will be shown in calculation.
+
+5. Here is where our calculator application comes in handy. Normally, to solve for I1 and I2, you would use solving techniques like Cramers Rule to input the KVL equations into a matrix and solve for I1 and I2. For proof of concept, the steps will be shown in calculation.
 ![Untitled](https://github.com/user-attachments/assets/bd143e9b-eba4-49e9-9bff-547fdb233763)
-5. As you can see, while this was a simple example, it still took a bit of calculation by hand. Especially with three or four unknowns it becomes a lot easier to make errors.
+
+6. As you can see, while this was a simple example, it still took a bit of calculation by hand. Especially with three or four unknowns it becomes a lot easier to make errors.
 
 ### How Our Circuit Analyzer Calculates 
 1. Using the numpy python library, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format.
