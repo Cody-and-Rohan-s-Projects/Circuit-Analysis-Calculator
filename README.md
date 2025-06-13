@@ -40,7 +40,7 @@ Rohan focused on creating the backend and additional UI features, while Cody hel
 </div>
 
 # How To Install
-
+To install the application, either clone the repository or download a ZIP file containing all of the files. The application will open when you open 
 # About The Calculator
 
 # Releases And Feature Updates
