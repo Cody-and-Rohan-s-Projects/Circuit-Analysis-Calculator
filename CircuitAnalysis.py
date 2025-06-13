@@ -1,7 +1,6 @@
 import numpy as np
 import customtkinter as ctk
 from tkinter import PhotoImage
-import webbrowser
 import os
 import re
 
@@ -273,13 +272,13 @@ vector_frame.pack(pady=10)
 solve_button = ctk.CTkButton(scrollable_frame, text="Solve (Enter or Spacebar)", command=solve_and_display)
 solve_button.pack(pady=10)
 
-reset_button = ctk.CTkButton(scrollable_frame, text="Reset (Backspace)", command=create_input_fields)
+reset_button = ctk.CTkButton(scrollable_frame, text="Reset (R)", command=create_input_fields)
 reset_button.pack(pady=10)
 
 def on_key_press(event):
     if event.keysym in ("Return", "space","KP_Enter"):
         solve_and_display()
-    elif event.keysym in ("BackSpace"):
+    elif event.keysym in ("r"):
         create_input_fields()
 
 root.bind("<Key>", on_key_press)
