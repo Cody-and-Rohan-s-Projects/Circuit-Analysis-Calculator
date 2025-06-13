@@ -60,7 +60,7 @@ def clear_previous_inputs():
         vector_frame.destroy()
     matrix_entries = []
     vector_entries = []
-    result_label.configure(text="Enter values (can be either real or complex rectangular) \n into the matrices and click Solve or press the Enter key.")
+    result_label.configure(text="Enter values (can be either real or complex rectangular)\ninto the matrices and click Solve or press the Enter key.")
     kvl_label.configure(text="")
 
 def create_input_fields():
@@ -203,11 +203,11 @@ def solve_and_display():
 
             kvl_label.configure(text="KVL Equations:\n" + "\n".join(kvl_equations))
         else:
-            result_label.configure(text="Error: Solution does not exist. \n (Either invalid inputs or the determinant is zero).")
+            result_label.configure(text="Error: Solution does not exist.\n(Either invalid inputs or the determinant is zero).")
             kvl_label.configure(text="")
 
     except Exception:
-        result_label.configure(text="Error: Invalid input. \n Type a real or complex number such as 3+4j or -5.")
+        result_label.configure(text="Error: Invalid input.\nType a real or complex number such as 3+4j or -5.")
         kvl_label.configure(text="")
 
 # ------------------------- GUI ELEMENTS --------------------------
