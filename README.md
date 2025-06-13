@@ -5,7 +5,7 @@
 </div>
 
 # About Us
-This calculator was designed by Cody Carter and Rohan Patel, two computer engineering students with a goal of creating an application to simplify and solve nodal analysis linear equations.
+This calculator was designed by Cody Carter and Rohan Patel, two computer engineering students with a goal of creating an all-in-one application to simplify and solve nodal analysis linear equations without using MATLAB code.
 Rohan focused on creating the backend and additional UI features, while Cody helped implemented the backend into an intuitive UI. We built this calculator to help users quickly solve nodal analysis equations in an easy to use and lightweight standalone application that anyone can use. 
 <br/>
 <br/>
