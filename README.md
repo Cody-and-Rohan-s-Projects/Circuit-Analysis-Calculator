@@ -46,9 +46,11 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 ## How to Install and Use
 
 1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab.
-2. The application is compatible with 32- or 64-bit versions of Windows 7, 8, 8.1, 10, and 11.
-3. If Windows shows a "Windows protected your PC" warning, click **"More info"** and then **"Run anyway"**. This is a standard message shown for unsigned applications.
-4. A macOS version is coming soon!
+2. Unzip and extract the release into another folder.
+3. The application is compatible with 32- or 64-bit versions of Windows 7, 8, 8.1, 10, and 11.
+4. Open the .exe file, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.
+5. If Windows shows a "Windows protected your PC" warning, click **"More info"** and then **"Run anyway"**. This is a standard message shown for unsigned applications.
+6. A macOS version is coming soon!
 
 <div align="center">
   
