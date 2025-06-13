@@ -95,6 +95,8 @@ Nodal analysis is a really handy circuit analysis technique that allows you to s
 
 ### How Our Circuit Analyzer Calculates 
 1. Using the numpy python library, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format.
+<br/>
+
 ![image](https://github.com/user-attachments/assets/998b2028-d892-4e78-aac2-9bcff959ee4f)
 
 ![image](https://github.com/user-attachments/assets/07e45435-6115-4944-9634-788291277e7e)
