@@ -121,7 +121,7 @@ Planned features:
 - Support for complex number input in **polar form**.
 - Continued UI improvements and bug fixes.
 
-We welcome suggestions and feedback—feel free to open an issue or contact us directly!
+We welcome suggestions and feedback—feel free let us know of an issue or contact us directly!
 
 
 
