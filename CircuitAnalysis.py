@@ -5,11 +5,12 @@ import os
 import re
 
 # Set default appearance and theme
-ctk.set_appearance_mode("light")
+ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 # Create main window
 root = ctk.CTk()
+root.attributes("-topmost", True)
 root.title("Circuit Analysis Calculator")
 root.geometry("600x900")
 
@@ -223,11 +224,13 @@ subtitle_label.pack(pady=(0, 5))
 switch_frame = ctk.CTkFrame(scrollable_frame)
 switch_frame.pack(pady=10)
 
-theme_switch = ctk.CTkSwitch(switch_frame, text="Dark Mode", command=toggle_theme)
+theme_switch = ctk.CTkSwitch(switch_frame, text="Dark Mode (D)", command=toggle_theme)
 theme_switch.pack(side="left", padx=10)
+theme_switch.select() #default to dark mode
 
-topmost_switch = ctk.CTkSwitch(switch_frame, text="Always on Top", command=toggle_always_on_top)
+topmost_switch = ctk.CTkSwitch(switch_frame, text="Always on Top (A)", command=toggle_always_on_top)
 topmost_switch.pack(side="left", padx=10)
+topmost_switch.select() #default to always on top
 
 # Result label
 result_label = ctk.CTkLabel(scrollable_frame, text="Select number of equations and click Set Size", font=("Franklin Gothic Medium", 14))
@@ -276,10 +279,27 @@ reset_button = ctk.CTkButton(scrollable_frame, text="Reset (R)", command=create_
 reset_button.pack(pady=10)
 
 def on_key_press(event):
-    if event.keysym in ("Return","KP_Enter"):
-        solve_and_display()
-    elif event.keysym in ("r"):
-        create_input_fields()
+    match event.keysym.lower():
+        case "return" | "kp_enter":
+            solve_and_display()
+        case "r" | "R":
+            create_input_fields()
+        case "a" | "A":
+            # Toggle Always on Top
+            if topmost_switch.get():
+                topmost_switch.deselect()
+            else:
+                topmost_switch.select()
+            toggle_always_on_top()
+        case "d" | "D":
+            # Toggle Dark Mode
+            if theme_switch.get():
+                theme_switch.deselect()
+            else:
+                theme_switch.select()
+            toggle_theme()
+        case _:
+            pass
 
 root.bind("<Key>", on_key_press)
 
