@@ -16,7 +16,7 @@ ctk.set_default_color_theme("blue")
 root = ctk.CTk()
 root.attributes("-topmost", True)
 root.title("Circuit Analysis Calculator")
-root.geometry("600x900")
+root.geometry("600x800+-5+-5")
 
 # Set custom window icon
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
