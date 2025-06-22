@@ -1,12 +1,9 @@
-import numpy as np
-import customtkinter as ctk
-from tkinter import PhotoImage
 import os
 import re
 import sys
-
-import os, sys
-
+from tkinter import PhotoImage
+import customtkinter as ctk
+import numpy as np
 
 # Set default appearance and theme
 ctk.set_appearance_mode("dark")
