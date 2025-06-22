@@ -3,6 +3,10 @@ import customtkinter as ctk
 from tkinter import PhotoImage
 import os
 import re
+import sys
+
+import os, sys
+
 
 # Set default appearance and theme
 ctk.set_appearance_mode("dark")
@@ -22,6 +26,13 @@ if os.path.exists(icon_path):
     except Exception:
         icon = PhotoImage(file=icon_path)
         root.iconphoto(True, icon)
+
+def resource_path(relative_path):
+    try:
+        return os.path.join(sys._MEIPASS, relative_path)  # PyInstaller
+    except Exception:
+        return os.path.join(os.path.abspath("."), relative_path)  # normal run
+
 
 # Global variables to store dynamic entry fields
 matrix_entries = []
