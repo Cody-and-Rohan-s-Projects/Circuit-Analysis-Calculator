@@ -13,7 +13,7 @@ ctk.set_default_color_theme("blue")
 root = ctk.CTk()
 root.attributes("-topmost", True)
 root.title("Circuit Analysis Calculator")
-root.geometry("600x800+-5+-5")
+root.geometry("600x900+0+0")
 
 # Set custom window icon
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
@@ -68,7 +68,7 @@ def clear_previous_inputs():
         vector_frame.destroy()
     matrix_entries = []
     vector_entries = []
-    result_label.configure(text="Enter values (can be either real or complex rectangular)\ninto the matrices and click Solve or press the Enter key.")
+    result_label.configure(text="Enter values (can be either real or complex rectangular\ninto the matrices and click Solve or press the Enter key.")
     kvl_label.configure(text="")
 
 def create_input_fields():
@@ -218,6 +218,46 @@ def solve_and_display():
         result_label.configure(text="Error: Invalid input.\nType a real or complex number such as 3+4j or -5.")
         kvl_label.configure(text="")
 
+def copy_result_to_clipboard():
+    """Copy the current result and KVL equations to the clipboard only if a solution exists."""
+    result_text = result_label.cget("text").strip() if result_label else ""
+
+    # Define keywords that indicate no solution
+    error_indicators = [
+        "Select number of equations",
+        "Error:",
+        "No solution",
+        "Please create input fields",
+        "Enter values",
+        "Solve the system first."
+    ]
+
+    # If result box has no valid solution, skip copying
+    if not result_text or any(keyword in result_text for keyword in error_indicators):
+        result_label.configure(text="Error: No solution to copy.\nSolve the system first.")
+        return
+
+    # Collect both result and KVL text
+    kvl_text = kvl_label.cget("text").strip() if kvl_label else ""
+    full_text = result_text + ("\n\n" + kvl_text if kvl_text else "")
+
+    # Copy to clipboard
+    root.clipboard_clear()
+    root.clipboard_append(full_text)
+    root.update()  # Keep clipboard after window closes
+
+    # Add feedback
+    result_label.configure(text=result_text + "\n\n✔ Copied to clipboard.")
+    root.after(2000, clear_copy_feedback)
+
+
+def clear_copy_feedback():
+    if result_label and "✔ Copied to clipboard." in result_label.cget("text"):
+        cleaned = result_label.cget("text").replace("\n\n✔ Copied to clipboard.", "")
+        result_label.configure(text=cleaned)
+
+
+
 # ------------------------- GUI ELEMENTS --------------------------
 
 # Title
@@ -256,22 +296,27 @@ size_frame.pack(pady=10)
 size_row1 = ctk.CTkFrame(size_frame)
 size_row1.pack(pady=5, fill="x")
 
-ctk.CTkLabel(size_row1, text="Number of Equations:").pack(side="left", padx=5)
-size_dropdown = ctk.CTkOptionMenu(size_row1, values=["1", "2", "3", "4"])
+ctk.CTkLabel(size_row1, text="Number of Equations:", width=150, anchor="w").pack(side="left", padx=(5, 0))
+size_dropdown = ctk.CTkOptionMenu(size_row1, values=["1", "2", "3", "4"], width=100)
 size_dropdown.set("3")  # Default
-size_dropdown.pack(side="left", padx=5)
+size_dropdown.pack(side="left", padx=(5, 0))
 
-size_button = ctk.CTkButton(size_row1, text="Set Size (R)", command=create_input_fields)
-size_button.pack(side="left", padx=5)
+size_button = ctk.CTkButton(size_row1, text="    Confirm Matrix Size (R)    ", command=create_input_fields)
+size_button.pack(side="left", padx=(15, 0))
 
-# Row 2: Decimal Precision dropdown
+# Row 2: Decimal Precision dropdown and button
 size_row2 = ctk.CTkFrame(size_frame)
 size_row2.pack(pady=5, fill="x")
 
-ctk.CTkLabel(size_row2, text="Decimal Precision:").pack(side="left", padx=5)
-precision_dropdown = ctk.CTkOptionMenu(size_row2, values=["0", "1", "2", "3", "4", "5", "6"], variable=precision_var)
-precision_dropdown.set("3")
-precision_dropdown.pack(side="left", padx=23)
+ctk.CTkLabel(size_row2, text="Decimal Precision:", width=150, anchor="w").pack(side="left", padx=(5, 0))
+precision_dropdown = ctk.CTkOptionMenu(size_row2, values=["0", "1", "2", "3", "4", "5", "6"], variable=precision_var, width=100)
+precision_dropdown.set("2")
+precision_dropdown.pack(side="left", padx=(5, 0))
+
+size_button2 = ctk.CTkButton(size_row2, text="Copy Result to Clipboard (C)", command=copy_result_to_clipboard)
+size_button2.pack(side="left", padx=(15, 0))
+
+
 
 # Placeholder for matrix and vector frames
 matrix_frame = ctk.CTkFrame(scrollable_frame)
@@ -306,6 +351,8 @@ def on_key_press(event):
             else:
                 theme_switch.select()
             toggle_theme()
+        case "c" | "C":
+            copy_result_to_clipboard()
         case _:
             pass
 
