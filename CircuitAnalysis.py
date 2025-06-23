@@ -233,10 +233,10 @@ ctk.CTkButton(scrollable_frame, text="Reset (R)", command=create_input_fields).p
 def on_key_press(event):
     match event.keysym.lower():
         case "return" | "kp_enter": solve_and_display()
-        case "r": create_input_fields()
-        case "a": topmost_switch.toggle(); toggle_always_on_top()
-        case "d": theme_switch.toggle(); toggle_theme()
-        case "c": copy_result_to_clipboard()
+        case "r" | "R": create_input_fields()
+        case "a" | "A": topmost_switch.toggle(); toggle_always_on_top()
+        case "d" | "D": theme_switch.toggle(); toggle_theme()
+        case "c" | "C": copy_result_to_clipboard()
 root.bind("<Key>", on_key_press)
 
 root.mainloop()
