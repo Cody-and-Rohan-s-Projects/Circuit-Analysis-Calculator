@@ -79,9 +79,11 @@ def create_input_fields():
         n = int(size_dropdown.get())
         if not 1 <= n <= 4:
             result_label.configure(text="Error: Equations must be 1-4.")
+            root.bell()
             return
     except ValueError:
         result_label.configure(text="Error: Invalid number.")
+        root.bell()
         return
 
     clear_previous_inputs()
@@ -123,6 +125,7 @@ def solve_and_display():
         n = len(matrix_entries)
         if n == 0:
             result_label.configure(text="Error: Create input fields first.")
+            root.bell()
             return
 
         precision = int(precision_var.get())
@@ -143,6 +146,7 @@ def solve_and_display():
         x = solve_linear_system(A, b)
         if x is None:
             result_label.configure(text="Error: The system has no solution.\n(singular matrix or invalid inputs)")
+            root.bell()
             kvl_label.configure(text="")
             return
 
@@ -173,6 +177,7 @@ def solve_and_display():
 
     except Exception:
         result_label.configure(text="Error: Invalid input format.")
+        root.bell()
         kvl_label.configure(text="")
 
 
@@ -181,14 +186,15 @@ def copy_result_to_clipboard():
     error_indicators = ["Select number", "Error:", "No solution", "Enter values"]
     if not result_text or any(k in result_text for k in error_indicators):
         result_label.configure(text="Error: No solution to copy.")
+        root.bell()
         return
     kvl_text = kvl_label.cget("text").strip()
     full_text = result_text + ("\n\n" + kvl_text if kvl_text else "")
     root.clipboard_clear()
     root.clipboard_append(full_text)
     root.update()
-    result_label.configure(text=result_text + "\n\n✔ Copied to clipboard.")
-    root.after(2000, clear_copy_feedback)
+    result_label.configure(text=result_text + "\n\nCopied solution to clipboard.")
+    root.after(1000, clear_copy_feedback)
 
 
 def clear_copy_feedback():
@@ -260,12 +266,13 @@ def on_key_press(event):
         case "r" | "R":
             create_input_fields()
         case "a" | "A":
-            topmost_switch.toggle(); toggle_always_on_top()
+            topmost_switch.toggle();
+            toggle_always_on_top()
         case "d" | "D":
-            theme_switch.toggle(); toggle_theme()
+            theme_switch.toggle();
+            toggle_theme()
         case "c" | "C":
             copy_result_to_clipboard()
-
 
 root.bind("<Key>", on_key_press)
 
