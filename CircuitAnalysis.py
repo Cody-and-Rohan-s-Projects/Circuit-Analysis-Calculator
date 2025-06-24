@@ -14,7 +14,7 @@ ctk.set_default_color_theme("blue")
 root = ctk.CTk()
 root.attributes("-topmost", True)
 root.title("Circuit Analysis Calculator")
-root.geometry("600x900+0+0")
+root.geometry("550x800+0+0")
 
 # Set icon
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
@@ -151,7 +151,7 @@ def solve_and_display():
             return
 
         result_lines = [
-            f"I{i + 1} = {x[i].real:.{precision}f} + {x[i].imag:.{precision}f}j A ({np.abs(x[i]):.{precision}f} ∠ {np.degrees(np.angle(x[i])):.{precision}f}° A)"
+            f"I{i + 1} = {x[i].real:.{precision}f} + {x[i].imag:.{precision}f}j A       [ {np.abs(x[i]):.{precision}f} ∠ {np.degrees(np.angle(x[i])):.{precision}f}° A ]"
             for i in range(n)]
         result_label.configure(text="Solution:\n" + "\n".join(result_lines))
 
@@ -193,17 +193,12 @@ def copy_result_to_clipboard():
     root.clipboard_clear()
     root.clipboard_append(full_text)
     root.update()
-    result_label.configure(text=result_text + "\n\nCopied solution to clipboard.")
-    root.after(1000, clear_copy_feedback)
-
-
-def clear_copy_feedback():
-    if result_label and "✔ Copied to clipboard." in result_label.cget("text"):
-        result_label.configure(text=result_label.cget("text").replace("\n\n✔ Copied to clipboard.", ""))
+    result_label.configure(text=result_text + "\n\nCopied results to clipboard.")
+    root.after(1000)
 
 
 # GUI Elements
-title_label = ctk.CTkLabel(scrollable_frame, text="AC and DC Circuit Analysis Calculator",
+title_label = ctk.CTkLabel(scrollable_frame, text="AC and DC Circuit Analysis Calculator\n(System of Equations Solver)",
                            font=("Franklin Gothic Medium", 20))
 title_label.pack(pady=10)
 
@@ -222,7 +217,7 @@ topmost_switch = ctk.CTkSwitch(switch_frame, text="Always on Top (A)", command=t
 topmost_switch.pack(side="left", padx=10)
 topmost_switch.select()
 
-result_label = ctk.CTkLabel(scrollable_frame, text="Select number of equations and click Set Size",
+result_label = ctk.CTkLabel(scrollable_frame, text="Select number of equations and click Set Size.",
                             font=("Franklin Gothic Medium", 14))
 result_label.pack(pady=10)
 
@@ -238,7 +233,7 @@ ctk.CTkLabel(size_row1, text="Number of Equations:", width=150).pack(side="left"
 size_dropdown = ctk.CTkOptionMenu(size_row1, values=["1", "2", "3", "4"], width=100)
 size_dropdown.set("3")
 size_dropdown.pack(side="left", padx=(5, 0))
-ctk.CTkButton(size_row1, text="Confirm Matrix Size (R)", command=create_input_fields).pack(side="left", padx=(15, 0))
+ctk.CTkButton(size_row1, text="    Confirm Matrix Size (R)    ", command=create_input_fields).pack(side="left", padx=(15, 0))
 
 size_row2 = ctk.CTkFrame(size_frame)
 size_row2.pack(pady=5, fill="x")
