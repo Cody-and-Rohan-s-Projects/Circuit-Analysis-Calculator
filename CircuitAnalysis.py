@@ -14,7 +14,7 @@ ctk.set_default_color_theme("blue")
 root = ctk.CTk()
 root.attributes("-topmost", True)
 root.title("Circuit Analysis Calculator")
-root.geometry("600x950+0+0")
+root.geometry("550x800+0+0")
 
 # Set icon
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
@@ -151,7 +151,7 @@ def solve_and_display():
             return
 
         result_lines = [
-            f"I{i + 1} = {x[i].real:.{precision}f} + {x[i].imag:.{precision}f}j A ({np.abs(x[i]):.{precision}f} ∠ {np.degrees(np.angle(x[i])):.{precision}f}° A)"
+            f"I{i + 1} = {x[i].real:.{precision}f} + {x[i].imag:.{precision}f}j A       [ {np.abs(x[i]):.{precision}f} ∠ {np.degrees(np.angle(x[i])):.{precision}f}° A ]"
             for i in range(n)]
         result_label.configure(text="Solution:\n" + "\n".join(result_lines))
 
