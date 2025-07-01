@@ -108,16 +108,21 @@ def create_input_fields():
         vector_entries.append(create_entry(vector_frame, f"b{i + 1}", i + 1, 1))
         ctk.CTkLabel(vector_frame, text="]", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=2)
 
-
 def parse_complex(value):
     try:
-        val = re.sub(r'\s+', '', value.lower().replace('i', 'j'))
-        val = re.sub(r'\bj(\d+)', r'\1j', val)
-        val = re.sub(r'\bj\b', '1j', val)
-        val = re.sub(r'([+\-])j(\d*)', lambda m: f"{m.group(1)}{m.group(2) or '1'}j", val)
+        val = value.lower().replace('i', 'j')  # Replace 'i' with 'j'
+        val = re.sub(r'\s+', '', val)  # Remove all whitespace
+
+        # Fix cases where imaginary unit comes first (e.g., j3 → 3j)
+        val = re.sub(r'(?<![\d.])j(\d+(\.\d+)?)(?![\d.])', r'\1j', val)
+
+        # Replace standalone j with 1j (e.g., +j, -j, or just j)
+        val = re.sub(r'(?<=[\+\-])j(?![\d.])', '1j', val)
+        val = re.sub(r'^j$', '1j', val)
+
         return complex(val)
     except Exception:
-        raise ValueError(f"Invalid complex: {value}")
+        raise ValueError(f"Invalid complex number format: {value}")
 
 
 def solve_and_display():
