@@ -111,13 +111,19 @@ def create_input_fields():
 
 def parse_complex(value):
     try:
-        val = re.sub(r'\s+', '', value.lower().replace('i', 'j'))
-        val = re.sub(r'\bj(\d+)', r'\1j', val)
-        val = re.sub(r'\bj\b', '1j', val)
-        val = re.sub(r'([+\-])j(\d*)', lambda m: f"{m.group(1)}{m.group(2) or '1'}j", val)
+        val = value.lower().replace('i', 'j')  # Replace 'i' with 'j'
+        val = re.sub(r'\s+', '', val)  # Remove all whitespace
+
+        # Fix cases where imaginary unit comes first (e.g., j3 → 3j)
+        val = re.sub(r'(?<![\d.])j(\d+(\.\d+)?)(?![\d.])', r'\1j', val)
+
+        # Replace standalone j with 1j (e.g., +j, -j, or just j)
+        val = re.sub(r'(?<=[\+\-])j(?![\d.])', '1j', val)
+        val = re.sub(r'^j$', '1j', val)
+
         return complex(val)
     except Exception:
-        raise ValueError(f"Invalid complex: {value}")
+        raise ValueError(f"Invalid complex number format: {value}")
 
 
 def solve_and_display():
@@ -233,7 +239,8 @@ ctk.CTkLabel(size_row1, text="Number of Equations:", width=150).pack(side="left"
 size_dropdown = ctk.CTkOptionMenu(size_row1, values=["1", "2", "3", "4"], width=100)
 size_dropdown.set("3")
 size_dropdown.pack(side="left", padx=(5, 0))
-ctk.CTkButton(size_row1, text="    Confirm Matrix Size (R)    ", command=create_input_fields).pack(side="left", padx=(15, 0))
+ctk.CTkButton(size_row1, text="    Confirm Matrix Size (R)    ", command=create_input_fields).pack(side="left",
+                                                                                                   padx=(15, 0))
 
 size_row2 = ctk.CTkFrame(size_frame)
 size_row2.pack(pady=5, fill="x")
@@ -268,6 +275,7 @@ def on_key_press(event):
             toggle_theme()
         case "c" | "C":
             copy_result_to_clipboard()
+
 
 root.bind("<Key>", on_key_press)
 
