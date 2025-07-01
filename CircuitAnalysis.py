@@ -108,6 +108,7 @@ def create_input_fields():
         vector_entries.append(create_entry(vector_frame, f"b{i + 1}", i + 1, 1))
         ctk.CTkLabel(vector_frame, text="]", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=2)
 
+
 def parse_complex(value):
     try:
         val = value.lower().replace('i', 'j')  # Replace 'i' with 'j'
@@ -238,7 +239,8 @@ ctk.CTkLabel(size_row1, text="Number of Equations:", width=150).pack(side="left"
 size_dropdown = ctk.CTkOptionMenu(size_row1, values=["1", "2", "3", "4"], width=100)
 size_dropdown.set("3")
 size_dropdown.pack(side="left", padx=(5, 0))
-ctk.CTkButton(size_row1, text="    Confirm Matrix Size (R)    ", command=create_input_fields).pack(side="left", padx=(15, 0))
+ctk.CTkButton(size_row1, text="    Confirm Matrix Size (R)    ", command=create_input_fields).pack(side="left",
+                                                                                                   padx=(15, 0))
 
 size_row2 = ctk.CTkFrame(size_frame)
 size_row2.pack(pady=5, fill="x")
@@ -273,6 +275,7 @@ def on_key_press(event):
             toggle_theme()
         case "c" | "C":
             copy_result_to_clipboard()
+
 
 root.bind("<Key>", on_key_press)
 
