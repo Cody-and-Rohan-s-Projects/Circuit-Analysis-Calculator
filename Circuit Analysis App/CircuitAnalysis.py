@@ -27,14 +27,14 @@ class CircuitAnalyzer(toga.App):
         self.matrix_size = 3
         self.matrix_entries = []
         self.vector_entries = []
-        
+
         self.scroll_content = toga.Box(style=Pack(direction=COLUMN, padding=10))
 
         # Dropdown for decimal precision
         dropdown_row = toga.Box(style=Pack(direction=ROW, padding=(0, 10)))
         dropdown_label = toga.Label("Decimal Precision:", style=Pack(margin_right=10))
         self.precision_dropdown = toga.Selection(
-            items=["1", "2", "3"],
+            items=["1", "2", "3", "4", "5","6"],
             value=self.precision,
             style=Pack(width=100)
         )
@@ -66,7 +66,7 @@ class CircuitAnalyzer(toga.App):
         button_row = toga.Box(style=Pack(direction=ROW, padding=10))
         solve_button = toga.Button("Solve", on_press=self.solve_system, style=Pack(padding_right=10))
         reset_button = toga.Button("Reset", on_press=self.reset_ui, style=Pack(padding_right=10))
-        copy_button = toga.Button("Copy Solution + KVL", on_press=self.copy_solution_and_kvl)
+        copy_button = toga.Button("Copy Solution + KVL Equations", on_press=self.copy_solution_and_kvl)
 
         button_row.add(solve_button)
         button_row.add(reset_button)
@@ -154,12 +154,12 @@ class CircuitAnalyzer(toga.App):
                 mag_str = format(mag, fmt)
                 angle_str = format(angle, fmt)
                 if abs(imag) < 1e-10:
-                    result_lines.append(f"I{i+1} = {format(real, fmt)} Amps  ({mag_str} < {angle_str}° Amps)")
+                    result_lines.append(f"I{i+1} = {format(real, fmt)} A  ({mag_str} < {angle_str}° A)")
                 elif abs(real) < 1e-10:
-                    result_lines.append(f"I{i+1} = {format(imag, fmt)}j Amps  ({mag_str} < {angle_str}° Amps)")
+                    result_lines.append(f"I{i+1} = {format(imag, fmt)}j A  ({mag_str} < {angle_str}° A)")
                 else:
                     sign = '+' if imag >= 0 else '-'
-                    result_lines.append(f"I{i+1} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j Amps  ({mag_str} < {angle_str}° Amps)")
+                    result_lines.append(f"I{i+1} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  ({mag_str} < {angle_str}° A)")
 
             self.result_label.text = "Solution:\n" + "\n".join(result_lines)
 
@@ -170,12 +170,12 @@ class CircuitAnalyzer(toga.App):
                     coeff = A[i, j]
                     if coeff != 0:
                         if abs(coeff.imag) < 1e-10:
-                            term = f"{format(coeff.real, fmt)} Ohms * I{j+1}"
+                            term = f"{format(coeff.real, fmt)} Ω * I{j+1}"
                         elif abs(coeff.real) < 1e-10:
-                            term = f"{format(coeff.imag, fmt)}j Ohms * I{j+1}"
+                            term = f"{format(coeff.imag, fmt)}j Ω * I{j+1}"
                         else:
                             sign = '+' if coeff.imag >= 0 else '-'
-                            term = f"({format(coeff.real, fmt)} {sign} {format(abs(coeff.imag), fmt)}j) Ohms * I{j+1}"
+                            term = f"({format(coeff.real, fmt)} {sign} {format(abs(coeff.imag), fmt)}j) Ω * I{j+1}"
                         terms.append(term)
 
                 rhs = b[i]
@@ -187,7 +187,7 @@ class CircuitAnalyzer(toga.App):
                     sign = '+' if rhs.imag >= 0 else '-'
                     rhs_str = f"{format(rhs.real, fmt)} {sign} {format(abs(rhs.imag), fmt)}j"
 
-                kvl_lines.append(" + ".join(terms) + f" = {rhs_str} Volts")
+                kvl_lines.append(" + ".join(terms) + f" = {rhs_str} V")
 
             self.kvl_label.text = "KVL Equations:\n" + "\n".join(kvl_lines)
 
