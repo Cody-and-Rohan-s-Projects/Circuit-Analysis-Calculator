@@ -13,7 +13,7 @@ ctk.set_default_color_theme("blue")
 # Initialize main window
 root = ctk.CTk()
 root.attributes("-topmost", True)
-root.title("Circuit Analysis Calculator")
+root.title("Circuit Analysis Calculator v1.2")
 root.geometry("550x800+0+0")
 
 # Set icon
