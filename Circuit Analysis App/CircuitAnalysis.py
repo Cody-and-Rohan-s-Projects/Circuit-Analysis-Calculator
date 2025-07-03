@@ -1,14 +1,13 @@
 import os
 import re
-import sys
+import tkinter as tk
 import numpy as np
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
 
-import tkinter as tk
-
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
+
 
 def copy_to_clipboard(text: str):
     try:
@@ -19,7 +18,7 @@ def copy_to_clipboard(text: str):
         r.update()
         r.destroy()
     except Exception as e:
-        print("Clipboard error:", e)
+        print("Error: Could not copy to clipboard", e)
 
 class CircuitAnalyzer(toga.App):
     def startup(self):
@@ -27,16 +26,15 @@ class CircuitAnalyzer(toga.App):
         self.matrix_size = 3
         self.matrix_entries = []
         self.vector_entries = []
-
         self.scroll_content = toga.Box(style=Pack(direction=COLUMN, padding=10))
 
         # Dropdown for decimal precision
         dropdown_row = toga.Box(style=Pack(direction=ROW, padding=(0, 10)))
-        dropdown_label = toga.Label("Decimal Precision:", style=Pack(margin_right=10))
+        dropdown_label = toga.Label("Decimal Precision:", style=Pack(margin_right=10,font_family="Franklin Gothic Medium"))
         self.precision_dropdown = toga.Selection(
-            items=["1", "2", "3", "4", "5","6"],
+            items=["1", "2", "3", "4", "5", "6"],
             value=self.precision,
-            style=Pack(width=100)
+            style=Pack(width=78)
         )
         self.precision_dropdown.on_select = self.set_precision
         dropdown_row.add(dropdown_label)
@@ -45,28 +43,28 @@ class CircuitAnalyzer(toga.App):
 
         # Dropdown for matrix size
         size_row = toga.Box(style=Pack(direction=ROW, padding=(0, 10)))
-        size_label = toga.Label("Number of Equations:", style=Pack(margin_right=10))
+        size_label = toga.Label("Number of Equations:", style=Pack(margin_right=10,font_family="Franklin Gothic Medium"))
         self.size_selector = toga.Selection(
             items=["1", "2", "3", "4"],
             value=str(self.matrix_size),
             style=Pack(width=60)
         )
-        size_button = toga.Button("Confirm Matrix Size", on_press=self.set_matrix_size, style=Pack(margin_left=10))
+        size_button = toga.Button("Confirm Matrix Size", on_press=self.set_matrix_size, style=Pack(margin_left=10,font_family="Franklin Gothic Medium"))
         size_row.add(size_label)
         size_row.add(self.size_selector)
         size_row.add(size_button)
         self.scroll_content.add(size_row)
 
         # Result and KVL Labels
-        self.result_label = toga.Label("Select number of equations and click Confirm", style=Pack(padding=(10, 5)))
-        self.kvl_label = toga.Label("", style=Pack(padding=(10, 5)))
+        self.result_label = toga.Label("Select number of equations and click Confirm Matrix Size", style=Pack(padding=(10, 5),font_family="Franklin Gothic Medium"))
+        self.kvl_label = toga.Label("", style=Pack(padding=(10, 5), font_family="Franklin Gothic Medium"))
         self.scroll_content.add(self.result_label)
 
         # Buttons
         button_row = toga.Box(style=Pack(direction=ROW, padding=10))
-        solve_button = toga.Button("Solve", on_press=self.solve_system, style=Pack(padding_right=10))
-        reset_button = toga.Button("Reset", on_press=self.reset_ui, style=Pack(padding_right=10))
-        copy_button = toga.Button("Copy Solution + KVL Equations", on_press=self.copy_solution_and_kvl)
+        solve_button = toga.Button("Solve", on_press=self.solve_system, style=Pack(padding_right=10,font_family="Franklin Gothic Medium"))
+        reset_button = toga.Button("Reset", on_press=self.reset_ui, style=Pack(padding_right=10,font_family="Franklin Gothic Medium"))
+        copy_button = toga.Button("Copy Solution + KVL Equations", on_press=self.copy_solution_and_kvl, style=Pack(font_family="Franklin Gothic Medium"))
 
         button_row.add(solve_button)
         button_row.add(reset_button)
@@ -98,27 +96,27 @@ class CircuitAnalyzer(toga.App):
         self.matrix_entries = []
         self.vector_entries = []
 
-        self.scroll_content.add(toga.Label(f"Coefficient Matrix A ({n}x{n}):", style=Pack(margin=(10, 5))))
+        self.scroll_content.add(toga.Label(f"Coefficient Matrix A ({n}x{n}):", style=Pack(margin=(10, 5),font_family="Franklin Gothic Medium")))
         for i in range(n):
-            row = toga.Box(style=Pack(direction=ROW, margin=2))
+            row = toga.Box(style=Pack(direction=ROW, margin=2,font_family="Franklin Gothic Medium"))
             row_entries = []
-            row.add(toga.Label("[", style=Pack(font_family="Courier", font_size=20, margin_right=5)))
+            row.add(toga.Label("[", style=Pack(font_family="Courier New", font_size=20, margin_right=5)))
             for j in range(n):
-                entry = toga.TextInput(placeholder=f"A{i+1}{j+1}", style=Pack(width=60, margin_right=5))
+                entry = toga.TextInput(placeholder=f"A{i + 1}{j + 1}", style=Pack(width=60, margin_right=5,font_family="Franklin Gothic Medium"))
                 row.add(entry)
                 row_entries.append(entry)
-            row.add(toga.Label("]", style=Pack(font_family="Courier", font_size=20, margin_left=5)))
+            row.add(toga.Label("]", style=Pack(font_family="Courier New", font_size=20, margin_left=5)))
             self.matrix_entries.append(row_entries)
             self.scroll_content.add(row)
 
-        self.scroll_content.add(toga.Label(f"Constants Vector b ({n}x1):", style=Pack(margin=(10, 5))))
+        self.scroll_content.add(toga.Label(f"Constants Vector b ({n}x1):", style=Pack(margin=(10, 5),font_family="Franklin Gothic Medium")))
         for i in range(n):
             row = toga.Box(style=Pack(direction=ROW, margin=2))
-            row.add(toga.Label("[", style=Pack(font_family="Courier", font_size=20, margin_right=5)))
-            entry = toga.TextInput(placeholder=f"b{i+1}", style=Pack(width=60, margin_right=5))
+            row.add(toga.Label("[", style=Pack(font_family="Courier New", font_size=20, margin_right=5)))
+            entry = toga.TextInput(placeholder=f"b{i + 1}", style=Pack(width=60, margin_right=5, font_family="Franklin Gothic Medium"))
             self.vector_entries.append(entry)
             row.add(entry)
-            row.add(toga.Label("]", style=Pack(font_family="Courier", font_size=20, margin_left=5)))
+            row.add(toga.Label("]", style=Pack(font_family="Courier New", font_size=20, margin_left=5)))
             self.scroll_content.add(row)
 
     def parse_complex(self, value: str) -> complex:
@@ -154,12 +152,13 @@ class CircuitAnalyzer(toga.App):
                 mag_str = format(mag, fmt)
                 angle_str = format(angle, fmt)
                 if abs(imag) < 1e-10:
-                    result_lines.append(f"I{i+1} = {format(real, fmt)} A  ({mag_str} < {angle_str}° A)")
+                    result_lines.append(f"I{i + 1} = {format(real, fmt)} A  ({mag_str} ∠ {angle_str}° A)")
                 elif abs(real) < 1e-10:
-                    result_lines.append(f"I{i+1} = {format(imag, fmt)}j A  ({mag_str} < {angle_str}° A)")
+                    result_lines.append(f"I{i + 1} = {format(imag, fmt)}j A  ({mag_str} ∠ {angle_str}° A)")
                 else:
                     sign = '+' if imag >= 0 else '-'
-                    result_lines.append(f"I{i+1} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  ({mag_str} < {angle_str}° A)")
+                    result_lines.append(
+                        f"I{i + 1} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  ({mag_str}∠{angle_str}° A)")
 
             self.result_label.text = "Solution:\n" + "\n".join(result_lines)
 
@@ -170,12 +169,12 @@ class CircuitAnalyzer(toga.App):
                     coeff = A[i, j]
                     if coeff != 0:
                         if abs(coeff.imag) < 1e-10:
-                            term = f"{format(coeff.real, fmt)} Ω * I{j+1}"
+                            term = f"{format(coeff.real, fmt)} Ω * I{j + 1}"
                         elif abs(coeff.real) < 1e-10:
-                            term = f"{format(coeff.imag, fmt)}j Ω * I{j+1}"
+                            term = f"{format(coeff.imag, fmt)}j Ω * I{j + 1}"
                         else:
                             sign = '+' if coeff.imag >= 0 else '-'
-                            term = f"({format(coeff.real, fmt)} {sign} {format(abs(coeff.imag), fmt)}j) Ω * I{j+1}"
+                            term = f"({format(coeff.real, fmt)} {sign} {format(abs(coeff.imag), fmt)}j) Ω * I{j + 1}"
                         terms.append(term)
 
                 rhs = b[i]
@@ -214,4 +213,5 @@ class CircuitAnalyzer(toga.App):
         self.kvl_label.text = ""
 
 # Launch app
-CircuitAnalyzer(formal_name="Circuit Analyzer", app_id="com.codycarterandrohanpatel.circuitanalyzer", icon=icon_path).main_loop()
+CircuitAnalyzer(formal_name="Circuit Analyzer", app_id="com.codycarterandrohanpatel.circuitanalyzer",
+                icon=icon_path).main_loop()
