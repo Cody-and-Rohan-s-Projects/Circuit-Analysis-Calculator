@@ -1,7 +1,7 @@
 # Circuit Analysis Calculator Application
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/8b3eb796-ddbb-44cc-a87c-1832e1726443" alt="App Screenshot" width="400">
+  <img src="https://github.com/user-attachments/assets/41d8e117-6b2e-41b1-a778-d52cede702a5" alt="App Screenshot" width="400">
 </div>
 
 ## About Us
