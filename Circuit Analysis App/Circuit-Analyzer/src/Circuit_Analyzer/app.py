@@ -1,6 +1,5 @@
 import os
 import re
-import tkinter as tk
 import numpy as np
 import toga
 from toga.style import Pack
@@ -8,66 +7,51 @@ from toga.style.pack import COLUMN, ROW
 
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
 
-
-def copy_to_clipboard(text: str):
-    try:
-        r = tk.Tk()
-        r.withdraw()
-        r.clipboard_clear()
-        r.clipboard_append(text)
-        r.update()
-        r.destroy()
-    except Exception as e:
-        print("Error: Could not copy to clipboard", e)
-
 class CircuitAnalyzer(toga.App):
     def startup(self):
-
         self.precision = "3"
         self.matrix_size = 3
         self.matrix_entries = []
         self.vector_entries = []
         self.scroll_content = toga.Box(style=Pack(direction=COLUMN, padding=10))
 
-        # Dropdown for decimal precision
+        # Decimal Precision Dropdown
         dropdown_row = toga.Box(style=Pack(direction=ROW, padding=(0, 10)))
-        dropdown_label = toga.Label("Decimal Precision:", style=Pack(margin_right=10,font_family="Franklin Gothic Medium"))
+        dropdown_label = toga.Label("Decimal Precision:", style=Pack(margin_right=10, font_family="Franklin Gothic Medium"))
         self.precision_dropdown = toga.Selection(
             items=["1", "2", "3", "4", "5", "6"],
             value=self.precision,
             style=Pack(width=78)
         )
-
         self.precision_dropdown.on_select = self.set_precision
         dropdown_row.add(dropdown_label)
         dropdown_row.add(self.precision_dropdown)
         self.scroll_content.add(dropdown_row)
 
-        # Dropdown for matrix size
+        # Matrix Size Selector
         size_row = toga.Box(style=Pack(direction=ROW, padding=(0, 10)))
-        size_label = toga.Label("Number of Equations:", style=Pack(margin_right=10,font_family="Franklin Gothic Medium"))
+        size_label = toga.Label("Number of Equations:", style=Pack(margin_right=10, font_family="Franklin Gothic Medium"))
         self.size_selector = toga.Selection(
             items=["1", "2", "3", "4"],
             value=str(self.matrix_size),
             style=Pack(width=60)
         )
-        size_button = toga.Button("Confirm Matrix Size", on_press=self.set_matrix_size, style=Pack(margin_left=10,font_family="Franklin Gothic Medium"))
+        size_button = toga.Button("Confirm Matrix Size", on_press=self.set_matrix_size, style=Pack(margin_left=10, font_family="Franklin Gothic Medium"))
         size_row.add(size_label)
         size_row.add(self.size_selector)
         size_row.add(size_button)
         self.scroll_content.add(size_row)
 
-        # Result and KVL Labels
-        self.result_label = toga.Label("Select number of equations and click Confirm Matrix Size", style=Pack(padding=(10, 5),font_family="Franklin Gothic Medium"))
+        # Labels
+        self.result_label = toga.Label("Select number of equations and click Confirm Matrix Size", style=Pack(padding=(10, 5), font_family="Franklin Gothic Medium"))
         self.kvl_label = toga.Label("", style=Pack(padding=(10, 5), font_family="Franklin Gothic Medium"))
         self.scroll_content.add(self.result_label)
 
-        # Buttons
+        # Action Buttons
         button_row = toga.Box(style=Pack(direction=ROW, padding=10))
-        solve_button = toga.Button("Solve", on_press=self.solve_system, style=Pack(padding_right=10,font_family="Franklin Gothic Medium"))
-        reset_button = toga.Button("Reset", on_press=self.reset_ui, style=Pack(padding_right=10,font_family="Franklin Gothic Medium"))
+        solve_button = toga.Button("Solve", on_press=self.solve_system, style=Pack(padding_right=10, font_family="Franklin Gothic Medium"))
+        reset_button = toga.Button("Reset", on_press=self.reset_ui, style=Pack(padding_right=10, font_family="Franklin Gothic Medium"))
         copy_button = toga.Button("Copy Solution + KVL Equations", on_press=self.copy_solution_and_kvl, style=Pack(font_family="Franklin Gothic Medium"))
-
         button_row.add(solve_button)
         button_row.add(reset_button)
         button_row.add(copy_button)
@@ -75,6 +59,7 @@ class CircuitAnalyzer(toga.App):
 
         self.scroll_content.add(self.kvl_label)
 
+        # Set up scroll view
         self.scroll_container = toga.ScrollContainer(horizontal=False)
         self.scroll_container.content = self.scroll_content
 
@@ -91,27 +76,26 @@ class CircuitAnalyzer(toga.App):
         self.create_input_fields(self.matrix_size)
 
     def create_input_fields(self, n):
-        # Remove extra widgets (everything after first 5 fixed ones)
         while len(self.scroll_content.children) > 5:
             self.scroll_content.remove(self.scroll_content.children[5])
 
         self.matrix_entries = []
         self.vector_entries = []
 
-        self.scroll_content.add(toga.Label(f"Coefficient Matrix A ({n}x{n}):", style=Pack(margin=(10, 5),font_family="Franklin Gothic Medium")))
+        self.scroll_content.add(toga.Label(f"Coefficient Matrix A ({n}x{n}):", style=Pack(margin=(10, 5), font_family="Franklin Gothic Medium")))
         for i in range(n):
-            row = toga.Box(style=Pack(direction=ROW, margin=2,font_family="Franklin Gothic Medium"))
+            row = toga.Box(style=Pack(direction=ROW, margin=2))
             row_entries = []
             row.add(toga.Label("[", style=Pack(font_family="Courier New", font_size=20, margin_right=5)))
             for j in range(n):
-                entry = toga.TextInput(placeholder=f"A{i + 1}{j + 1}", style=Pack(width=60, margin_right=5,font_family="Franklin Gothic Medium"))
+                entry = toga.TextInput(placeholder=f"A{i + 1}{j + 1}", style=Pack(width=60, margin_right=5, font_family="Franklin Gothic Medium"))
                 row.add(entry)
                 row_entries.append(entry)
             row.add(toga.Label("]", style=Pack(font_family="Courier New", font_size=20, margin_left=5)))
             self.matrix_entries.append(row_entries)
             self.scroll_content.add(row)
 
-        self.scroll_content.add(toga.Label(f"Constants Vector b ({n}x1):", style=Pack(margin=(10, 5),font_family="Franklin Gothic Medium")))
+        self.scroll_content.add(toga.Label(f"Constants Vector b ({n}x1):", style=Pack(margin=(10, 5), font_family="Franklin Gothic Medium")))
         for i in range(n):
             row = toga.Box(style=Pack(direction=ROW, margin=2))
             row.add(toga.Label("[", style=Pack(font_family="Courier New", font_size=20, margin_right=5)))
@@ -205,8 +189,7 @@ class CircuitAnalyzer(toga.App):
             return
 
         full_text = result_text + ("\n\n" + kvl_text if kvl_text else "")
-        copy_to_clipboard(full_text)
-        # Append confirmation message without removing the solution
+        self.main_window.set_clipboard(full_text)
         self.result_label.text = result_text + "\n\n✔ Copied to clipboard."
 
     def reset_ui(self, widget):
@@ -214,8 +197,9 @@ class CircuitAnalyzer(toga.App):
         self.result_label.text = "Select number of equations and click Confirm"
         self.kvl_label.text = ""
 
-
-
-# Launch app
-CircuitAnalyzer(formal_name="Circuit Analyzer", app_id="com.codycarterandrohanpatel.circuitanalyzer",
-                icon=icon_path).main_loop()
+def main():
+    return CircuitAnalyzer(
+        formal_name="Circuit Analyzer",
+        app_id="com.codycarterandrohanpatel.circuitanalyzer",
+        icon=icon_path
+    )

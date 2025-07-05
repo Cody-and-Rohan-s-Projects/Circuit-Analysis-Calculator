@@ -21,6 +21,8 @@ test_sources = [
 ]
 
 requires = [
+    "numpy",
+    "toga",
 ]
 test_requires = [
     "pytest",
