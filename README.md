@@ -45,7 +45,7 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 
 ## How to Install and Use
 
-1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab.
+1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab. _**BeeWare builds are experimental.**_
 2. Unzip and extract the release into another folder.
 3. Follow the correcorresponding steps based on your operating system.
 
