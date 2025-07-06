@@ -1,9 +1,10 @@
 # Circuit Analysis Calculator Application
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/fa1712b5-4c9e-47bb-8375-cc43fe855206" alt="App Screenshot" width="400">
-</div>
-
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/fa1712b5-4c9e-47bb-8375-cc43fe855206" alt="App Screenshot" width="400">
+  </div>
+</figure>
+  
 ## About Us
 
 This calculator was created by Cody Carter and Rohan Patel, two computer engineering students with a shared goal: to develop an all-in-one application that simplifies and solves nodal analysis equations using a graphical interface—a lightweight and accessible alternative to MATLAB.
@@ -45,7 +46,7 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 
 ## How to Install and Use
 
-1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab. _**BeeWare mobile builds are experimental and unstable. Use them at your own risk.**_
+1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab. _**(BeeWare mobile builds are experimental and unstable. Use them at your own risk.)**_
 2. Unzip and extract the release into another folder.
 3. Follow the correcorresponding steps based on your operating system.
 
