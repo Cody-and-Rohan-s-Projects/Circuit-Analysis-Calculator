@@ -175,7 +175,7 @@ requires = [
 
 [tool.briefcase.app.Circuit-Analyzer.android]
 requires = [
-    "toga-android~=0.5.0",
+    "toga-android~=0.5.1",
 ]
 
 base_theme = "Theme.MaterialComponents.Light.DarkActionBar"
