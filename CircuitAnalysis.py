@@ -1,8 +1,9 @@
 import os
 import re
 import sys
+import webbrowser
 from tkinter import PhotoImage
-
+from PIL import Image
 import customtkinter as ctk
 import numpy as np
 
@@ -14,7 +15,7 @@ ctk.set_default_color_theme("blue")
 root = ctk.CTk()
 root.attributes("-topmost", True)
 root.title("Circuit Analysis Calculator v1.2")
-root.geometry("560x800+0+0")
+root.geometry("560x900+0+0")
 
 # Set icon
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
@@ -24,6 +25,16 @@ if os.path.exists(icon_path):
     except Exception:
         icon = PhotoImage(file=icon_path)
         root.iconphoto(True, icon)
+
+# Set Github image link
+try:
+    github_icon_image = ctk.CTkImage(
+        dark_image=Image.open(icon_path),
+        light_image=Image.open(icon_path),
+        size=(20, 20)
+    )
+except Exception as e:
+    github_icon_image = None
 
 
 def resource_path(relative_path):
@@ -40,6 +51,9 @@ precision_var = ctk.StringVar(value="3")
 
 scrollable_frame = ctk.CTkScrollableFrame(root, width=530, height=880)
 scrollable_frame.pack(padx=10, pady=10, fill="both", expand=True)
+
+def open_github():
+    webbrowser.open_new("https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser")
 
 
 def toggle_always_on_top():
@@ -211,6 +225,9 @@ title_label.pack(pady=10)
 subtitle_label = ctk.CTkLabel(scrollable_frame, text="by Cody Carter and Rohan Patel",
                               font=("Franklin Gothic Medium", 14))
 subtitle_label.pack(pady=(0, 5))
+
+github_button = ctk.CTkButton(scrollable_frame, text="View On GitHub", image=github_icon_image, compound="left", command=open_github)
+github_button.pack(pady=5)
 
 switch_frame = ctk.CTkFrame(scrollable_frame)
 switch_frame.pack(pady=10)
