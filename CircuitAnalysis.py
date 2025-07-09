@@ -126,6 +126,7 @@ def create_input_fields():
 def parse_complex(value):
     try:
         val = value.lower().replace('i', 'j')  # Replace 'i' with 'j'
+        val = val.replace(',',"") # Remove commas
         val = re.sub(r'\s+', '', val)  # Remove all whitespace
 
         # Fix cases where imaginary unit comes first (e.g., j3 → 3j)
