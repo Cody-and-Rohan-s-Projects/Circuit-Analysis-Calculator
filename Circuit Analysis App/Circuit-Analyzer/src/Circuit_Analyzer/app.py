@@ -7,7 +7,6 @@ from toga.style.pack import COLUMN, ROW, CENTER
 
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
 
-#light and dark theme styles
 LIGHT_THEME = {
     "background_color": "white",
     "text_color": "black",
@@ -28,6 +27,9 @@ DARK_THEME = {
     "label_font_family": "sans-serif",
 }
 
+PRECISION_OPTIONS = [str(i) for i in range(1, 7)]
+MATRIX_SIZE_OPTIONS = [str(i) for i in range(1, 5)]
+
 class CircuitAnalyzer(toga.App):
     def startup(self):
         self.precision = "3"
@@ -36,14 +38,14 @@ class CircuitAnalyzer(toga.App):
         self.vector_entries = []
         self.current_theme = LIGHT_THEME
 
-        self.scroll_content = toga.Box(style=Pack(direction=COLUMN, margin=10))
+        self.scroll_content = toga.Box(style=Pack(direction=COLUMN, margin=10, flex=1))
 
-        # Theme toggle button row
+        # Theme toggle button
         theme_row = toga.Box(style=Pack(direction=ROW, justify_content="end", margin=(0, 10)))
         self.theme_toggle = toga.Button(
             "Switch to Dark Theme",
             on_press=self.toggle_theme,
-            style=Pack(margin=5)
+            style=Pack(margin=5),
         )
         theme_row.add(self.theme_toggle)
         self.scroll_content.add(theme_row)
@@ -56,11 +58,13 @@ class CircuitAnalyzer(toga.App):
                        color=self.current_theme["text_color"])
         )
         self.precision_dropdown = toga.Selection(
-            items=["1", "2", "3", "4", "5", "6"],
+            items=PRECISION_OPTIONS,
             value=self.precision,
-            style=Pack(width=70),
+            style=Pack(width=100, background_color=self.current_theme["input_background"],
+                       color=self.current_theme["input_color"]),
         )
         self.precision_dropdown.on_select = self.set_precision
+
         dropdown_row.add(dropdown_label)
         dropdown_row.add(self.precision_dropdown)
         self.scroll_content.add(dropdown_row)
@@ -73,9 +77,10 @@ class CircuitAnalyzer(toga.App):
                        color=self.current_theme["text_color"])
         )
         self.size_selector = toga.Selection(
-            items=["1", "2", "3", "4"],
+            items=MATRIX_SIZE_OPTIONS,
             value=str(self.matrix_size),
-            style=Pack(width=55),
+            style=Pack(width=100, background_color=self.current_theme["input_background"],
+                       color=self.current_theme["input_color"])
         )
         size_button = toga.Button(
             "Confirm Matrix Size",
@@ -87,7 +92,7 @@ class CircuitAnalyzer(toga.App):
         size_row.add(size_button)
         self.scroll_content.add(size_row)
 
-        # Single multiline text input to show both solution and KVL equations
+        # Result display
         self.result_label = toga.MultilineTextInput(
             readonly=True,
             style=Pack(
@@ -95,7 +100,8 @@ class CircuitAnalyzer(toga.App):
                 font_family=self.current_theme["label_font_family"],
                 color=self.current_theme["text_color"],
                 background_color=self.current_theme["input_background"],
-                width=360,
+                flex=1,
+                width=500,
                 height=200,
             ),
         )
@@ -126,7 +132,7 @@ class CircuitAnalyzer(toga.App):
         self.main_window = toga.MainWindow(title="Circuit Analysis Calculator")
         self.main_window.content = self.scroll_container
         self.main_window.size = (450, 800)
-        self.main_window.position = (0,0)
+        self.main_window.position = (0, 0)
         self.main_window.show()
 
         self.apply_theme()
@@ -141,62 +147,62 @@ class CircuitAnalyzer(toga.App):
         self.apply_theme()
 
     def apply_theme(self):
-        bg = self.current_theme["background_color"]
-        fg = self.current_theme["text_color"]
-        input_bg = self.current_theme["input_background"]
-        input_fg = self.current_theme["input_color"]
-        btn_bg = self.current_theme["button_background"]
-        btn_fg = self.current_theme["button_color"]
-        label_font = self.current_theme["label_font_family"]
+        theme = self.current_theme
 
-        self.main_window.background_color = bg
-        self.scroll_content.style.update(background_color=bg)
+        self.main_window.background_color = theme["background_color"]
+        self.scroll_content.style.background_color = theme["background_color"]
 
+        def style_widget(w):
+            if isinstance(w, (toga.Label, toga.Button)):
+                w.style.color = theme["text_color"]
+                if isinstance(w, toga.Button):
+                    w.style.background_color = theme["button_background"]
+                    w.style.color = theme["button_color"]
+                if isinstance(w, toga.Label):
+                    w.style.font_family = theme["label_font_family"]
+            elif isinstance(w, (toga.TextInput, toga.MultilineTextInput, toga.Selection)):
+                w.style.background_color = theme["input_background"]
+                w.style.color = theme["input_color"]
+
+        # Style children of scroll_content recursively
         for child in self.scroll_content.children:
-            if isinstance(child, toga.Label):
-                child.style.color = fg
-                child.style.font_family = label_font
             if isinstance(child, toga.Box):
-                for item in child.children:
-                    if isinstance(item, toga.Label):
-                        item.style.color = fg
-                        item.style.font_family = label_font
-                    elif isinstance(item, (toga.TextInput, toga.MultilineTextInput)):
-                        item.style.background_color = input_bg
-                        item.style.color = input_fg
+                for w in child.children:
+                    style_widget(w)
+            else:
+                style_widget(child)
 
-        self.precision_dropdown.style.background_color = input_bg
-        self.precision_dropdown.style.color = input_fg
-        self.size_selector.style.background_color = input_bg
-        self.size_selector.style.color = input_fg
-
-        self.result_label.style.background_color = input_bg
-        self.result_label.style.color = input_fg
-
-        for row in self.scroll_content.children:
-            if isinstance(row, toga.Box):
-                for widget in row.children:
-                    if isinstance(widget, toga.Button):
-                        widget.style.background_color = btn_bg
-                        widget.style.color = btn_fg
-
-        for row_entries in self.matrix_entries:
-            for entry in row_entries:
-                entry.style.background_color = input_bg
-                entry.style.color = input_fg
+        # Style matrix entries and vector entries inputs
+        for row in self.matrix_entries:
+            for entry in row:
+                style_widget(entry)
         for entry in self.vector_entries:
-            entry.style.background_color = input_bg
-            entry.style.color = input_fg
+            style_widget(entry)
+
+        # Style dropdowns explicitly
+        for dropdown in [self.precision_dropdown, self.size_selector]:
+            dropdown.style.background_color = theme["input_background"]
+            dropdown.style.color = theme["input_color"]
+
+        self.precision_dropdown.items = PRECISION_OPTIONS
+        self.precision_dropdown.value = self.precision
+        self.size_selector.items = MATRIX_SIZE_OPTIONS
+        self.size_selector.value = str(self.matrix_size)
 
     def set_precision(self, widget):
         self.precision = widget.value
         self.result_label.value = f"Decimal precision set to: {self.precision}"
 
     def set_matrix_size(self, widget):
-        self.matrix_size = int(self.size_selector.value)
-        self.create_input_fields(self.matrix_size)
+        try:
+            self.matrix_size = int(self.size_selector.value)
+            self.create_input_fields(self.matrix_size)
+            self.result_label.value = "Input fields created."
+        except Exception as e:
+            self.result_label.value = f"Error setting matrix size: {e}"
 
     def create_input_fields(self, n):
+        # Remove old input fields after initial 5 widgets (static UI widgets)
         while len(self.scroll_content.children) > 5:
             self.scroll_content.remove(self.scroll_content.children[5])
 
@@ -209,6 +215,7 @@ class CircuitAnalyzer(toga.App):
                        font_family=self.current_theme["label_font_family"],
                        color=self.current_theme["text_color"])
         ))
+
         for i in range(n):
             row = toga.Box(style=Pack(direction=ROW, margin=2, justify_content="start"))
             row_entries = []
@@ -268,15 +275,10 @@ class CircuitAnalyzer(toga.App):
         try:
             val = value.replace(',', '')  # Remove commas
             val = val.lower().replace('i', 'j')  # Replace 'i' with 'j'
-            val = re.sub(r'\s+', '', val)  # Remove all whitespace
-
-            # Fix cases where imaginary unit comes first (e.g., j3 → 3j)
+            val = re.sub(r'\s+', '', val)  # Remove whitespace
             val = re.sub(r'(?<![\d.])j(\d+(\.\d+)?)(?![\d.])', r'\1j', val)
-
-            # Replace standalone j with 1j (e.g., +j, -j, or just j)
             val = re.sub(r'(?<=[\+\-])j(?![\d.])', '1j', val)
             val = re.sub(r'^j$', '1j', val)
-
             return complex(val)
         except Exception:
             raise ValueError(f"Invalid complex number format: {value}")
@@ -290,7 +292,8 @@ class CircuitAnalyzer(toga.App):
 
             A = np.zeros((n, n), dtype=complex)
             b = np.zeros(n, dtype=complex)
-            fmt = f".{self.precision}f"
+            precision_int = int(self.precision)
+            fmt = f".{precision_int}f"
 
             for i in range(n):
                 for j in range(n):
@@ -300,20 +303,20 @@ class CircuitAnalyzer(toga.App):
             x = np.linalg.solve(A, b)
 
             result_lines = []
-            for i in range(n):
-                real, imag = x[i].real, x[i].imag
-                mag = np.abs(x[i])
-                angle = np.degrees(np.angle(x[i]))
+            for i, val in enumerate(x, start=1):
+                real, imag = val.real, val.imag
+                mag = np.abs(val)
+                angle = np.degrees(np.angle(val))
                 mag_str = format(mag, fmt)
                 angle_str = format(angle, fmt)
                 if abs(imag) < 1e-10:
-                    result_lines.append(f"I{i + 1} = {format(real, fmt)} A  ({mag_str}  ∠  {angle_str}° A)")
+                    result_lines.append(f"I{i} = {format(real, fmt)} A  ({mag_str} ∠ {angle_str}° A)")
                 elif abs(real) < 1e-10:
-                    result_lines.append(f"I{i + 1} = {format(imag, fmt)}j A  ({mag_str}  ∠  {angle_str}° A)")
+                    result_lines.append(f"I{i} = {format(imag, fmt)}j A  ({mag_str} ∠ {angle_str}° A)")
                 else:
                     sign = '+' if imag >= 0 else '-'
                     result_lines.append(
-                        f"I{i + 1} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  ({mag_str} ∠ {angle_str}° A)")
+                        f"I{i} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  ({mag_str} ∠ {angle_str}° A)")
 
             kvl_lines = []
             for i in range(n):
@@ -341,19 +344,18 @@ class CircuitAnalyzer(toga.App):
 
                 kvl_lines.append(" + ".join(terms) + f" = {rhs_str} V")
 
-            combined_text = "Solution:\n" + "\n".join(result_lines) + "\n\nKVL Equations:\n" + "\n".join(kvl_lines)
-            self.result_label.value = combined_text
+            self.result_label.value = "Solution:\n" + "\n".join(result_lines) + "\n\nKVL Equations:\n" + "\n".join(kvl_lines)
 
         except Exception as e:
-            self.result_label.value = f"Error: Invalid input. {str(e)}"
+            self.result_label.value = f"Error: Invalid input. {e}"
 
     def reset_ui(self, widget):
         self.set_matrix_size(widget)
-        self.result_label.value = "Select number of equations and click Confirm"
+        self.result_label.value = "Select number of equations and click Confirm Matrix Size"
 
 def main():
     return CircuitAnalyzer(
         formal_name="Circuit Analyzer",
         app_id="com.codycarterandrohanpatel.circuitanalyzer",
-        icon=icon_path
+        icon=icon_path,
     )
