@@ -126,11 +126,17 @@ def create_input_fields():
 
 def parse_complex(value):
     try:
-        val = value.lower().replace('i', 'j')
-        val = re.sub(r'\s+', '', val)
+        val = value.lower().replace('i', 'j')  # Replace 'i' with 'j'
+        val = val.replace(',',"") # Remove commas
+        val = re.sub(r'\s+', '', val)  # Remove all whitespace
+
+        # Fix cases where imaginary unit comes first (e.g., j3 → 3j)
         val = re.sub(r'(?<![\d.])j(\d+(\.\d+)?)(?![\d.])', r'\1j', val)
+
+        # Replace standalone j with 1j (e.g., +j, -j, or just j)
         val = re.sub(r'(?<=[\+\-])j(?![\d.])', '1j', val)
         val = re.sub(r'^j$', '1j', val)
+
         return complex(val)
     except Exception:
         raise ValueError(f"Invalid complex number format: {value}")
