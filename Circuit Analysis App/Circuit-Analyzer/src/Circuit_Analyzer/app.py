@@ -340,6 +340,18 @@ class CircuitAnalyzer(toga.App):
             self.result_label.value = f"Error: Invalid input. {e}"
 
     def reset_ui(self, widget):
+        # Clear all matrix entries
+        for row in self.matrix_entries:
+            for entry in row:
+                entry.value = ""
+
+        # Clear all vector entries
+        for entry in self.vector_entries:
+            entry.value = ""
+
+        # Clear result output
+        self.result_label.value = ""
+
         self.set_matrix_size(widget)
 
 def main():
