@@ -43,7 +43,7 @@ class CircuitAnalyzer(toga.App):
         # Theme toggle button
         theme_row = toga.Box(style=Pack(direction=ROW, justify_content="end", margin=(0, 10)))
         self.theme_toggle = toga.Button(
-            "Switch to Dark Theme",
+            "Toggle Dark Theme",
             on_press=self.toggle_theme,
             style=Pack(margin=5),
         )
@@ -95,6 +95,7 @@ class CircuitAnalyzer(toga.App):
         # Result display
         self.result_label = toga.MultilineTextInput(
             readonly=True,
+            placeholder= "Select number of equations and click Confirm Matrix Size",
             style=Pack(
                 margin=(10, 5),
                 font_family=self.current_theme["label_font_family"],
@@ -105,7 +106,6 @@ class CircuitAnalyzer(toga.App):
                 height=200,
             ),
         )
-        self.result_label.value = "Select number of equations and click Confirm Matrix Size"
         self.scroll_content.add(self.result_label)
 
         # Buttons row
@@ -131,7 +131,7 @@ class CircuitAnalyzer(toga.App):
 
         self.main_window = toga.MainWindow(title="Circuit Analysis Calculator")
         self.main_window.content = self.scroll_container
-        self.main_window.size = (450, 800)
+        self.main_window.size = (550, 800)
         self.main_window.position = (0, 0)
         self.main_window.show()
 
@@ -140,11 +140,10 @@ class CircuitAnalyzer(toga.App):
     def toggle_theme(self, widget):
         if self.current_theme == LIGHT_THEME:
             self.current_theme = DARK_THEME
-            self.theme_toggle.label = "Switch to Light Theme"
+            self.apply_theme()
         else:
             self.current_theme = LIGHT_THEME
-            self.theme_toggle.label = "Switch to Dark Theme"
-        self.apply_theme()
+            self.apply_theme()
 
     def apply_theme(self):
         theme = self.current_theme
@@ -231,7 +230,7 @@ class CircuitAnalyzer(toga.App):
                         background_color=self.current_theme["input_background"],
                         color=self.current_theme["input_color"],
                         font_family=self.current_theme["label_font_family"],
-                        padding=2,
+                        margin=2,
                     ),
                 )
                 row.add(entry)
@@ -261,7 +260,7 @@ class CircuitAnalyzer(toga.App):
                     background_color=self.current_theme["input_background"],
                     color=self.current_theme["input_color"],
                     font_family=self.current_theme["label_font_family"],
-                    padding=2,
+                    margin=2,
                 ),
             )
             self.vector_entries.append(entry)
@@ -292,7 +291,8 @@ class CircuitAnalyzer(toga.App):
 
             A = np.zeros((n, n), dtype=complex)
             b = np.zeros(n, dtype=complex)
-            precision_int = int(self.precision)
+            precision_int = int(self.precision_dropdown.value)
+            self.precision = self.precision_dropdown.value  # Keep it in sync
             fmt = f".{precision_int}f"
 
             for i in range(n):
@@ -310,13 +310,13 @@ class CircuitAnalyzer(toga.App):
                 mag_str = format(mag, fmt)
                 angle_str = format(angle, fmt)
                 if abs(imag) < 1e-10:
-                    result_lines.append(f"I{i} = {format(real, fmt)} A  ({mag_str} ∠ {angle_str}° A)")
+                    result_lines.append(f"I{i} = {format(real, fmt)} A  [ {mag_str} ∠ {angle_str}° A ]")
                 elif abs(real) < 1e-10:
-                    result_lines.append(f"I{i} = {format(imag, fmt)}j A  ({mag_str} ∠ {angle_str}° A)")
+                    result_lines.append(f"I{i} = {format(imag, fmt)}j A  [ {mag_str} ∠ {angle_str}° A ]")
                 else:
                     sign = '+' if imag >= 0 else '-'
                     result_lines.append(
-                        f"I{i} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  ({mag_str} ∠ {angle_str}° A)")
+                        f"I{i} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  [ {mag_str} ∠ {angle_str}° A ]")
 
             kvl_lines = []
             for i in range(n):
