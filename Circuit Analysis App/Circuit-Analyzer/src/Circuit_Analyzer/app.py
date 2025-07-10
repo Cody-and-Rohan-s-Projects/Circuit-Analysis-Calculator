@@ -100,14 +100,14 @@ class CircuitAnalyzer(toga.App):
         # Result display
         self.result_label = toga.MultilineTextInput(
             readonly=False,
-            placeholder= "Select number of equations and click Confirm Matrix Size",
+            placeholder= "Select the number of equations and click Confirm Matrix Size.",
             style=Pack(
                 margin=(10, 5),
                 font_family=self.current_theme["label_font_family"],
                 color=self.current_theme["text_color"],
                 background_color=self.current_theme["input_background"],
                 flex=1,
-                width=450,
+                width=420,
                 height=370,
             ),
         )
@@ -134,9 +134,9 @@ class CircuitAnalyzer(toga.App):
         self.scroll_container = toga.ScrollContainer(horizontal=True, vertical=True)
         self.scroll_container.content = self.scroll_content
 
-        self.main_window = toga.MainWindow(title="Circuit Analysis Calculator")
+        self.main_window = toga.MainWindow(title="Circuit Analysis Calculator v1.2")
         self.main_window.content = self.scroll_container
-        self.main_window.size = (450, 1000)
+        self.main_window.size = (420, 1000)
         self.main_window.position = (0, 0)
         self.main_window.show()
 
@@ -341,7 +341,6 @@ class CircuitAnalyzer(toga.App):
 
     def reset_ui(self, widget):
         self.set_matrix_size(widget)
-        self.result_label.value = "Select number of equations and click Confirm Matrix Size"
 
 def main():
     return CircuitAnalyzer(
