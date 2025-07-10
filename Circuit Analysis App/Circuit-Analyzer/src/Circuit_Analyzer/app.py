@@ -70,7 +70,7 @@ class CircuitAnalyzer(toga.App):
         self.scroll_content.add(dropdown_row)
 
         # Matrix Size Selector
-        size_row = toga.Box(style=Pack(direction=ROW, margin=(0, 10), align_items=CENTER))
+        size_row = toga.Box(style=Pack(direction=ROW, margin=(0, 5), align_items=CENTER))
         size_label = toga.Label(
             "Number of Equations:",
             style=Pack(margin_right=10, font_family=self.current_theme["label_font_family"],
@@ -82,19 +82,24 @@ class CircuitAnalyzer(toga.App):
             style=Pack(width=100, background_color=self.current_theme["input_background"],
                        color=self.current_theme["input_color"])
         )
+        size_row.add(size_label)
+        size_row.add(self.size_selector)
+        self.scroll_content.add(size_row)
+
+        # Confirm Matrix Size Button
         size_button = toga.Button(
             "Confirm Matrix Size",
             on_press=self.set_matrix_size,
-            style=Pack(margin_left=10, margin=6)
+            style=Pack(margin=(5, 5, 10, 0))  # top, right, bottom, left
         )
-        size_row.add(size_label)
-        size_row.add(self.size_selector)
-        size_row.add(size_button)
-        self.scroll_content.add(size_row)
+        self.scroll_content.add(size_button)
+
+        self.dynamic_input_area = toga.Box(style=Pack(direction=COLUMN, margin=(10, 5)))
+        self.scroll_content.add(self.dynamic_input_area)
 
         # Result display
         self.result_label = toga.MultilineTextInput(
-            readonly=True,
+            readonly=False,
             placeholder= "Select number of equations and click Confirm Matrix Size",
             style=Pack(
                 margin=(10, 5),
@@ -102,8 +107,8 @@ class CircuitAnalyzer(toga.App):
                 color=self.current_theme["text_color"],
                 background_color=self.current_theme["input_background"],
                 flex=1,
-                width=500,
-                height=200,
+                width=450,
+                height=650,
             ),
         )
         self.scroll_content.add(self.result_label)
@@ -131,7 +136,7 @@ class CircuitAnalyzer(toga.App):
 
         self.main_window = toga.MainWindow(title="Circuit Analysis Calculator")
         self.main_window.content = self.scroll_container
-        self.main_window.size = (550, 800)
+        self.main_window.size = (500, 700)
         self.main_window.position = (0, 0)
         self.main_window.show()
 
@@ -201,14 +206,12 @@ class CircuitAnalyzer(toga.App):
             self.result_label.value = f"Error setting matrix size: {e}"
 
     def create_input_fields(self, n):
-        # Remove old input fields after initial 5 widgets (static UI widgets)
-        while len(self.scroll_content.children) > 5:
-            self.scroll_content.remove(self.scroll_content.children[5])
+        self.dynamic_input_area.children.clear()
 
         self.matrix_entries = []
         self.vector_entries = []
 
-        self.scroll_content.add(toga.Label(
+        self.dynamic_input_area.add(toga.Label(
             f"Coefficient Matrix A ({n}x{n}):",
             style=Pack(margin=(10, 5),
                        font_family=self.current_theme["label_font_family"],
@@ -239,14 +242,15 @@ class CircuitAnalyzer(toga.App):
                                style=Pack(font_family="Courier New", font_size=20, margin_left=5,
                                           color=self.current_theme["text_color"])))
             self.matrix_entries.append(row_entries)
-            self.scroll_content.add(row)
+            self.dynamic_input_area.add(row)
 
-        self.scroll_content.add(toga.Label(
+        self.dynamic_input_area.add(toga.Label(
             f"Constants Vector b ({n}x1):",
             style=Pack(margin=(10, 5),
                        font_family=self.current_theme["label_font_family"],
                        color=self.current_theme["text_color"])
         ))
+
         for i in range(n):
             row = toga.Box(style=Pack(direction=ROW, margin=2))
             row.add(toga.Label("[",
@@ -268,11 +272,11 @@ class CircuitAnalyzer(toga.App):
             row.add(toga.Label("]",
                                style=Pack(font_family="Courier New", font_size=20, margin_left=5,
                                           color=self.current_theme["text_color"])))
-            self.scroll_content.add(row)
+            self.dynamic_input_area.add(row)
 
     def parse_complex(self, value: str) -> complex:
         try:
-            val = value.replace(',', '')  # Remove commas
+            val = value.replace(',', " ")  # Remove commas
             val = val.lower().replace('i', 'j')  # Replace 'i' with 'j'
             val = re.sub(r'\s+', '', val)  # Remove whitespace
             val = re.sub(r'(?<![\d.])j(\d+(\.\d+)?)(?![\d.])', r'\1j', val)
