@@ -1,12 +1,11 @@
 import os
 import re
-
 import numpy as np
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW, CENTER
 
-icon_path = os.path.join(os.path.dirname(__file__), "resources/icon")
+icon_path = os.path.join(os.path.dirname(__file__), "icon")
 
 LIGHT_THEME = {
     "background_color": "white",
@@ -41,7 +40,6 @@ class CircuitAnalyzer(toga.App):
 
         self.scroll_content = toga.Box(style=Pack(direction=COLUMN, margin=10, flex=1))
 
-        # Theme toggle button
         theme_row = toga.Box(style=Pack(direction=ROW, justify_content=CENTER, margin=(0, 10)))
         self.theme_toggle = toga.Button(
             "Toggle Dark Theme",
@@ -51,7 +49,6 @@ class CircuitAnalyzer(toga.App):
         theme_row.add(self.theme_toggle)
         self.scroll_content.add(theme_row)
 
-        # Decimal Precision Dropdown
         dropdown_row = toga.Box(style=Pack(direction=ROW, margin=(0, 10), justify_content=CENTER))
         dropdown_label = toga.Label(
             "Decimal Precision:",
@@ -70,7 +67,6 @@ class CircuitAnalyzer(toga.App):
         dropdown_row.add(self.precision_dropdown)
         self.scroll_content.add(dropdown_row)
 
-        # Matrix Size Selector
         size_row = toga.Box(style=Pack(direction=ROW, margin=(0, 5), justify_content=CENTER))
         size_label = toga.Label(
             "Number of Equations:",
@@ -87,11 +83,10 @@ class CircuitAnalyzer(toga.App):
         size_row.add(self.size_selector)
         self.scroll_content.add(size_row)
 
-        # Confirm Matrix Size Button
         size_button = toga.Button(
             "Confirm Matrix Size",
             on_press=self.set_matrix_size,
-            style=Pack(margin=(5, 5, 10, 0))  # top, right, bottom, left
+            style=Pack(margin=(5, 5, 10, 0))
         )
         size_button_row = toga.Box(style=Pack(direction=ROW, justify_content=CENTER))
         size_button_row.add(size_button)
@@ -100,7 +95,6 @@ class CircuitAnalyzer(toga.App):
         self.dynamic_input_area = toga.Box(style=Pack(direction=COLUMN, margin=(10, 5)))
         self.scroll_content.add(self.dynamic_input_area)
 
-        # Result display
         self.result_label = toga.MultilineTextInput(
             readonly=False,
             placeholder="Select the number of equations and click Confirm Matrix Size.",
@@ -110,13 +104,11 @@ class CircuitAnalyzer(toga.App):
                 color=self.current_theme["text_color"],
                 background_color=self.current_theme["input_background"],
                 flex=1,
-                width=420,
                 height=370,
             ),
         )
         self.scroll_content.add(self.result_label)
 
-        # Buttons row
         button_row = toga.Box(style=Pack(direction=ROW, margin=10, align_items=CENTER, justify_content=CENTER))
         solve_button = toga.Button(
             "Solve",
@@ -139,19 +131,13 @@ class CircuitAnalyzer(toga.App):
 
         self.main_window = toga.MainWindow(title="Circuit Analysis Calculator v1.2")
         self.main_window.content = self.scroll_container
-        self.main_window.size = (420, 1000)
-        self.main_window.position = (0, 0)
         self.main_window.show()
 
         self.apply_theme()
 
     def toggle_theme(self, widget):
-        if self.current_theme == LIGHT_THEME:
-            self.current_theme = DARK_THEME
-            self.apply_theme()
-        else:
-            self.current_theme = LIGHT_THEME
-            self.apply_theme()
+        self.current_theme = DARK_THEME if self.current_theme == LIGHT_THEME else LIGHT_THEME
+        self.apply_theme()
 
     def apply_theme(self):
         theme = self.current_theme
@@ -200,8 +186,7 @@ class CircuitAnalyzer(toga.App):
 
         self.dynamic_input_area.add(toga.Label(
             f"Coefficient Matrix A ({n}x{n}):",
-            style=Pack(margin=(10, 5),
-                       font_family=self.current_theme["label_font_family"],
+            style=Pack(margin=(10, 5), font_family=self.current_theme["label_font_family"],
                        color=self.current_theme["text_color"])
         ))
 
@@ -214,14 +199,8 @@ class CircuitAnalyzer(toga.App):
             for j in range(n):
                 entry = toga.TextInput(
                     placeholder=f"A{i + 1}{j + 1}",
-                    style=Pack(
-                        width=50,
-                        margin_right=5,
-                        background_color=self.current_theme["input_background"],
-                        color=self.current_theme["input_color"],
-                        font_family=self.current_theme["label_font_family"],
-                        margin=2,
-                    ),
+                    style=Pack(width=50, margin_right=5, background_color=self.current_theme["input_background"],
+                               color=self.current_theme["input_color"], font_family=self.current_theme["label_font_family"], margin=2),
                 )
                 row.add(entry)
                 row_entries.append(entry)
@@ -233,8 +212,7 @@ class CircuitAnalyzer(toga.App):
 
         self.dynamic_input_area.add(toga.Label(
             f"Constants Vector b ({n}x1):",
-            style=Pack(margin=(10, 5),
-                       font_family=self.current_theme["label_font_family"],
+            style=Pack(margin=(10, 5), font_family=self.current_theme["label_font_family"],
                        color=self.current_theme["text_color"])
         ))
 
@@ -245,14 +223,8 @@ class CircuitAnalyzer(toga.App):
                                           color=self.current_theme["text_color"])))
             entry = toga.TextInput(
                 placeholder=f"b{i + 1}",
-                style=Pack(
-                    width=50,
-                    margin_right=5,
-                    background_color=self.current_theme["input_background"],
-                    color=self.current_theme["input_color"],
-                    font_family=self.current_theme["label_font_family"],
-                    margin=2,
-                ),
+                style=Pack(width=50, margin_right=5, background_color=self.current_theme["input_background"],
+                           color=self.current_theme["input_color"], font_family=self.current_theme["label_font_family"], margin=2),
             )
             self.vector_entries.append(entry)
             row.add(entry)
@@ -263,15 +235,14 @@ class CircuitAnalyzer(toga.App):
 
     def parse_complex(self, value: str) -> complex:
         try:
-            val = value.replace(',', " ")
-            val = val.lower().replace('i', 'j')
+            val = value.replace(',', " ").lower().replace('i', 'j')
             val = re.sub(r'\s+', '', val)
             val = re.sub(r'(?<![\d.])j(\d+(\.\d+)?)(?![\d.])', r'\1j', val)
             val = re.sub(r'(?<=[\+\-])j(?![\d.])', '1j', val)
             val = re.sub(r'^j$', '1j', val)
             return complex(val)
         except Exception:
-            raise ValueError(f"Error: Please try again. Invalid complex number format: {value}")
+            raise ValueError(f"Error: Invalid complex number format: {value}")
 
     def solve_system(self, widget):
         try:
@@ -283,7 +254,6 @@ class CircuitAnalyzer(toga.App):
             A = np.zeros((n, n), dtype=complex)
             b = np.zeros(n, dtype=complex)
             precision_int = int(self.precision_dropdown.value)
-            self.precision = self.precision_dropdown.value
             fmt = f".{precision_int}f"
 
             for i in range(n):
@@ -306,8 +276,7 @@ class CircuitAnalyzer(toga.App):
                     result_lines.append(f"I{i} = {format(imag, fmt)}j A  [ {mag_str} ∠ {angle_str}° A ]")
                 else:
                     sign = '+' if imag >= 0 else '-'
-                    result_lines.append(
-                        f"I{i} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  [ {mag_str} ∠ {angle_str}° A ]")
+                    result_lines.append(f"I{i} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  [ {mag_str} ∠ {angle_str}° A ]")
 
             kvl_lines = []
             for i in range(n):
@@ -338,7 +307,7 @@ class CircuitAnalyzer(toga.App):
             self.result_label.value = "Solution:\n" + "\n".join(result_lines) + "\n\nKVL Equations:\n" + "\n".join(kvl_lines)
 
         except Exception as e:
-            self.result_label.value = f"Error: Please try again. Invalid input. {e}"
+            self.result_label.value = f"Error: Invalid input. {e}"
 
     def reset_ui(self, widget):
         for row in self.matrix_entries:
@@ -352,6 +321,6 @@ class CircuitAnalyzer(toga.App):
 def main():
     return CircuitAnalyzer(
         formal_name="Circuit Analyzer",
-        app_id="com.codycarterandrohanpatel.circuitanalyzer",
+        app_id="com.circuitanalyzer.app",
         icon=icon_path,
     )
