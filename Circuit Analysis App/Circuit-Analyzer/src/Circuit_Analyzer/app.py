@@ -157,37 +157,23 @@ class CircuitAnalyzer(toga.App):
         self.scroll_content.style.background_color = theme["background_color"]
 
         def style_widget(w):
-            if isinstance(w, (toga.Label, toga.Button)):
+            if isinstance(w, toga.Label):
                 w.style.color = theme["text_color"]
-                if isinstance(w, toga.Button):
-                    w.style.background_color = theme["button_background"]
-                    w.style.color = theme["button_color"]
-                if isinstance(w, toga.Label):
-                    w.style.font_family = theme["label_font_family"]
+                w.style.font_family = theme["label_font_family"]
+            elif isinstance(w, toga.Button):
+                w.style.color = theme["button_color"]
+                w.style.background_color = theme["button_background"]
             elif isinstance(w, (toga.TextInput, toga.MultilineTextInput, toga.Selection)):
-                w.style.background_color = theme["input_background"]
                 w.style.color = theme["input_color"]
+                w.style.background_color = theme["input_background"]
+            if hasattr(w, "children"):
+                for child in w.children:
+                    style_widget(child)
 
-        # Style children of scroll_content recursively
-        for child in self.scroll_content.children:
-            if isinstance(child, toga.Box):
-                for w in child.children:
-                    style_widget(w)
-            else:
-                style_widget(child)
+        # Apply style recursively to entire scroll_content tree
+        style_widget(self.scroll_content)
 
-        # Style matrix entries and vector entries inputs
-        for row in self.matrix_entries:
-            for entry in row:
-                style_widget(entry)
-        for entry in self.vector_entries:
-            style_widget(entry)
-
-        # Style dropdowns explicitly
-        for dropdown in [self.precision_dropdown, self.size_selector]:
-            dropdown.style.background_color = theme["input_background"]
-            dropdown.style.color = theme["input_color"]
-
+        # Update dropdown values explicitly to ensure sync
         self.precision_dropdown.items = PRECISION_OPTIONS
         self.precision_dropdown.value = self.precision
         self.size_selector.items = MATRIX_SIZE_OPTIONS
