@@ -10,8 +10,9 @@ author_email = "cody.carter897@gmail.com"
 
 [tool.briefcase.app.Circuit-Analyzer]
 formal_name = "Circuit Analyzer"
+icon =  "resources/icon"
 home_page = "https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/tree/iOS-%26-Android"
-description = "AC and DC Circuit Analysis calculator"
+description = "First select a matrix size and tap the confirm button, then enter values and tap solve when ready. This app supports input of real or complex numbers in rectangular form. The output will be shown in both polar and rectangular."
 long_description = """More details about the app should go here.
 """
 
