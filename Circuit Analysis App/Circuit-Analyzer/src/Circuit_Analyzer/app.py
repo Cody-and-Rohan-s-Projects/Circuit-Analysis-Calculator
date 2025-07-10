@@ -108,7 +108,7 @@ class CircuitAnalyzer(toga.App):
                 background_color=self.current_theme["input_background"],
                 flex=1,
                 width=450,
-                height=650,
+                height=370,
             ),
         )
         self.scroll_content.add(self.result_label)
@@ -136,7 +136,7 @@ class CircuitAnalyzer(toga.App):
 
         self.main_window = toga.MainWindow(title="Circuit Analysis Calculator")
         self.main_window.content = self.scroll_container
-        self.main_window.size = (500, 700)
+        self.main_window.size = (450, 1000)
         self.main_window.position = (0, 0)
         self.main_window.show()
 
