@@ -1,143 +1,191 @@
-import os
-import re
+import re, os
 import numpy as np
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW, CENTER
+import asyncio  
 
-icon_path = os.path.join(os.path.dirname(__file__), "icon")
-
+icon_path = os.path.join(os.path.dirname(__file__), "icon.icns")  
+# ✅ Set LIGHT_THEME to your blue theme for consistent startup color
 LIGHT_THEME = {
-    "background_color": "white",
+    "background_color": "#FFFFFF",  
     "text_color": "black",
-    "input_background": "white",
+    "input_background": "#FFFFFF",
     "input_color": "black",
-    "button_background": "#0078D7",
-    "button_color": "white",
+    "button_background": "#005BB5",
+    "button_color": "blue",
     "label_font_family": "sans-serif",
 }
+
 
 DARK_THEME = {
     "background_color": "#121212",
     "text_color": "white",
-    "input_background": "#222222",
+    "input_background": "#000000",
     "input_color": "white",
     "button_background": "#0A84FF",
-    "button_color": "white",
+    "button_color": "blue",
     "label_font_family": "sans-serif",
 }
 
 PRECISION_OPTIONS = [str(i) for i in range(1, 7)]
 MATRIX_SIZE_OPTIONS = [str(i) for i in range(1, 5)]
 
-class CircuitAnalyzer(toga.App):
+class CircuitAnalyserApp(toga.App):
     def startup(self):
         self.precision = "3"
         self.matrix_size = 3
         self.matrix_entries = []
         self.vector_entries = []
-        self.current_theme = LIGHT_THEME
+        self.current_theme = LIGHT_THEME  # ✅ Start with blue theme
+        self.theme_sensitive_labels = []  # Track labels for theme updates
 
+        # Main scrollable content
         self.scroll_content = toga.Box(style=Pack(direction=COLUMN, margin=10, flex=1))
 
+        # Theme toggle button
         theme_row = toga.Box(style=Pack(direction=ROW, justify_content=CENTER, margin=(0, 10)))
         self.theme_toggle = toga.Button(
             "Toggle Dark Theme",
             on_press=self.toggle_theme,
-            style=Pack(margin=5),
+            style=Pack(
+                margin=5,
+                background_color=self.current_theme["button_background"],
+                color=self.current_theme["button_color"]
+            )
         )
         theme_row.add(self.theme_toggle)
         self.scroll_content.add(theme_row)
 
+        # Decimal Precision row
         dropdown_row = toga.Box(style=Pack(direction=ROW, margin=(0, 10), justify_content=CENTER))
-        dropdown_label = toga.Label(
+        self.dropdown_label = toga.Label(
             "Decimal Precision:",
-            style=Pack(margin_right=10, font_family=self.current_theme["label_font_family"],
-                       color=self.current_theme["text_color"])
+            style=Pack(
+                margin_right=10,
+                font_family=self.current_theme["label_font_family"],
+                color=self.current_theme["text_color"]
+            )
         )
+        self.theme_sensitive_labels.append(self.dropdown_label)
+
         self.precision_dropdown = toga.Selection(
             items=PRECISION_OPTIONS,
             value=self.precision,
-            style=Pack(width=100, background_color=self.current_theme["input_background"],
-                       color=self.current_theme["input_color"]),
+            style=Pack(
+                width=100,
+                background_color=self.current_theme["input_background"],
+                color=self.current_theme["input_color"]
+            )
         )
         self.precision_dropdown.on_select = self.set_precision
 
-        dropdown_row.add(dropdown_label)
+        dropdown_row.add(self.dropdown_label)
         dropdown_row.add(self.precision_dropdown)
         self.scroll_content.add(dropdown_row)
 
+        # Number of Equations row
         size_row = toga.Box(style=Pack(direction=ROW, margin=(0, 5), justify_content=CENTER))
-        size_label = toga.Label(
+        self.size_label = toga.Label(
             "Number of Equations:",
-            style=Pack(margin_right=10, font_family=self.current_theme["label_font_family"],
-                       color=self.current_theme["text_color"])
+            style=Pack(
+                margin_right=10,
+                font_family=self.current_theme["label_font_family"],
+                color=self.current_theme["text_color"]
+            )
         )
+        self.theme_sensitive_labels.append(self.size_label)
+
         self.size_selector = toga.Selection(
             items=MATRIX_SIZE_OPTIONS,
             value=str(self.matrix_size),
-            style=Pack(width=100, background_color=self.current_theme["input_background"],
-                       color=self.current_theme["input_color"])
+            style=Pack(
+                width=100,
+                background_color=self.current_theme["input_background"],
+                color=self.current_theme["input_color"]
+            )
         )
-        size_row.add(size_label)
+
+        size_row.add(self.size_label)
         size_row.add(self.size_selector)
         self.scroll_content.add(size_row)
 
+        # Confirm Matrix Size button
         size_button = toga.Button(
             "Confirm Matrix Size",
             on_press=self.set_matrix_size,
-            style=Pack(margin=(5, 5, 10, 0))
+            style=Pack(
+                margin=(5, 5, 10, 0),
+                background_color=self.current_theme["button_background"],
+                color=self.current_theme["button_color"]
+            )
         )
         size_button_row = toga.Box(style=Pack(direction=ROW, justify_content=CENTER))
         size_button_row.add(size_button)
         self.scroll_content.add(size_button_row)
 
+        # Dynamic input area for matrices
         self.dynamic_input_area = toga.Box(style=Pack(direction=COLUMN, margin=(10, 5)))
         self.scroll_content.add(self.dynamic_input_area)
 
+        # Result label
         self.result_label = toga.MultilineTextInput(
             readonly=False,
             placeholder="Select the number of equations and click Confirm Matrix Size.",
             style=Pack(
                 margin=(10, 5),
                 font_family=self.current_theme["label_font_family"],
-                color=self.current_theme["text_color"],
+                color=self.current_theme["input_color"],
                 background_color=self.current_theme["input_background"],
                 flex=1,
                 height=370,
-            ),
+            )
         )
         self.scroll_content.add(self.result_label)
 
+        # Solve and Reset buttons
         button_row = toga.Box(style=Pack(direction=ROW, margin=10, align_items=CENTER, justify_content=CENTER))
         solve_button = toga.Button(
             "Solve",
             on_press=self.solve_system,
-            style=Pack(margin_right=10, margin=8, background_color=self.current_theme["button_background"],
-                       color=self.current_theme["button_color"]),
+            style=Pack(
+                margin_right=10,
+                margin=8,
+                background_color=self.current_theme["button_background"],
+                color=self.current_theme["button_color"]
+            )
         )
         reset_button = toga.Button(
             "Reset",
             on_press=self.reset_ui,
-            style=Pack(margin_right=10, margin=8, background_color=self.current_theme["button_background"],
-                       color=self.current_theme["button_color"]),
+            style=Pack(
+                margin_right=10,
+                margin=8,
+                background_color=self.current_theme["button_background"],
+                color=self.current_theme["button_color"]
+            )
         )
         button_row.add(solve_button)
         button_row.add(reset_button)
         self.scroll_content.add(button_row)
 
+        # Scroll container
         self.scroll_container = toga.ScrollContainer(horizontal=True, vertical=True)
         self.scroll_container.content = self.scroll_content
 
+        # Main window
         self.main_window = toga.MainWindow(title="Circuit Analysis Calculator v1.2")
         self.main_window.content = self.scroll_container
         self.main_window.show()
 
+        # Apply initial theme styling
         self.apply_theme()
+    
 
-    def toggle_theme(self, widget):
+    async def toggle_theme(self, widget):
         self.current_theme = DARK_THEME if self.current_theme == LIGHT_THEME else LIGHT_THEME
         self.apply_theme()
+        await asyncio.sleep(0)  
 
     def apply_theme(self):
         theme = self.current_theme
@@ -147,24 +195,31 @@ class CircuitAnalyzer(toga.App):
 
         def style_widget(w):
             if isinstance(w, toga.Label):
-                w.style.color = theme["text_color"]
-                w.style.font_family = theme["label_font_family"]
+                w.style.update(
+                color=theme["text_color"],
+                font_family=theme["label_font_family"]
+            )
             elif isinstance(w, toga.Button):
-                w.style.color = theme["button_color"]
-                w.style.background_color = theme["button_background"]
+                w.style.update(
+                color=theme["button_color"],
+                background_color=theme["button_background"]
+            )
             elif isinstance(w, (toga.TextInput, toga.MultilineTextInput, toga.Selection)):
-                w.style.color = theme["input_color"]
-                w.style.background_color = theme["input_background"]
+                w.style.update(
+                color=theme["input_color"],
+                background_color=theme["input_background"]
+            )
             if hasattr(w, "children"):
                 for child in w.children:
                     style_widget(child)
+            w.refresh()
 
-        style_widget(self.scroll_content)
+            self.main_window.content.refresh()
 
-        self.precision_dropdown.items = PRECISION_OPTIONS
-        self.precision_dropdown.value = self.precision
-        self.size_selector.items = MATRIX_SIZE_OPTIONS
-        self.size_selector.value = str(self.matrix_size)
+            # Refresh widgets
+            self.precision_dropdown.refresh()
+            self.size_selector.refresh()
+            self.main_window.content.refresh()
 
     def set_precision(self, widget):
         self.precision = widget.value
@@ -184,53 +239,89 @@ class CircuitAnalyzer(toga.App):
         self.matrix_entries = []
         self.vector_entries = []
 
-        self.dynamic_input_area.add(toga.Label(
+        # Label for Coefficient Matrix
+        label = toga.Label(
             f"Coefficient Matrix A ({n}x{n}):",
             style=Pack(margin=(10, 5), font_family=self.current_theme["label_font_family"],
-                       color=self.current_theme["text_color"])
-        ))
+                   color=self.current_theme["text_color"])
+        )
+        self.theme_sensitive_labels.append(label)
+        self.dynamic_input_area.add(label)
 
         for i in range(n):
             row = toga.Box(style=Pack(direction=ROW, margin=2, justify_content="start"))
             row_entries = []
-            row.add(toga.Label("[",
-                               style=Pack(font_family="Courier New", font_size=20, margin_right=5,
-                                          color=self.current_theme["text_color"])))
+
+            # Left bracket label
+            label_left = toga.Label(
+                "[",
+                style=Pack(font_family="monospace", font_size=20, margin_right=5,
+                color=self.current_theme["text_color"])
+            )
+            self.theme_sensitive_labels.append(label_left)
+            row.add(label_left)
+
             for j in range(n):
                 entry = toga.TextInput(
                     placeholder=f"A{i + 1}{j + 1}",
                     style=Pack(width=50, margin_right=5, background_color=self.current_theme["input_background"],
-                               color=self.current_theme["input_color"], font_family=self.current_theme["label_font_family"], margin=2),
+                           color=self.current_theme["input_color"],
+                           font_family=self.current_theme["label_font_family"], margin=2),
                 )
                 row.add(entry)
                 row_entries.append(entry)
-            row.add(toga.Label("]",
-                               style=Pack(font_family="Courier New", font_size=20, margin_left=5,
-                                          color=self.current_theme["text_color"])))
+
+            # Right bracket label
+            label_right = toga.Label(
+                "]",
+                style=Pack(font_family="monospace", font_size=20, margin_left=5,
+                       color=self.current_theme["text_color"])
+            )
+            self.theme_sensitive_labels.append(label_right)
+            row.add(label_right)
+
             self.matrix_entries.append(row_entries)
             self.dynamic_input_area.add(row)
 
-        self.dynamic_input_area.add(toga.Label(
+            # Label for Constants Vector
+            label = toga.Label(
             f"Constants Vector b ({n}x1):",
             style=Pack(margin=(10, 5), font_family=self.current_theme["label_font_family"],
-                       color=self.current_theme["text_color"])
-        ))
+                   color=self.current_theme["text_color"])
+        )
+        self.theme_sensitive_labels.append(label)
+        self.dynamic_input_area.add(label)
 
         for i in range(n):
             row = toga.Box(style=Pack(direction=ROW, margin=2))
-            row.add(toga.Label("[",
-                               style=Pack(font_family="Courier New", font_size=20, margin_right=5,
-                                          color=self.current_theme["text_color"])))
+
+            # Left bracket label
+            label_left = toga.Label(
+                "[",
+                style=Pack(font_family="monospace", font_size=20, margin_right=5,
+                       color=self.current_theme["text_color"])
+            )
+            self.theme_sensitive_labels.append(label_left)
+            row.add(label_left)
+
             entry = toga.TextInput(
                 placeholder=f"b{i + 1}",
                 style=Pack(width=50, margin_right=5, background_color=self.current_theme["input_background"],
-                           color=self.current_theme["input_color"], font_family=self.current_theme["label_font_family"], margin=2),
+                       color=self.current_theme["input_color"],
+                       font_family=self.current_theme["label_font_family"], margin=2),
             )
             self.vector_entries.append(entry)
             row.add(entry)
-            row.add(toga.Label("]",
-                               style=Pack(font_family="Courier New", font_size=20, margin_left=5,
-                                          color=self.current_theme["text_color"])))
+
+            # Right bracket label
+            label_right = toga.Label(
+                "]",
+                style=Pack(font_family="monospace", font_size=20, margin_left=5,
+                       color=self.current_theme["text_color"])
+            )
+            self.theme_sensitive_labels.append(label_right)
+            row.add(label_right)
+
             self.dynamic_input_area.add(row)
 
     def parse_complex(self, value: str) -> complex:
@@ -319,8 +410,8 @@ class CircuitAnalyzer(toga.App):
         self.set_matrix_size(widget)
 
 def main():
-    return CircuitAnalyzer(
+    return CircuitAnalyserApp(
         formal_name="Circuit Analyzer",
         app_id="com.circuitanalyzer.app",
         icon=icon_path,
-    )
+    )     
