@@ -3,21 +3,19 @@ import re
 import sys
 import webbrowser
 from tkinter import PhotoImage
-from PIL import Image
+
 import customtkinter as ctk
 import numpy as np
+from PIL import Image
 
-# Configure CTk appearance
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
-# Initialize main window
 root = ctk.CTk()
 root.attributes("-topmost", True)
-root.title("Circuit Analysis Calculator v1.2")
+root.title("Circuit Analysis Calculator v1.3")
 root.geometry("560x900+0+0")
 
-# Set icon
 icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
 if os.path.exists(icon_path):
     try:
@@ -26,16 +24,14 @@ if os.path.exists(icon_path):
         icon = PhotoImage(file=icon_path)
         root.iconphoto(True, icon)
 
-# Set Github image link
 try:
     github_icon_image = ctk.CTkImage(
         dark_image=Image.open(icon_path),
         light_image=Image.open(icon_path),
         size=(20, 20)
     )
-except Exception as e:
+except Exception:
     github_icon_image = None
-
 
 def resource_path(relative_path):
     try:
@@ -43,10 +39,8 @@ def resource_path(relative_path):
     except Exception:
         return os.path.join(os.path.abspath("."), relative_path)
 
-
-# Globals
 matrix_entries, vector_entries = [], []
-matrix_frame = vector_frame = result_label = kvl_label = None
+matrix_frame = vector_frame = None
 precision_var = ctk.StringVar(value="3")
 
 scrollable_frame = ctk.CTkScrollableFrame(root, width=530, height=880)
@@ -55,15 +49,12 @@ scrollable_frame.pack(padx=10, pady=10, fill="both", expand=True)
 def open_github():
     webbrowser.open_new("https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser")
 
-
 def toggle_always_on_top():
     root.attributes("-topmost", topmost_switch.get())
-
 
 def toggle_theme():
     mode = "dark" if theme_switch.get() else "light"
     ctk.set_appearance_mode(mode)
-
 
 def solve_linear_system(A, b):
     try:
@@ -71,32 +62,31 @@ def solve_linear_system(A, b):
     except np.linalg.LinAlgError:
         return None
 
-
 def clear_previous_inputs():
     global matrix_frame, vector_frame, matrix_entries, vector_entries
     for frame in [matrix_frame, vector_frame]:
         if frame: frame.destroy()
     matrix_entries, vector_entries = [], []
-    result_label.configure(text="Enter values (real/complex) in matrices and click Solve.")
-    kvl_label.configure(text="")
-
+    output_textbox.configure(state="normal")
+    output_textbox.delete("1.0", "end")
+    output_textbox.insert("1.0", "Enter values (real/complex rectangular) in matrices and click Solve.")
+    output_textbox.configure(state="disabled")
 
 def create_entry(parent, text, row, col):
-    entry = ctk.CTkEntry(parent, width=60, placeholder_text=text, justify="center")
+    entry = ctk.CTkEntry(parent, width=100, placeholder_text=text, justify="center")
     entry.grid(row=row, column=col, padx=5, pady=2)
     return entry
-
 
 def create_input_fields():
     global matrix_frame, vector_frame, matrix_entries, vector_entries
     try:
         n = int(size_dropdown.get())
         if not 1 <= n <= 4:
-            result_label.configure(text="Error: Equations must be 1-4.")
+            show_output("Error: Equations must be 1-4.")
             root.bell()
             return
     except ValueError:
-        result_label.configure(text="Error: Invalid number.")
+        show_output("Error: Invalid number.")
         root.bell()
         return
 
@@ -122,30 +112,30 @@ def create_input_fields():
         vector_entries.append(create_entry(vector_frame, f"b{i + 1}", i + 1, 1))
         ctk.CTkLabel(vector_frame, text="]", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=2)
 
-
 def parse_complex(value):
     try:
-        val = value.lower().replace('i', 'j')  # Replace 'i' with 'j'
-        val = val.replace(',',"") # Remove commas
-        val = re.sub(r'\s+', '', val)  # Remove all whitespace
-
-        # Fix cases where imaginary unit comes first (e.g., j3 → 3j)
+        val = value.lower().replace('i', 'j')
+        val = val.replace(',', "")
+        val = re.sub(r'\s+', '', val)
         val = re.sub(r'(?<![\d.])j(\d+(\.\d+)?)(?![\d.])', r'\1j', val)
-
-        # Replace standalone j with 1j (e.g., +j, -j, or just j)
         val = re.sub(r'(?<=[\+\-])j(?![\d.])', '1j', val)
         val = re.sub(r'^j$', '1j', val)
-
         return complex(val)
     except Exception:
         raise ValueError(f"Invalid complex number format: {value}")
 
 
+def show_output(message):
+    output_textbox.configure(state="normal")
+    output_textbox.delete("1.0", "end")
+    output_textbox.insert("1.0", message)
+    output_textbox.configure(state="disabled")
+
 def solve_and_display():
     try:
         n = len(matrix_entries)
         if n == 0:
-            result_label.configure(text="Error: Create input fields first.")
+            show_output("Error: Create input fields first.")
             root.bell()
             return
 
@@ -166,15 +156,13 @@ def solve_and_display():
 
         x = solve_linear_system(A, b)
         if x is None:
-            result_label.configure(text="Error: The system has no solution.\n(singular matrix or invalid inputs)")
+            show_output("Error: The system has no solution.\n(singular matrix or invalid inputs)")
             root.bell()
-            kvl_label.configure(text="")
             return
 
         result_lines = [
             f"I{i + 1} = {x[i].real:.{precision}f} + {x[i].imag:.{precision}f}j A       [ {np.abs(x[i]):.{precision}f} ∠ {np.degrees(np.angle(x[i])):.{precision}f}° A ]"
             for i in range(n)]
-        result_label.configure(text="Solution:\n" + "\n".join(result_lines))
 
         kvl_lines = []
         for i in range(n):
@@ -194,41 +182,40 @@ def solve_and_display():
             rhs_str = f"{rhs.real:{fmt}} {'+' if rhs.imag >= 0 else '-'} {abs(rhs.imag):{fmt}}j" if abs(
                 rhs.imag) >= 1e-10 else f"{rhs.real:{fmt}}"
             kvl_lines.append(" + ".join(terms) + f" = {rhs_str} V")
-        kvl_label.configure(text="KVL Equations:\n" + "\n".join(kvl_lines))
+
+        output_textbox.configure(state="normal")
+        output_textbox.delete("1.0", "end")
+        output_textbox.insert("end", "Solution:\n" + "\n".join(result_lines) + "\n\n")
+        output_textbox.insert("end", "KVL Equations:\n" + "\n".join(kvl_lines))
+        output_textbox.configure(state="disabled")
 
     except Exception:
-        result_label.configure(text="Error: Invalid input format.")
+        show_output("Error: Invalid input format.")
         root.bell()
-        kvl_label.configure(text="")
-
 
 def copy_result_to_clipboard():
-    result_text = result_label.cget("text").strip()
-    error_indicators = ["Select number", "Error:", "No solution", "Enter values"]
-    if not result_text or any(k in result_text for k in error_indicators):
-        result_label.configure(text="Error: No solution to copy.")
+    result_text = output_textbox.get("1.0", "end").strip()
+    if not result_text or "Error:" in result_text or "Enter values" in result_text:
+        show_output("Error: No solution to copy.")
         root.bell()
         return
-    kvl_text = kvl_label.cget("text").strip()
-    full_text = result_text + ("\n\n" + kvl_text if kvl_text else "")
     root.clipboard_clear()
-    root.clipboard_append(full_text)
+    root.clipboard_append(result_text)
     root.update()
-    result_label.configure(text=result_text + "\n\nCopied results to clipboard.")
+    output_textbox.configure(state="normal")
+    output_textbox.insert("end", "\n\nCopied results to clipboard.")
+    output_textbox.configure(state="disabled")
     root.after(1000)
 
-
 # GUI Elements
-title_label = ctk.CTkLabel(scrollable_frame, text="AC and DC Circuit Analysis Calculator\n(System of Equations Solver)",
-                           font=("Franklin Gothic Medium", 20))
-title_label.pack(pady=10)
+ctk.CTkLabel(scrollable_frame, text="AC and DC Circuit Analysis Calculator\n(System of Equations Solver)",
+             font=("Franklin Gothic Medium", 20)).pack(pady=10)
 
-subtitle_label = ctk.CTkLabel(scrollable_frame, text="by Cody Carter and Rohan Patel",
-                              font=("Franklin Gothic Medium", 14))
-subtitle_label.pack(pady=(0, 5))
+ctk.CTkLabel(scrollable_frame, text="by Cody Carter and Rohan Patel",
+             font=("Franklin Gothic Medium", 14)).pack(pady=(0, 5))
 
-github_button = ctk.CTkButton(scrollable_frame, text="View On GitHub", image=github_icon_image, compound="left", command=open_github)
-github_button.pack(pady=5)
+ctk.CTkButton(scrollable_frame, text="View On GitHub", image=github_icon_image, compound="left",
+              command=open_github).pack(pady=5)
 
 switch_frame = ctk.CTkFrame(scrollable_frame)
 switch_frame.pack(pady=10)
@@ -241,12 +228,11 @@ topmost_switch = ctk.CTkSwitch(switch_frame, text="Always on Top (A)", command=t
 topmost_switch.pack(side="left", padx=10)
 topmost_switch.select()
 
-result_label = ctk.CTkLabel(scrollable_frame, text="Select number of equations and click Set Size.",
-                            font=("Franklin Gothic Medium", 14))
-result_label.pack(pady=10)
-
-kvl_label = ctk.CTkLabel(scrollable_frame, text="", font=("Franklin Gothic Medium", 12), wraplength=500, justify="left")
-kvl_label.pack(pady=10)
+output_textbox = ctk.CTkTextbox(scrollable_frame, border_width=5, width=500, height=200,
+                                font=("Franklin Gothic Medium", 12), wrap="word")
+output_textbox.pack(pady=10)
+output_textbox.insert("1.0", "Select number of equations and click Confirm Matrix Size.")
+output_textbox.configure(state="disabled")
 
 size_frame = ctk.CTkFrame(scrollable_frame)
 size_frame.pack(pady=10)
@@ -275,8 +261,11 @@ matrix_frame.pack(pady=10)
 vector_frame = ctk.CTkFrame(scrollable_frame)
 vector_frame.pack(pady=10)
 
-ctk.CTkButton(scrollable_frame, text="Solve (Enter)", command=solve_and_display).pack(pady=10)
-ctk.CTkButton(scrollable_frame, text="Reset (R)", command=create_input_fields).pack(pady=10)
+button_row = ctk.CTkFrame(scrollable_frame)
+button_row.pack(pady=10)
+
+ctk.CTkButton(button_row, text="Solve (Enter)", command=solve_and_display).pack(side="left", padx=10)
+ctk.CTkButton(button_row, text="Reset (R)", command=create_input_fields).pack(side="left", padx=10)
 
 
 def on_key_press(event):
@@ -293,7 +282,6 @@ def on_key_press(event):
             toggle_theme()
         case "c" | "C":
             copy_result_to_clipboard()
-
 
 root.bind("<Key>", on_key_press)
 
