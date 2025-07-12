@@ -33,11 +33,13 @@ try:
 except Exception:
     github_icon_image = None
 
+
 def resource_path(relative_path):
     try:
         return os.path.join(sys._MEIPASS, relative_path)
     except Exception:
         return os.path.join(os.path.abspath("."), relative_path)
+
 
 matrix_entries, vector_entries = [], []
 matrix_frame = vector_frame = None
@@ -46,21 +48,26 @@ precision_var = ctk.StringVar(value="3")
 scrollable_frame = ctk.CTkScrollableFrame(root, width=530, height=880)
 scrollable_frame.pack(padx=10, pady=10, fill="both", expand=True)
 
+
 def open_github():
     webbrowser.open_new("https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser")
+
 
 def toggle_always_on_top():
     root.attributes("-topmost", topmost_switch.get())
 
+
 def toggle_theme():
     mode = "dark" if theme_switch.get() else "light"
     ctk.set_appearance_mode(mode)
+
 
 def solve_linear_system(A, b):
     try:
         return np.linalg.solve(A, b)
     except np.linalg.LinAlgError:
         return None
+
 
 def clear_previous_inputs():
     global matrix_frame, vector_frame, matrix_entries, vector_entries
@@ -72,10 +79,12 @@ def clear_previous_inputs():
     output_textbox.insert("1.0", "Enter values (real/complex rectangular) in matrices and click Solve.")
     output_textbox.configure(state="disabled")
 
+
 def create_entry(parent, text, row, col):
     entry = ctk.CTkEntry(parent, width=100, placeholder_text=text, justify="center")
     entry.grid(row=row, column=col, padx=5, pady=2)
     return entry
+
 
 def create_input_fields():
     global matrix_frame, vector_frame, matrix_entries, vector_entries
@@ -112,6 +121,7 @@ def create_input_fields():
         vector_entries.append(create_entry(vector_frame, f"b{i + 1}", i + 1, 1))
         ctk.CTkLabel(vector_frame, text="]", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=2)
 
+
 def parse_complex(value):
     try:
         val = value.lower().replace('i', 'j')
@@ -130,6 +140,7 @@ def show_output(message):
     output_textbox.delete("1.0", "end")
     output_textbox.insert("1.0", message)
     output_textbox.configure(state="disabled")
+
 
 def solve_and_display():
     try:
@@ -193,6 +204,7 @@ def solve_and_display():
         show_output("Error: Invalid input format.")
         root.bell()
 
+
 def copy_result_to_clipboard():
     result_text = output_textbox.get("1.0", "end").strip()
     if not result_text or "Error:" in result_text or "Enter values" in result_text:
@@ -206,6 +218,7 @@ def copy_result_to_clipboard():
     output_textbox.insert("end", "\n\nCopied results to clipboard.")
     output_textbox.configure(state="disabled")
     root.after(1000)
+
 
 # GUI Elements
 ctk.CTkLabel(scrollable_frame, text="AC and DC Circuit Analysis Calculator\n(System of Equations Solver)",
@@ -282,6 +295,7 @@ def on_key_press(event):
             toggle_theme()
         case "c" | "C":
             copy_result_to_clipboard()
+
 
 root.bind("<Key>", on_key_press)
 
