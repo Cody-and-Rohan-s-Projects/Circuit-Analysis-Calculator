@@ -10,7 +10,8 @@ author_email = "cody.carter897@gmail.com"
 
 [tool.briefcase.app.Circuit-Analyzer]
 formal_name = "Circuit Analyzer"
-icon =  "resources/icon"
+icon =  "resources/icon-1024.png"
+resources = "resources"
 home_page = "https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/tree/iOS-%26-Android"
 description = "AC and DC Circuit Analysis Calculator. (System of Equations Solver)"
 long_description = """

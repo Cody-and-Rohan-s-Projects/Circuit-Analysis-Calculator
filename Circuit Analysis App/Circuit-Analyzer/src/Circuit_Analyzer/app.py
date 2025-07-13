@@ -7,14 +7,15 @@ import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW, CENTER
 
-icon_path = os.path.join(os.path.dirname(__file__), "icon.icns")
+icon_path = os.path.join(os.path.dirname(__file__), "icon.icns")  
+# ✅ Set LIGHT_THEME to your blue theme for consistent startup color
 LIGHT_THEME = {
     "background_color": "#FFFFFF",
     "text_color": "black",
     "input_background": "#d5d5d5",
     "input_color": "black",
-    "button_background": "#787878",
-    "button_color": "black",
+    "button_background": "#005BB5",
+    "button_color": "blue",
     "label_font_family": "sans-serif",
 }
 
@@ -23,8 +24,8 @@ DARK_THEME = {
     "text_color": "white",
     "input_background": "#3c3c3c",
     "input_color": "white",
-    "button_background": "#808080",
-    "button_color": "white",
+    "button_background": "#0A84FF",
+    "button_color": "blue",
     "label_font_family": "sans-serif",
 }
 
@@ -123,7 +124,8 @@ class CircuitAnalyserApp(toga.App):
 
         self.result_label = toga.MultilineTextInput(
             readonly=False,
-            placeholder="Select the number of equations and click Confirm Matrix Size.",
+            placeholder="Select the number of equations and " \
+            "click Confirm Matrix Size.",
             style=Pack(
                 margin=(10, 5),
                 font_family=self.current_theme["label_font_family"],
@@ -200,11 +202,12 @@ class CircuitAnalyserApp(toga.App):
                     style_widget(child)
             w.refresh()
 
-        style_widget(self.scroll_content)
-        self.main_window.content.refresh()
-        self.precision_dropdown.refresh()
-        self.size_selector.refresh()
-        self.main_window.content.refresh()
+            self.main_window.content.refresh()
+
+            # Refresh widgets
+            self.precision_dropdown.refresh()
+            self.size_selector.refresh()
+            self.main_window.content.refresh()
 
     def set_precision(self, widget):
         self.precision = widget.value
@@ -371,11 +374,10 @@ class CircuitAnalyserApp(toga.App):
             entry.value = ""
         self.result_label.value = ""
         self.set_matrix_size(widget)
-        self.startup()
 
 def main():
     return CircuitAnalyserApp(
         formal_name="Circuit Analyzer",
         app_id="com.circuitanalyzer.app",
         icon=icon_path,
-    )
+    )     
