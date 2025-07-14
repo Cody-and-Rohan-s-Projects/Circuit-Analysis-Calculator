@@ -7,7 +7,7 @@ import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW, CENTER
 
-icon_path = os.path.join(os.path.dirname(__file__), "icon.icns")  
+icon_path = os.path.join(os.path.dirname(__file__), "icon.icns")
 # ✅ Set LIGHT_THEME to your blue theme for consistent startup color
 LIGHT_THEME = {
     "background_color": "#FFFFFF",
@@ -31,6 +31,7 @@ DARK_THEME = {
 
 PRECISION_OPTIONS = [str(i) for i in range(1, 7)]
 MATRIX_SIZE_OPTIONS = [str(i) for i in range(1, 5)]
+
 
 class CircuitAnalyserApp(toga.App):
     def startup(self):
@@ -125,7 +126,7 @@ class CircuitAnalyserApp(toga.App):
         self.result_label = toga.MultilineTextInput(
             readonly=False,
             placeholder="Select the number of equations and " \
-            "click Confirm Matrix Size.",
+                        "click Confirm Matrix Size.",
             style=Pack(
                 margin=(10, 5),
                 font_family=self.current_theme["label_font_family"],
@@ -241,7 +242,7 @@ class CircuitAnalyserApp(toga.App):
         label = toga.Label(
             f"Coefficient Matrix A ({n}x{n}):",
             style=Pack(margin=(10, 5), font_family=self.current_theme["label_font_family"],
-                   color=self.current_theme["text_color"])
+                       color=self.current_theme["text_color"])
         )
         self.theme_sensitive_labels.append(label)
         self.dynamic_input_area.add(label)
@@ -269,7 +270,7 @@ class CircuitAnalyserApp(toga.App):
         label = toga.Label(
             f"Constants Vector b ({n}x1):",
             style=Pack(margin=(10, 5), font_family=self.current_theme["label_font_family"],
-                   color=self.current_theme["text_color"])
+                       color=self.current_theme["text_color"])
         )
         self.theme_sensitive_labels.append(label)
         self.dynamic_input_area.add(label)
@@ -333,7 +334,8 @@ class CircuitAnalyserApp(toga.App):
                     result_lines.append(f"I{i} = {format(imag, fmt)}j A  [ {mag_str} ∠ {angle_str}° A ]")
                 else:
                     sign = '+' if imag >= 0 else '-'
-                    result_lines.append(f"I{i} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  [ {mag_str} ∠ {angle_str}° A ]")
+                    result_lines.append(
+                        f"I{i} = {format(real, fmt)} {sign} {format(abs(imag), fmt)}j A  [ {mag_str} ∠ {angle_str}° A ]")
 
             kvl_lines = []
             for i in range(n):
@@ -361,7 +363,8 @@ class CircuitAnalyserApp(toga.App):
 
                 kvl_lines.append(" + ".join(terms) + f" = {rhs_str} V")
 
-            self.result_label.value = "Solution:\n" + "\n".join(result_lines) + "\n\nKVL Equations:\n" + "\n".join(kvl_lines)
+            self.result_label.value = "Solution:\n" + "\n".join(result_lines) + "\n\nKVL Equations:\n" + "\n".join(
+                kvl_lines)
 
         except Exception as e:
             self.result_label.value = f"Error: Invalid input. {e}"
@@ -375,9 +378,10 @@ class CircuitAnalyserApp(toga.App):
         self.result_label.value = ""
         self.set_matrix_size(widget)
 
+
 def main():
     return CircuitAnalyserApp(
         formal_name="Circuit Analyzer",
         app_id="com.circuitanalyzer.app",
         icon=icon_path,
-    )     
+    )
