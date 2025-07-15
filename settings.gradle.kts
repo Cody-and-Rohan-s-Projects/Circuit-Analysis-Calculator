@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Circuit Analyzer"
+rootProject.name = "Circuit-Analyser"
 include(":app")
