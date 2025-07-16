@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Circuit-Analyser</string>
+    <string name="app_name">Circuit Analyser</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="set_matrix_size">Set Matrix Size</string>
+    <string name="solve">Solve</string>
+    <string name="results_will_appear">Results will appear here</string>
+    <string name="kvl_equations">KVL equations will appear here</string>
+    <string name="solution_result">Solution: %1$s</string>
 </resources>

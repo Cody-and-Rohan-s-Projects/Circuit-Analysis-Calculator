@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Theme Toggle -->
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/theme_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dark_theme" />
+
+        <!-- Spinner for equation size -->
+        <Spinner
+            android:id="@+id/size_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" />
+
+        <!-- Set Size Button -->
+        <Button
+            android:id="@+id/set_size_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/set_matrix_size" />
+
+        <!-- Matrix Container -->
+        <LinearLayout
+            android:id="@+id/matrix_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp" />
+
+        <!-- Vector Container -->
+        <LinearLayout
+            android:id="@+id/vector_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp" />
+
+        <!-- Solve Button -->
+        <Button
+            android:id="@+id/solve_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/solve" />
+
+        <!-- Result Label -->
+        <TextView
+            android:id="@+id/result_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/results_will_appear"
+            android:textSize="16sp"
+            android:textColor="#000000" />
+
+        <!-- KVL Label -->
+        <TextView
+            android:id="@+id/kvl_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/kvl_equations"
+            android:textSize="14sp"
+            android:textColor="#444444"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+</ScrollView>
