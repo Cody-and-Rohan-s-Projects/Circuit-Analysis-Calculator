@@ -3,34 +3,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".CircuitAnalysisActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="64dp">
 
-        <!-- Theme Toggle -->
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/theme_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dark_theme" />
-
-        <!-- Spinner for equation size -->
-        <Spinner
-            android:id="@+id/size_spinner"
+        <!-- App Title -->
+        <TextView
+            android:id="@+id/title_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" />
+            android:text="Nodal Analysis Calculator"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="4dp" />
 
-        <!-- Set Size Button -->
-        <Button
-            android:id="@+id/set_size_button"
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/subtitle_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/set_matrix_size" />
+            android:text="by Cody Carter and Rohan Patel"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Theme & Topmost Switches -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="12dp">
+
+            <!-- GitHub Link -->
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/theme_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="Dark Mode" />
+
+            <Button
+                android:id="@+id/info_link"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:autoLink="web"
+                android:padding="4dp"
+                android:text="View on GitHub"
+                android:textColor="@color/primary"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <!-- Size Dropdown & Set Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Equations:"
+                android:layout_marginEnd="8dp" />
+
+            <Spinner
+                android:id="@+id/size_spinner"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp" />
+
+        </LinearLayout>
 
         <!-- Matrix Container -->
         <LinearLayout
@@ -38,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="16dp" />
+            android:layout_marginBottom="12dp" />
 
         <!-- Vector Container -->
         <LinearLayout
@@ -46,14 +99,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="8dp" />
+            android:layout_marginBottom="12dp" />
+
 
         <!-- Solve Button -->
         <Button
             android:id="@+id/solve_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/solve" />
+            android:text="Solve" />
+
+        <!-- Reset Button -->
+        <Button
+            android:id="@+id/reset_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:layout_marginTop="8dp" />
 
         <!-- Result Label -->
         <TextView
@@ -61,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/results_will_appear"
+            android:text="Enter values and press Solve"
             android:textSize="16sp"
             android:textColor="#000000" />
 
@@ -70,9 +132,9 @@
             android:id="@+id/kvl_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/kvl_equations"
-            android:textSize="14sp"
+            android:layout_marginTop="12dp"
+            android:text=""
             android:textColor="#444444"
-            android:layout_marginTop="12dp" />
+            android:textSize="14sp" />
     </LinearLayout>
 </ScrollView>
