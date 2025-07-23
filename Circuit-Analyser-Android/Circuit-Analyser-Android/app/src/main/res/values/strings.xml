@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Circuit Analyser</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="set_matrix_size">Set Matrix Size</string>
+    <string name="solve">Solve</string>
+    <string name="results_will_appear">Results will appear here</string>
+    <string name="kvl_equations">KVL equations will appear here</string>
+    <string name="solution_result">Solution: %1$s</string>
+    <string name="title_label">Nodal Analysis Calculator</string>
+    <string name="subtitle_label">by Cody Carter and Rohan Patel</string>
+    <string name="github_button">View on GitHub</string>
+    <string name="num_equations_label">Number of Equations:</string>
+    <string name="matrix_label">Coefficient Matrix [A]:</string>
+    <string name="vector_label">Constants Vector [b]:</string>
+    <string name="solve_button">Solve</string>
+    <string name="reset_button">Reset</string>
+    <string name="default_result_label">Enter values and press Solve</string>
+</resources>
