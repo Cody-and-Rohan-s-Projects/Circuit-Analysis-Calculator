@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		BCEAE50B2E27DD9A00DEC597 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCEAE4F52E27DD9800DEC597 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCEAE4FC2E27DD9800DEC597;
+			remoteInfo = "Circuit Analyser";
+		};
+		BCEAE5152E27DD9A00DEC597 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCEAE4F52E27DD9800DEC597 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCEAE4FC2E27DD9800DEC597;
+			remoteInfo = "Circuit Analyser";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BCEAE4FD2E27DD9800DEC597 /* Circuit Analyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Circuit Analyser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCEAE50A2E27DD9A00DEC597 /* Circuit AnalyserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Circuit AnalyserTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCEAE5142E27DD9A00DEC597 /* Circuit AnalyserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Circuit AnalyserUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		BCEAE4FF2E27DD9800DEC597 /* Circuit Analyser */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Circuit Analyser";
+			sourceTree = "<group>";
+		};
+		BCEAE50D2E27DD9A00DEC597 /* Circuit AnalyserTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Circuit AnalyserTests";
+			sourceTree = "<group>";
+		};
+		BCEAE5172E27DD9A00DEC597 /* Circuit AnalyserUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Circuit AnalyserUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BCEAE4FA2E27DD9800DEC597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEAE5072E27DD9A00DEC597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEAE5112E27DD9A00DEC597 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BCEAE4F42E27DD9800DEC597 = {
+			isa = PBXGroup;
+			children = (
+				BCEAE4FF2E27DD9800DEC597 /* Circuit Analyser */,
+				BCEAE50D2E27DD9A00DEC597 /* Circuit AnalyserTests */,
+				BCEAE5172E27DD9A00DEC597 /* Circuit AnalyserUITests */,
+				BCEAE4FE2E27DD9800DEC597 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BCEAE4FE2E27DD9800DEC597 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BCEAE4FD2E27DD9800DEC597 /* Circuit Analyser.app */,
+				BCEAE50A2E27DD9A00DEC597 /* Circuit AnalyserTests.xctest */,
+				BCEAE5142E27DD9A00DEC597 /* Circuit AnalyserUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BCEAE4FC2E27DD9800DEC597 /* Circuit Analyser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCEAE51E2E27DD9A00DEC597 /* Build configuration list for PBXNativeTarget "Circuit Analyser" */;
+			buildPhases = (
+				BCEAE4F92E27DD9800DEC597 /* Sources */,
+				BCEAE4FA2E27DD9800DEC597 /* Frameworks */,
+				BCEAE4FB2E27DD9800DEC597 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BCEAE4FF2E27DD9800DEC597 /* Circuit Analyser */,
+			);
+			name = "Circuit Analyser";
+			packageProductDependencies = (
+			);
+			productName = "Circuit Analyser";
+			productReference = BCEAE4FD2E27DD9800DEC597 /* Circuit Analyser.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BCEAE5092E27DD9A00DEC597 /* Circuit AnalyserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCEAE5212E27DD9A00DEC597 /* Build configuration list for PBXNativeTarget "Circuit AnalyserTests" */;
+			buildPhases = (
+				BCEAE5062E27DD9A00DEC597 /* Sources */,
+				BCEAE5072E27DD9A00DEC597 /* Frameworks */,
+				BCEAE5082E27DD9A00DEC597 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCEAE50C2E27DD9A00DEC597 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BCEAE50D2E27DD9A00DEC597 /* Circuit AnalyserTests */,
+			);
+			name = "Circuit AnalyserTests";
+			packageProductDependencies = (
+			);
+			productName = "Circuit AnalyserTests";
+			productReference = BCEAE50A2E27DD9A00DEC597 /* Circuit AnalyserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BCEAE5132E27DD9A00DEC597 /* Circuit AnalyserUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCEAE5242E27DD9A00DEC597 /* Build configuration list for PBXNativeTarget "Circuit AnalyserUITests" */;
+			buildPhases = (
+				BCEAE5102E27DD9A00DEC597 /* Sources */,
+				BCEAE5112E27DD9A00DEC597 /* Frameworks */,
+				BCEAE5122E27DD9A00DEC597 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCEAE5162E27DD9A00DEC597 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BCEAE5172E27DD9A00DEC597 /* Circuit AnalyserUITests */,
+			);
+			name = "Circuit AnalyserUITests";
+			packageProductDependencies = (
+			);
+			productName = "Circuit AnalyserUITests";
+			productReference = BCEAE5142E27DD9A00DEC597 /* Circuit AnalyserUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCEAE4F52E27DD9800DEC597 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					BCEAE4FC2E27DD9800DEC597 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					BCEAE5092E27DD9A00DEC597 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = BCEAE4FC2E27DD9800DEC597;
+					};
+					BCEAE5132E27DD9A00DEC597 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = BCEAE4FC2E27DD9800DEC597;
+					};
+				};
+			};
+			buildConfigurationList = BCEAE4F82E27DD9800DEC597 /* Build configuration list for PBXProject "Circuit Analyser" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BCEAE4F42E27DD9800DEC597;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = BCEAE4FE2E27DD9800DEC597 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BCEAE4FC2E27DD9800DEC597 /* Circuit Analyser */,
+				BCEAE5092E27DD9A00DEC597 /* Circuit AnalyserTests */,
+				BCEAE5132E27DD9A00DEC597 /* Circuit AnalyserUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BCEAE4FB2E27DD9800DEC597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEAE5082E27DD9A00DEC597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEAE5122E27DD9A00DEC597 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BCEAE4F92E27DD9800DEC597 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEAE5062E27DD9A00DEC597 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCEAE5102E27DD9A00DEC597 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BCEAE50C2E27DD9A00DEC597 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCEAE4FC2E27DD9800DEC597 /* Circuit Analyser */;
+			targetProxy = BCEAE50B2E27DD9A00DEC597 /* PBXContainerItemProxy */;
+		};
+		BCEAE5162E27DD9A00DEC597 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCEAE4FC2E27DD9800DEC597 /* Circuit Analyser */;
+			targetProxy = BCEAE5152E27DD9A00DEC597 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BCEAE51C2E27DD9A00DEC597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8QAV987QUX;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BCEAE51D2E27DD9A00DEC597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8QAV987QUX;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BCEAE51F2E27DD9A00DEC597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8QAV987QUX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codycarter.rohanpatel.circuitanalyser.Circuit-Analyser";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BCEAE5202E27DD9A00DEC597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8QAV987QUX;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codycarter.rohanpatel.circuitanalyser.Circuit-Analyser";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BCEAE5222E27DD9A00DEC597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8QAV987QUX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codycarter.rohanpatel.circuitanalyser.Circuit-AnalyserTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Circuit Analyser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Circuit Analyser";
+			};
+			name = Debug;
+		};
+		BCEAE5232E27DD9A00DEC597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8QAV987QUX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codycarter.rohanpatel.circuitanalyser.Circuit-AnalyserTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Circuit Analyser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Circuit Analyser";
+			};
+			name = Release;
+		};
+		BCEAE5252E27DD9A00DEC597 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8QAV987QUX;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codycarter.rohanpatel.circuitanalyser.Circuit-AnalyserUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Circuit Analyser";
+			};
+			name = Debug;
+		};
+		BCEAE5262E27DD9A00DEC597 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8QAV987QUX;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codycarter.rohanpatel.circuitanalyser.Circuit-AnalyserUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Circuit Analyser";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCEAE4F82E27DD9800DEC597 /* Build configuration list for PBXProject "Circuit Analyser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEAE51C2E27DD9A00DEC597 /* Debug */,
+				BCEAE51D2E27DD9A00DEC597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEAE51E2E27DD9A00DEC597 /* Build configuration list for PBXNativeTarget "Circuit Analyser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEAE51F2E27DD9A00DEC597 /* Debug */,
+				BCEAE5202E27DD9A00DEC597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEAE5212E27DD9A00DEC597 /* Build configuration list for PBXNativeTarget "Circuit AnalyserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEAE5222E27DD9A00DEC597 /* Debug */,
+				BCEAE5232E27DD9A00DEC597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCEAE5242E27DD9A00DEC597 /* Build configuration list for PBXNativeTarget "Circuit AnalyserUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCEAE5252E27DD9A00DEC597 /* Debug */,
+				BCEAE5262E27DD9A00DEC597 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BCEAE4F52E27DD9800DEC597 /* Project object */;
+}
