@@ -1,7 +1,23 @@
 # Circuit Analysis Calculator Application
+
+### *Windows Screenshot:*
 <figure>
   <div align="center">
-    <img src="https://github.com/user-attachments/assets/fa1712b5-4c9e-47bb-8375-cc43fe855206" alt="App Screenshot" width="400">
+    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="800" alt="Windows Screenshot">
+  </div>
+</figure>
+
+### *iOS Screenshot:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/87cb179c-80bd-4ef9-b7b9-c0b39ad975a5" width="400" height="800" alt="iOS Screenshot">
+  </div>
+</figure>
+
+### *Android Screenshot:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/a1fd113d-31dd-46fb-a214-6d2c428d4f69" width="400" height="800" alt="Android Screenshot">
   </div>
 </figure>
   
@@ -76,9 +92,10 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 
 ### Features:
 - Supports both **real** and **complex** numbers (in rectangular form).
+- Change the amount of decimal precision and amount of equations to be solved using the dropdown menu.
 - Displays results in **rectangular** and **polar** form.
-- Shows **KVL equations** derived from the solution.
-- Toggle **Dark Mode** and **Always on Top** using the respective sliders.
+- Shows **KVL equations** along with the solution.
+- Desktop: Toggle **Dark Mode** and **Always on Top** using the respective sliders.
 
 If invalid input is detected, an error message will be shown.
 
