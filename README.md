@@ -3,21 +3,21 @@
 ### *Windows Screenshot:*
 <figure>
   <div align="center">
-    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="800" alt="Windows Screenshot">
+    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="1200" alt="Windows Screenshot">
   </div>
 </figure>
 
 ### *iOS Screenshot:*
 <figure>
   <div align="center">
-    <img src="https://github.com/user-attachments/assets/87cb179c-80bd-4ef9-b7b9-c0b39ad975a5" width="400" height="800" alt="iOS Screenshot">
+    <img src="https://github.com/user-attachments/assets/87cb179c-80bd-4ef9-b7b9-c0b39ad975a5" width="400" height="1200" alt="iOS Screenshot">
   </div>
 </figure>
 
 ### *Android Screenshot:*
 <figure>
   <div align="center">
-    <img src="https://github.com/user-attachments/assets/a1fd113d-31dd-46fb-a214-6d2c428d4f69" width="400" height="800" alt="Android Screenshot">
+    <img src="https://github.com/user-attachments/assets/0532a1f4-9d84-4408-a9a7-d4897d41677b" width="400" height="1200" alt="Android Screenshot">
   </div>
 </figure>
   
