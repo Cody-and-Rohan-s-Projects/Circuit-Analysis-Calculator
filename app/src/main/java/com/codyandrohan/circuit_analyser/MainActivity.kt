@@ -1,8 +1,8 @@
-// CircuitAnalysisActivity.kt
 package com.codyandrohan.circuit_analyser
 
 import android.os.Bundle
 import android.text.InputType
+import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class CircuitAnalysisActivity : AppCompatActivity() {
@@ -20,10 +21,12 @@ class CircuitAnalysisActivity : AppCompatActivity() {
     private lateinit var resultLabel: TextView
     private lateinit var kvlLabel: TextView
     private lateinit var matrixSizeSpinner: Spinner
+    private lateinit var decimalSpinner: Spinner
     private lateinit var solveButton: Button
     private lateinit var resetButton: Button
     private lateinit var linkBox: TextView
     private var matrixSize = 3
+    private var decimalPlaces = 3
 
     data class Complex(val re: Double, val im: Double) {
         operator fun plus(c: Complex) = Complex(re + c.re, im + c.im)
@@ -34,54 +37,62 @@ class CircuitAnalysisActivity : AppCompatActivity() {
             return Complex((re * c.re + im * c.im) / denom, (im * c.re - re * c.im) / denom)
         }
 
-        override fun toString(): String {
+        // New method to format complex number with dynamic precision
+        fun toFormattedString(precision: Int): String {
             val sign = if (im >= 0) "+" else "-"
-            return "%.3f%s%.3fj".format(re, sign, kotlin.math.abs(im))
+            val formatStr = "%.${precision}f"
+            return "${formatStr.format(re)}$sign${formatStr.format(kotlin.math.abs(im))}j"
+        }
+
+        override fun toString(): String {
+            // fallback default formatting if needed
+            return toFormattedString(3)
         }
     }
 
-    private fun parseComplex(input: String): Complex {
-        val s = input.trim().lowercase().replace("i", "j")
+    // Polar conversion with dynamic precision
+    private fun rectangularToPolar(c: Complex, precision: Int): String {
+        val magnitude = kotlin.math.hypot(c.re, c.im)
+        val angle = Math.toDegrees(kotlin.math.atan2(c.im, c.re))
+        val formatStr = "%.${precision}f"
+        return "${formatStr.format(magnitude)} ∠ ${formatStr.format(angle)}°"
+    }
 
-        val fullPattern = Regex("""^([+-]?\d*\.?\d+)?([+-]?\d*\.?\d*)j$""")
+    private fun parseComplex(input: String): Complex {
+        val cleaned = input
+            .lowercase()
+            .replace("i", "j")
+            .replace(",", "")
+            .replace(" ", "")
+
+        // Handle exact strings like "j", "-j"
+        if (cleaned == "j") return Complex(0.0, 1.0)
+        if (cleaned == "-j") return Complex(0.0, -1.0)
+
+        // Full complex pattern
+        val complexPattern = Regex("""^([+-]?\d*\.?\d+)?([+-]?j\d*\.?\d+|[+-]?\d*\.?\d+j)?$""")
 
         return try {
-            when {
-                // Real + Imaginary (-7+j5 or 3-4j)
-                fullPattern.matches(s) -> {
-                    val match = fullPattern.find(s)!!
-                    val (realPart, imagPartRaw) = match.destructured
+            val match = complexPattern.matchEntire(cleaned)
+                ?: throw IllegalArgumentException("Invalid complex number format: '$input'")
 
-                    val real = if (realPart.isBlank()) 0.0 else realPart.toDouble()
-                    val imag = when (imagPartRaw) {
-                        "+", "" -> 1.0
-                        "-" -> -1.0
-                        else -> imagPartRaw.toDouble()
-                    }
+            val (realRaw, imagRaw) = match.destructured
 
-                    Complex(real, imag)
-                }
-
-                // Pure imaginary like j5, -j2.3
-                Regex("""^[+-]?j\d*\.?\d+$""").matches(s) -> {
-                    val imag = s.replace("j", "").toDouble()
-                    Complex(0.0, imag)
-                }
-
-                // j or -j
-                Regex("""^[+-]?j$""").matches(s) -> {
-                    val imag = if (s.startsWith("-")) -1.0 else 1.0
-                    Complex(0.0, imag)
-                }
-
-                // real only
-                else -> Complex(s.toDouble(), 0.0)
+            val real = if (realRaw.isBlank()) 0.0 else realRaw.toDouble()
+            val imag = when {
+                imagRaw.isBlank() -> 0.0
+                imagRaw == "+j" || imagRaw == "j" -> 1.0
+                imagRaw == "-j" -> -1.0
+                imagRaw.startsWith("j") -> imagRaw.removePrefix("j").toDouble()
+                imagRaw.endsWith("j") -> imagRaw.removeSuffix("j").toDouble()
+                else -> throw IllegalArgumentException("Invalid imaginary part: '$imagRaw'")
             }
+
+            Complex(real, imag)
         } catch (e: Exception) {
             throw IllegalArgumentException("Invalid complex number format: '$input'")
         }
     }
-
 
     private fun solveLinearSystemComplex(
         a: Array<Array<Complex>>,
@@ -124,12 +135,9 @@ class CircuitAnalysisActivity : AppCompatActivity() {
         vectorContainer.removeAllViews()
 
         for (i in 0 until size) {
-            // ----------- MATRIX ROW -----------
             val matrixRow = LinearLayout(this).apply {
                 orientation = LinearLayout.HORIZONTAL
             }
-
-            // Left bracket
             val leftBracket = TextView(this).apply {
                 text = when (i) {
                     0 -> "⎡"
@@ -142,24 +150,20 @@ class CircuitAnalysisActivity : AppCompatActivity() {
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 ).apply { setMargins(4, 4, 4, 4) }
             }
-
             matrixRow.addView(leftBracket)
 
-            // Matrix input fields
             for (j in 0 until size) {
                 val input = EditText(this).apply {
                     hint = "A${i + 1}${j + 1}"
+                    gravity = Gravity.CENTER
                     inputType = InputType.TYPE_CLASS_TEXT
                     layoutParams =
                         LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-                            .apply {
-                                setMargins(4, 4, 4, 4)
-                            }
+                            .apply { setMargins(4, 4, 4, 4) }
                 }
                 matrixRow.addView(input)
             }
 
-            // Right bracket
             val rightBracket = TextView(this).apply {
                 text = when (i) {
                     0 -> "⎤"
@@ -172,16 +176,12 @@ class CircuitAnalysisActivity : AppCompatActivity() {
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 ).apply { setMargins(4, 4, 4, 4) }
             }
-
             matrixRow.addView(rightBracket)
             matrixContainer.addView(matrixRow)
 
-            // ----------- VECTOR ROW -----------
             val vectorRow = LinearLayout(this).apply {
                 orientation = LinearLayout.HORIZONTAL
             }
-
-            // Left bracket for vector
             val vectorLeftBracket = TextView(this).apply {
                 text = when (i) {
                     0 -> "⎡"
@@ -194,21 +194,16 @@ class CircuitAnalysisActivity : AppCompatActivity() {
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 ).apply { setMargins(4, 4, 4, 4) }
             }
-
-            // Vector input
             val bInput = EditText(this).apply {
                 hint = "b${i + 1}"
+                gravity = Gravity.CENTER
                 inputType = InputType.TYPE_CLASS_TEXT
                 layoutParams = LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     1f
-                ).apply {
-                    setMargins(4, 4, 4, 4)
-                }
+                ).apply { setMargins(4, 4, 4, 4) }
             }
-
-            // Right bracket for vector
             val vectorRightBracket = TextView(this).apply {
                 text = when (i) {
                     0 -> "⎤"
@@ -218,14 +213,12 @@ class CircuitAnalysisActivity : AppCompatActivity() {
                 textSize = 24f
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
                 ).apply { setMargins(4, 4, 4, 4) }
             }
-
             vectorRow.addView(vectorLeftBracket)
             vectorRow.addView(bInput)
             vectorRow.addView(vectorRightBracket)
-
             vectorContainer.addView(vectorRow)
         }
     }
@@ -236,25 +229,20 @@ class CircuitAnalysisActivity : AppCompatActivity() {
             val A = Array(n) { Array(n) { Complex(0.0, 0.0) } }
             val b = Array(n) { Complex(0.0, 0.0) }
 
-            // Parse matrix A
             for (i in 0 until n) {
                 val row = matrixContainer.getChildAt(i) as LinearLayout
-                // Skip index 0 (left bracket), read EditTexts from index 1 to n
                 for (j in 0 until n) {
                     val valText = (row.getChildAt(j + 1) as EditText).text.toString()
                     A[i][j] = if (valText.isBlank()) Complex(0.0, 0.0) else parseComplex(valText)
                 }
             }
 
-            // Parse vector b
             for (i in 0 until n) {
                 val vectorRow = vectorContainer.getChildAt(i) as LinearLayout
-                // Index 1 is the EditText (bracketed layout: [TextView, EditText, TextView])
                 val valText = (vectorRow.getChildAt(1) as EditText).text.toString()
                 b[i] = if (valText.isBlank()) Complex(0.0, 0.0) else parseComplex(valText)
             }
 
-            // Solve system
             val x = solveLinearSystemComplex(A, b)
             if (x == null) {
                 resultLabel.text = "Error: Singular matrix — no solution."
@@ -262,27 +250,28 @@ class CircuitAnalysisActivity : AppCompatActivity() {
                 return
             }
 
-            // Display solution
             resultLabel.text = buildString {
-                append("Solution:\n")
-                for (i in x.indices) append("I${i + 1} = ${x[i]} A\n")
+                append("Solution:\n\n")
+                for (i in x.indices) {
+                    append("I${i + 1} = ${x[i].toFormattedString(decimalPlaces)} A\n")
+                    append("    [${rectangularToPolar(x[i], decimalPlaces)} A]\n")
+                }
             }.trim()
 
-            // Display KVL equations
             kvlLabel.text = buildString {
-                append("KVL Equations:\n")
+                append("KVL Equations:\n\n")
                 for (i in 0 until n) {
                     val row = mutableListOf<String>()
                     for (j in 0 until n) {
                         val coeff = A[i][j]
                         if (coeff.re != 0.0 || coeff.im != 0.0) {
-                            val formatted = coeff.toString().removePrefix("+")
+                            val formatted = coeff.toFormattedString(decimalPlaces).removePrefix("+")
                             val sign =
                                 if (row.isEmpty()) "" else if (formatted.startsWith("-")) "- " else "+ "
-                            row.add("$sign${formatted.trimStart('-')}·I${j + 1}")
+                            row.add("$sign(${formatted.trimStart('-')})*I${j + 1}")
                         }
                     }
-                    row.add("= ${b[i]} V")
+                    row.add("= ${b[i].toFormattedString(decimalPlaces)} V\n")
                     append(row.joinToString(" "))
                     append("\n")
                 }
@@ -294,7 +283,6 @@ class CircuitAnalysisActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -304,6 +292,7 @@ class CircuitAnalysisActivity : AppCompatActivity() {
         resultLabel = findViewById(R.id.result_label)
         kvlLabel = findViewById(R.id.kvl_label)
         matrixSizeSpinner = findViewById(R.id.size_spinner)
+        decimalSpinner = findViewById(R.id.decimal_spinner)
         solveButton = findViewById(R.id.solve_button)
         resetButton = findViewById(R.id.reset_button)
         linkBox = findViewById(R.id.info_link)
@@ -311,14 +300,12 @@ class CircuitAnalysisActivity : AppCompatActivity() {
         resultLabel.setTextIsSelectable(true)
         kvlLabel.setTextIsSelectable(true)
 
-        linkBox.text = "View on GitHub"
         linkBox.setOnClickListener {
-            val url = "https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/tree/Android"
+            val url = "https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser"
             val intent = android.content.Intent(android.content.Intent.ACTION_VIEW)
             intent.data = android.net.Uri.parse(url)
             startActivity(intent)
         }
-
 
         val sizes = (1..4).map { it.toString() }
         matrixSizeSpinner.adapter =
@@ -326,13 +313,27 @@ class CircuitAnalysisActivity : AppCompatActivity() {
         matrixSizeSpinner.setSelection(2)
         matrixSizeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long
+                parent: AdapterView<*>, view: View?, position: Int, id: Long
             ) {
                 matrixSize = sizes[position].toInt()
                 buildMatrixInputs(matrixSize)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+        // Setup decimal places spinner
+        val precisionOptions = (1..6).map { it.toString() }
+        decimalSpinner.adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, precisionOptions)
+        decimalSpinner.setSelection(2) // default to 3 decimal places
+        decimalSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View?, position: Int, id: Long
+            ) {
+                decimalPlaces = precisionOptions[position].toInt()
+                // Optional: re-solve to update displayed results with new precision
+                // solveSystem()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
@@ -343,6 +344,19 @@ class CircuitAnalysisActivity : AppCompatActivity() {
             buildMatrixInputs(matrixSize)
             resultLabel.text = getString(R.string.results_will_appear)
             kvlLabel.text = getString(R.string.kvl_equations)
+        }
+
+        val clipboardButton = findViewById<Button>(R.id.clipboard_button)
+        clipboardButton.setOnClickListener {
+            val resultText = resultLabel.text.toString()
+            val kvlText = kvlLabel.text.toString()
+            val combinedText = "$resultText\n\n$kvlText"
+
+            val clipboard = getSystemService(CLIPBOARD_SERVICE) as android.content.ClipboardManager
+            val clip = android.content.ClipData.newPlainText("Circuit Solution", combinedText)
+            clipboard.setPrimaryClip(clip)
+
+            Toast.makeText(this, "Copied to clipboard", Toast.LENGTH_SHORT).show()
         }
 
         buildMatrixInputs(matrixSize)
