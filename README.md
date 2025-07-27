@@ -1,25 +1,4 @@
 # Circuit Analysis Calculator Application
-
-### *Windows Screenshot:*
-<figure>
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="1200" alt="Windows Screenshot">
-  </div>
-</figure>
-
-### *iOS Screenshot:*
-<figure>
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/87cb179c-80bd-4ef9-b7b9-c0b39ad975a5" width="400" height="1200" alt="iOS Screenshot">
-  </div>
-</figure>
-
-### *Android Screenshot:*
-<figure>
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/0532a1f4-9d84-4408-a9a7-d4897d41677b" width="400" height="1200" alt="Android Screenshot">
-  </div>
-</figure>
   
 ## About Us
 
@@ -59,6 +38,28 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
   </p>
 </div>
 
+## Screenshots:
+
+### *Windows:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="1200" alt="Windows Screenshot">
+  </div>
+</figure>
+
+### *iOS:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/87cb179c-80bd-4ef9-b7b9-c0b39ad975a5" width="400" height="1200" alt="iOS Screenshot">
+  </div>
+</figure>
+
+### *Android:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/0532a1f4-9d84-4408-a9a7-d4897d41677b" width="400" height="1200" alt="Android Screenshot">
+  </div>
+</figure>
 
 ## How to Install and Use
 
@@ -68,7 +69,7 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 
 ### Windows:
 <ol>
-  <li> The application is compatible with 32- or 64-bit versions of Windows 7, 8, 8.1, 10, and 11.</li>
+  <li> The application is compatible with Windows 7, 8, 8.1, 10, and 11.</li>
   <li> Open the .exe file, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.</li>
   <li> If Windows shows a "Windows protected your PC" warning, click "More info" and then "Run anyway". This is a standard message shown for unsigned applications.</li>
 </ol> 
@@ -105,23 +106,27 @@ For this project, we wanted to create an all-in-one application to simplify and 
 
 ## How Nodal Analysis Is Calculated
 Nodal analysis is a really handy circuit analysis technique that allows you to solve unknown currents and voltages.
-### Example
+
 
 ![image](https://github.com/user-attachments/assets/7cf70958-ac26-4d58-a83d-550a72b8d58f)
 
-1. Locate node
+Step 1: Locate node
+
 ![Step 1](https://github.com/user-attachments/assets/82bac9aa-aa20-44e0-99bb-f08987520698)
 
-3. Set current directions
+Step 2: Pick current directions
+
 ![Screenshot 2025-06-13 105432](https://github.com/user-attachments/assets/939ad2f2-6051-4fb0-9ddc-8d00e495c9cf)
 
-4. Create KVL equations for each branch of the node in terms of ohms law
+Step 3. Create KVL equations for each branch of the node in terms of ohms law
+
 ![equations](https://github.com/user-attachments/assets/a06c1643-5092-4bbc-b3e3-1b3d14302615)
 
-5. Here is where our calculator application comes in handy. Normally, to solve for I1 and I2, you would use solving techniques like Cramers Rule to input the KVL equations into a matrix and solve for I1 and I2. For proof of concept, the steps will be shown in calculation.
+Step 4: Here is where our calculator application comes in handy. Normally, to solve for I1 and I2, you would use solving techniques like Cramers Rule to input the KVL equations into a matrix and solve for I1 and I2. For proof of concept, the steps will be shown in calculation.
+
 ![Untitled](https://github.com/user-attachments/assets/bd143e9b-eba4-49e9-9bff-547fdb233763)
 
-6. As you can see, while this was a simple example, it still took a bit of calculation by hand. Especially with three or four unknowns it becomes a lot easier to make errors.
+As you can see, while this is a simple example, it still took a bit of calculation by hand. Especially with three or four unknowns it becomes a lot easier to make errors.
 
 ### How Our Circuit Analyzer Calculates 
 1. Using the numpy python library, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format.
