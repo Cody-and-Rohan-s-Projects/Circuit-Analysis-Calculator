@@ -110,15 +110,15 @@ Nodal analysis is a really handy circuit analysis technique that allows you to s
 
 ![image](https://github.com/user-attachments/assets/7cf70958-ac26-4d58-a83d-550a72b8d58f)
 
-Step 1: Locate node
+Step 1: Locate node or nodes.
 
 ![Step 1](https://github.com/user-attachments/assets/82bac9aa-aa20-44e0-99bb-f08987520698)
 
-Step 2: Pick current directions
+Step 2: Pick current directions.
 
 ![Screenshot 2025-06-13 105432](https://github.com/user-attachments/assets/939ad2f2-6051-4fb0-9ddc-8d00e495c9cf)
 
-Step 3. Create KVL equations for each branch of the node in terms of ohms law
+Step 3. Create KVL equations for each branch of the node in terms of Ohms law.
 
 ![equations](https://github.com/user-attachments/assets/a06c1643-5092-4bbc-b3e3-1b3d14302615)
 
@@ -129,7 +129,7 @@ Step 4: Here is where our calculator application comes in handy. Normally, to so
 As you can see, while this is a simple example, it still took a bit of calculation by hand. Especially with three or four unknowns it becomes a lot easier to make errors.
 
 ### How Our Circuit Analyzer Calculates 
-1. Using the numpy python library, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format.
+1. Using the Python library NumPy, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format. Other libraries are used for the iOS and Android versions. 
 <br/>
 
 ![image](https://github.com/user-attachments/assets/998b2028-d892-4e78-aac2-9bcff959ee4f)
