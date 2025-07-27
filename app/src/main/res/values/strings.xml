@@ -4,7 +4,7 @@
     <string name="dark_theme">Dark Theme</string>
     <string name="decimal_places_label">Decimal Precision:</string>
     <string name="default_result_label">Enter values and then tap Solve.\nThe result and equations will appear here. </string>
-    <string name="github_button">View our GitHub!</string>
+    <string name="github_button">View our GitHub</string>
     <string name="kvl_equations">KVL equations will appear here</string>
     <string name="matrix_label">Coefficient Matrix [A]:</string>
     <string name="num_equations_label">Number of Equations:</string>

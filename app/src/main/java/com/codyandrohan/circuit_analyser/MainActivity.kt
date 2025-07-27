@@ -65,34 +65,34 @@ class CircuitAnalysisActivity : AppCompatActivity() {
             .replace(",", "")
             .replace(" ", "")
 
-        // Handle exact strings like "j", "-j"
         if (cleaned == "j") return Complex(0.0, 1.0)
         if (cleaned == "-j") return Complex(0.0, -1.0)
+        if (cleaned == "+j") return Complex(0.0, 1.0)
 
-        // Full complex pattern
-        val complexPattern = Regex("""^([+-]?\d*\.?\d+)?([+-]?j\d*\.?\d+|[+-]?\d*\.?\d+j)?$""")
+        // General complex number pattern:
+        val pattern = Regex("""^([+-]?\d*\.?\d+)?([+-]?(?:j\d*\.?\d+|\d*\.?\d+j|j))?$""")
+        val match = pattern.matchEntire(cleaned)
+            ?: throw IllegalArgumentException("Invalid complex number format: '$input'")
 
-        return try {
-            val match = complexPattern.matchEntire(cleaned)
-                ?: throw IllegalArgumentException("Invalid complex number format: '$input'")
+        val (realRaw, imagRaw) = match.destructured
 
-            val (realRaw, imagRaw) = match.destructured
+        val real = if (realRaw.isBlank()) 0.0 else realRaw.toDouble()
 
-            val real = if (realRaw.isBlank()) 0.0 else realRaw.toDouble()
-            val imag = when {
-                imagRaw.isBlank() -> 0.0
-                imagRaw == "+j" || imagRaw == "j" -> 1.0
-                imagRaw == "-j" -> -1.0
-                imagRaw.startsWith("j") -> imagRaw.removePrefix("j").toDouble()
-                imagRaw.endsWith("j") -> imagRaw.removeSuffix("j").toDouble()
-                else -> throw IllegalArgumentException("Invalid imaginary part: '$imagRaw'")
-            }
-
-            Complex(real, imag)
-        } catch (e: Exception) {
-            throw IllegalArgumentException("Invalid complex number format: '$input'")
+        val imag = when {
+            imagRaw.isBlank() -> 0.0
+            imagRaw == "j" || imagRaw == "+j" -> 1.0
+            imagRaw == "-j" -> -1.0
+            imagRaw.startsWith("+j") -> imagRaw.removePrefix("+j").toDouble()
+            imagRaw.startsWith("-j") -> -imagRaw.removePrefix("-j").toDouble()
+            imagRaw.startsWith("j") -> imagRaw.removePrefix("j").toDouble()
+            imagRaw.endsWith("j") -> imagRaw.removeSuffix("j").toDouble()
+            else -> throw IllegalArgumentException("Invalid imaginary part: '$imagRaw'")
         }
+
+        return Complex(real, imag)
     }
+
+
 
     private fun solveLinearSystemComplex(
         a: Array<Array<Complex>>,
