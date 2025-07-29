@@ -37,7 +37,6 @@ class CircuitAnalysisActivity : AppCompatActivity() {
             return Complex((re * c.re + im * c.im) / denom, (im * c.re - re * c.im) / denom)
         }
 
-        // New method to format complex number with dynamic precision
         fun toFormattedString(precision: Int): String {
             val sign = if (im >= 0) "+" else "-"
             val formatStr = "%.${precision}f"
