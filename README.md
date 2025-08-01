@@ -112,7 +112,7 @@ The calculator currently supports solving systems of equations with **1 to 4 var
     <img width="302" height="268" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/c2e403ce-c43f-4c7e-8826-8f02b6d7172e" />
   </div>
   <br><br>
-  <li> Click the run button on the top left to build and upload to your iOS device. If prompted, click "Signing and Capabilites" to log in with your Apple Developer account and enter in a bundle identifier. This can be anything, we used com.companyname.appname as the standard convention</li>
+  <li> Click the run button on the top left to build and upload to your iOS device. If prompted, click "Signing and Capabilites" to log in with your Apple Developer account and enter in a bundle identifier. This can be anything, we used com.companyname.appname as the standard convention.</li>
   <li> After building and uploading, the app should be working on your iOS device.</li>
 </ol> 
 
