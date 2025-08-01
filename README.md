@@ -101,16 +101,20 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 ### Linux:
 <ol>
   <li> Right click and select "Extract Here".</li>
+    <br>
   <div align="center">
     <img width="227" height="304" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/80b2e278-df37-49ce-91cd-db6584709670" />
   </div>
-  <li> Open extracted folder and click on "install.sh". This will automatically install and move the application to your apps section to be executed.</li>
-  <li> Click "run".</li>
+    <br>
+  <li> Open extracted folder and click on the file "install.sh". This will automatically install and move the application to your apps section to be executed.</li>
+  <li> Click "Run".</li>
+    <br>
   <div align="center">
     <img width="582" height="158" alt="image" src="https://github.com/user-attachments/assets/66184639-9045-4a33-9616-5d775ee6b067" />
   </div>
-  
-  <li> You should recieve a sucessful message and the application will be found in your applications.</li>
+    <br>
+  <li> You should receive a successful message and the application will be found in your applications.</li>
+<br>
   <div align="center">
     <img width="396" height="167" alt="image" src="https://github.com/user-attachments/assets/cbf047aa-8d03-4045-b4c7-841fb08dce46" />
   </div>
