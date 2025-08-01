@@ -70,7 +70,7 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 ### Windows:
 <ol>
   <li> The application is compatible with Windows 7, 8, 8.1, 10, and 11.</li>
-  <li> Open the .exe file, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.</li>
+  <li> Open the .exe file in the dist, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.</li>
   <li> If Windows shows a "Windows protected your PC" warning, click "More info" and then "Run anyway". This is a standard message shown for unsigned applications.</li>
 </ol> 
 
@@ -83,7 +83,12 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 </div>
 
 ### Mac
-
+<ol>
+  <li> Open the .exe file in the dist folder, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.</li>
+  <li> If your Mac shows a security warning, choose Apple menu, then System Settings, then click Privacy & Security in the sidebar. (You may need to scroll down.). This is a standard message shown for unsigned applications.</li>
+  <li> Find the message where the application is blocked near the bottom of the page and click "Open Anyway" .</li>
+  <li> You should now be able to run Circuit Analyser .</li>
+</ol> 
 ### Linux
 
 ### iOS
