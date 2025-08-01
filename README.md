@@ -9,10 +9,7 @@ Rohan focused on the Android version using Kotlin, while Cody focused on iOS usi
 
 We built this tool to help students and engineers quickly solve nodal or mesh analysis problems.
 
-
-### Connect with Us:
-
-<div align="left">
+<div align="center">
   <h3>Cody Carter</h3>
   <img src="https://github.com/user-attachments/assets/2808f0ad-6c56-464c-abdd-6ece9a4be026" alt="Cody Carter Profile" width="100" style="border-radius:50%">
   <p>
@@ -23,9 +20,7 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
       <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
     </a>
   </p>
-</div>
-
-<div align="left">
+  
   <h3>Rohan Patel</h3>
   <img src="https://github.com/user-attachments/assets/3a4125b1-9be2-477c-8c1a-5b18cee2ed93" alt="Rohan Patel Profile" width="100" style="border-radius:50%">
   <p>
@@ -40,7 +35,7 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 
 ## Screenshots:
 
-### *Windows, Mac, and Linux:*
+### *Desktop Versions:*
 <figure>
   <div align="center">
     <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="1200" alt="Windows Screenshot">
@@ -75,38 +70,49 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 </ol> 
 
 <div align="center">
-  
-![Screenshot 1](https://github.com/user-attachments/assets/80274084-cba3-4ad7-8169-8e9b9ddd5508)
 
-![Screenshot 2](https://github.com/user-attachments/assets/a1edfd12-106a-4a48-bd6f-ae992554d1a4)
+<img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/80274084-cba3-4ad7-8169-8e9b9ddd5508"/>
+
+<img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/a1edfd12-106a-4a48-bd6f-ae992554d1a4"/>
 
 </div>
 
 ### Mac:
 <ol>
-  <li> Open the .exe file in the dist folder, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.</li>
-  <li> If your Mac shows a security warning, choose Apple menu, then System Settings, then click Privacy & Security in the sidebar. (You may need to scroll down.). This is a standard message shown for unsigned applications.</li>
-  <img width="261" height="232" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/b0ba69e9-7153-4af4-940f-0e941490d15a" />
+  <li> Open the .app file in the dist folder, if it does not open, make sure the "_internal" folder is in the same folder as the .app file.</li>
+  <li> If your Mac shows a security warning, open the Apple menu, then System Settings, then click Privacy & Security in the sidebar (You may need to scroll down). This is a standard message shown for unsigned applications.</li>
+  
+  <br>
+  <div align="center">
+    <img width="261" height="232" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/b0ba69e9-7153-4af4-940f-0e941490d15a" />
+  </div>
+  <br>
+  
+  <li> Find the message where the application is blocked near the bottom of the page and click the "Open Anyway" button.</li> 
 
-  <li> Find the message where the application is blocked near the bottom of the page and click "Open Anyway" .</li> 
-  <img width="472" height="101" alt="Screenshot 2025-08-01 at 8 56 20 AM" src="https://github.com/user-attachments/assets/48581e4a-a50b-4551-a21e-a6b6b9967ad9" />
-
-  <li> You should now be able to run Circuit Analyser .</li>
+  <br>
+  <div align="center">
+    <img width="472" height="101" alt="Screenshot 2025-08-01 at 8 56 20 AM" src="https://github.com/user-attachments/assets/48581e4a-a50b-4551-a21e-a6b6b9967ad9" />
+  </div>
+  <br>
+  
+  <li> You should now be able to run Circuit Analyser.</li>
 </ol> 
 
 ### Linux:
 <ol>
   <li> Right click and select "Extract Here".</li>
-  <li> Right click and select "Extract Here".</li>
 </ol> 
 
 ### iOS:
 <ol>
-  <li> While we don't have plans to market this on the app store yet, you can still easily build and upload to your iOS device very quickly.</li>
+  <li> While we don't have plans to put this on the App Store yet, you can still easily build and upload to your iOS device quickly.</li>
   <li> Make sure you have the latest and an updated version of XCode and open the Circuit Analysis file or click the .xcodeproj file to open in XCode.</li>
-  <li> Connect up your iOS device to your Mac and select it as the target device in this menu.</li>
+  <li> Connect your iOS device to your Mac and select it as the target device in this menu.</li>
+  <br>
   <img width="302" height="268" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/c2e403ce-c43f-4c7e-8826-8f02b6d7172e" />
-  <li> Click the run button on the top left to build and upload to your iOS device. If promted, click "Signing and Capabilites" to log in with your Apple Developer account and enter in a bundle identifier.</li>
+  <br><br>
+  <li> Click the run button on the top left to build and upload to your iOS device. If prompted, click "Signing and Capabilites" to log in with your Apple Developer account and enter in a bundle identifier.</li>
   <li> After building and uploading, the app should be working on your iOS device.</li>
 </ol> 
 
@@ -116,11 +122,6 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 
 The calculator currently supports solving systems of equations with **1 to 4 variables**.  
 
-### How to Use:
-- Select the matrix size using the dropdown menu and click **"Set Size."**
-- Enter the coefficient and constant values into the respective matrices.
-- Click **"Solve"** to view results.
-
 ### Features:
 - Supports both **real** and **complex** numbers (in rectangular form).
 - Change the amount of decimal precision and amount of equations to be solved using the dropdown menu.
@@ -128,9 +129,17 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 - Shows **KVL equations** along with the solution.
 - Desktop: Toggle **Dark Mode** and **Always on Top** using the respective sliders.
 
-If invalid input is detected, an error message will be shown.
+### How to Use:
+- Select the matrix size using the dropdown menu and click **"Set Size."**
+- Change the decimal precision of the answer and equations if needed.
+- Enter the coefficient and constant values into the respective matrices.
+- The values can be rectangular complex or real.
+- If invalid input is detected, an error message will be shown.
+- Click or tap **"Solve"** to view results.
+- Click or tap **"Reset"** or **"Clear"** to reset the inputs and outputs to start over.
+- Click or tap **"Copy to Clipboard"** to copy the output to your clipboard for use in another app.
 
-# About The Calculator
+# Calculator Background
 ## The Goal
 For this project, we wanted to create an all-in-one application to simplify and solve nodal analysis linear equations without using MATLAB code. Since it can take time to get MATLAB open, write your program, and execute it, we decided to make an easy to use calculator that can be open at any time while doing circuit analysis problems. 
 
