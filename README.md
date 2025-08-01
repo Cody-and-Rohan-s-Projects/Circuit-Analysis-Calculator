@@ -33,28 +33,26 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
   </p>
 </div>
 
-## Screenshots:
+## About the Calculator
 
-### *Desktop Versions:*
-<figure>
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="1200" alt="Windows Screenshot">
-  </div>
-</figure>
+The calculator currently supports solving systems of equations with **1 to 4 variables**.  
 
-### *iOS:*
-<figure>
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/68d26266-5a07-4da4-9166-c3d1d6f32a02" width="400" height="1200" alt="iOS Screenshot">
-  </div>
-</figure>
+### Features:
+- Supports both **real** and **complex** numbers (in rectangular form).
+- Change the amount of decimal precision and amount of equations to be solved using the dropdown menu.
+- Displays results in **rectangular** and **polar** form.
+- Shows **KVL equations** along with the solution.
+- Desktop: Toggle **Dark Mode** and **Always on Top** using the respective sliders.
 
-### *Android:*
-<figure>
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/627652b1-22f8-400e-a5e5-caae5df2671e" width="400" height="1200" alt="Android Screenshot">
-  </div>
-</figure>
+### How to Use:
+- Select the matrix size using the dropdown menu and click **"Set Size."**
+- Change the decimal precision of the answer and equations if needed.
+- Enter the coefficient and constant values into the respective matrices.
+- The values can be rectangular complex or real.
+- If invalid input is detected, an error message will be shown.
+- Click or tap **"Solve"** to view results.
+- Click or tap **"Reset"** or **"Clear"** to reset the inputs and outputs to start over.
+- Click or tap **"Copy to Clipboard"** to copy the output to your clipboard for use in another app.
 
 ## How to Install and Use
 
@@ -120,26 +118,31 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 
 ### Android:
 
-## About the Calculator
+placeholder
 
-The calculator currently supports solving systems of equations with **1 to 4 variables**.  
+## Screenshots:
 
-### Features:
-- Supports both **real** and **complex** numbers (in rectangular form).
-- Change the amount of decimal precision and amount of equations to be solved using the dropdown menu.
-- Displays results in **rectangular** and **polar** form.
-- Shows **KVL equations** along with the solution.
-- Desktop: Toggle **Dark Mode** and **Always on Top** using the respective sliders.
+### *Desktop Versions:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="1200" alt="Windows Screenshot">
+  </div>
+</figure>
 
-### How to Use:
-- Select the matrix size using the dropdown menu and click **"Set Size."**
-- Change the decimal precision of the answer and equations if needed.
-- Enter the coefficient and constant values into the respective matrices.
-- The values can be rectangular complex or real.
-- If invalid input is detected, an error message will be shown.
-- Click or tap **"Solve"** to view results.
-- Click or tap **"Reset"** or **"Clear"** to reset the inputs and outputs to start over.
-- Click or tap **"Copy to Clipboard"** to copy the output to your clipboard for use in another app.
+### *iOS:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/68d26266-5a07-4da4-9166-c3d1d6f32a02" width="400" height="1200" alt="iOS Screenshot">
+  </div>
+</figure>
+
+### *Android:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/627652b1-22f8-400e-a5e5-caae5df2671e" width="400" height="1200" alt="Android Screenshot">
+  </div>
+</figure>
+
 
 # Calculator Background
 
