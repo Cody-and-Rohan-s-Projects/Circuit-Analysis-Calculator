@@ -104,7 +104,7 @@ The calculator currently supports solving systems of equations with **1 to 4 var
   <div align="center">
     <img width="227" height="304" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/80b2e278-df37-49ce-91cd-db6584709670" />
   </div>
-  <li> Open extracted folder and click on "install.sh". This will install and move the application to your apps section to be executed.</li>
+  <li> Open extracted folder and click on "install.sh". This will automatically install and move the application to your apps section to be executed.</li>
   <li> Click "run".</li>
   <div align="center">
     <img width="582" height="158" alt="image" src="https://github.com/user-attachments/assets/66184639-9045-4a33-9616-5d775ee6b067" />
