@@ -82,18 +82,32 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 
 </div>
 
-### Mac
+### Mac:
 <ol>
   <li> Open the .exe file in the dist folder, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.</li>
   <li> If your Mac shows a security warning, choose Apple menu, then System Settings, then click Privacy & Security in the sidebar. (You may need to scroll down.). This is a standard message shown for unsigned applications.</li>
-  <li> Find the message where the application is blocked near the bottom of the page and click "Open Anyway" .</li>
+  <img width="261" height="232" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/b0ba69e9-7153-4af4-940f-0e941490d15a" />
+
+  <li> Find the message where the application is blocked near the bottom of the page and click "Open Anyway" .</li> 
+  <img width="472" height="101" alt="Screenshot 2025-08-01 at 8 56 20 AM" src="https://github.com/user-attachments/assets/48581e4a-a50b-4551-a21e-a6b6b9967ad9" />
+
   <li> You should now be able to run Circuit Analyser .</li>
 </ol> 
-### Linux
 
-### iOS
+### Linux:
 
-### Android
+### iOS:
+<ol>
+  <li> While we don't have plans to market this pp on the app store yet, you can still easily build   and upload to your iOS device very quickly.</li>
+  <li> Make sure you have the latest and an updated version of XCode and open the Circuit Analysis file or click the .xcodeproj file to open in XCode.</li>
+  <li> Connect up your iOS device to your Mac and select it as the target device in this menu.</li>
+  <img width="302" height="268" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/c2e403ce-c43f-4c7e-8826-8f02b6d7172e" />
+  <li> Click the run button on the top left to build and upload to your iOS device. If promted, click "Signing and Capabilites" to log in with your Apple Developer account and enter in a bundle identifier.</li>
+  <li> After building and uploading, the app should be working on your iOS device.</li>
+</ol> 
+
+### Android:
+
 ## About the Calculator
 
 The calculator currently supports solving systems of equations with **1 to 4 variables**.  
