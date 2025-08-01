@@ -57,7 +57,7 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 ## How to Install and Use
 
 1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab.
-2. Unzip and extract the release into another folder.
+2. If you downloaded a zip file, unzip and extract the release into another folder.
 3. Follow the correcorresponding steps based on your operating system.
 
 ### Windows:
@@ -118,7 +118,26 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 
 ### Android:
 
-placeholder
+<ol>
+  <li> Try to open the apk file after you download it. Tap "Settings" if you see a message similar to this:</li>
+  <br>
+  <div align="center">
+  <img width="300" height="400" alt="image" src="https://github.com/user-attachments/assets/63df3865-9259-48d6-a4c4-85f956e0934d" />
+  </div>
+  <br><br>
+  <li> Tap "Allow from this source".</li>
+  <br>
+  <div align="center">
+  <img width="300" height="400" alt="image" src="https://github.com/user-attachments/assets/0ab53be3-19aa-4a49-aa91-12715fb02edd" />
+  </div>
+  <br><br>
+  <li> Tap "Install".</li>
+  <br>
+  <div align="center">
+  <img width="300" height="400" alt="image" src="https://github.com/user-attachments/assets/db612d99-25d2-4716-b984-f16942452c48" />
+  </div>
+  <br><br>
+</ol>
 
 ## Screenshots:
 
