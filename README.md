@@ -95,6 +95,10 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 </ol> 
 
 ### Linux:
+<ol>
+  <li> Right click and select "Extract Here".</li>
+  <li> Right click and select "Extract Here".</li>
+</ol> 
 
 ### iOS:
 <ol>
