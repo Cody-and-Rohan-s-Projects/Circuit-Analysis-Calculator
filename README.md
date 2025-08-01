@@ -50,14 +50,14 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 ### *iOS:*
 <figure>
   <div align="center">
-    <img src="https://github.com/user-attachments/assets/87cb179c-80bd-4ef9-b7b9-c0b39ad975a5" width="400" height="1200" alt="iOS Screenshot">
+    <img src="https://github.com/user-attachments/assets/68d26266-5a07-4da4-9166-c3d1d6f32a02" width="400" height="1200" alt="iOS Screenshot">
   </div>
 </figure>
 
 ### *Android:*
 <figure>
   <div align="center">
-    <img src="https://github.com/user-attachments/assets/0532a1f4-9d84-4408-a9a7-d4897d41677b" width="400" height="1200" alt="Android Screenshot">
+    <img src="https://github.com/user-attachments/assets/627652b1-22f8-400e-a5e5-caae5df2671e" width="400" height="1200" alt="Android Screenshot">
   </div>
 </figure>
 
