@@ -570,7 +570,7 @@ struct ContentView: View {
                     let coeffStr = coeff.toFormattedString(precision)
                     let sign = (terms.isEmpty) ? "" : (coeffStr.starts(with: "-") ? "- " : "+ ")
                     let cleanedCoeff = coeffStr.trimmingCharacters(in: CharacterSet(charactersIn: "+- "))
-                    terms.append("\(sign)(\(cleanedCoeff))*I\(j+1)")
+                    terms.append("\(sign)(\(cleanedCoeff)Ω)*I\(j+1)")
                 }
             }
             let bStr = originalB[i].toFormattedString(precision)
