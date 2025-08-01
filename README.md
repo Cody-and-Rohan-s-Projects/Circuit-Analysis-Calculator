@@ -140,11 +140,12 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 - Click or tap **"Copy to Clipboard"** to copy the output to your clipboard for use in another app.
 
 # Calculator Background
-## The Goal
+
+### *The Goal:*
 For this project, we wanted to create an all-in-one application to simplify and solve nodal analysis linear equations without using MATLAB code. Since it can take time to get MATLAB open, write your program, and execute it, we decided to make an easy to use calculator that can be open at any time while doing circuit analysis problems. 
 
-## How Nodal Analysis Is Calculated
-Nodal analysis is a really handy circuit analysis technique that allows you to solve unknown currents and voltages.
+### *How Nodal Analysis Is Calculated:*
+Nodal analysis is a handy circuit analysis technique that allows you to solve unknown currents and voltages.
 
 
 ![image](https://github.com/user-attachments/assets/7cf70958-ac26-4d58-a83d-550a72b8d58f)
@@ -168,18 +169,23 @@ Step 4: Here is where our calculator application comes in handy. Normally, to so
 As you can see, while this is a simple example, it still took a bit of calculation by hand. Especially with three or four unknowns it becomes a lot easier to make errors.
 
 ### How Our Circuit Analyzer Calculates 
-1. Using the Python library NumPy, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format. Due to language differences, an equivalent implementation to NumPy is used for compatibility with iOS and Android versions. 
-<br/>
+1. Using the Python library NumPy, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format. Due to language differences, an equivalent implementation to NumPy is used for compatibility with iOS and Android versions.
 
-![image](https://github.com/user-attachments/assets/998b2028-d892-4e78-aac2-9bcff959ee4f)
-
-![image](https://github.com/user-attachments/assets/07e45435-6115-4944-9634-788291277e7e)
+<div align="center">
+<br>
+<img width="340" height="315" alt="image" src="https://github.com/user-attachments/assets/6adc539e-e6e4-457b-b419-a4cd3e11b4d4" />
+</br>
+<img width="582" height="174" alt="image" src="https://github.com/user-attachments/assets/b9d1b5c2-1986-4645-bef9-bf27a0c0d775" />
+<br>
+</div>
 
 2. The linear system will then be solved using a technique like Cramers Rule from the last example.
   
 3. A gui was designed for a modern and lightweight look and feel. When calculated, your equations will be displayed so you can check your work, and the currents in amps and polar form for AC analysis.
 
-![image](https://github.com/user-attachments/assets/8370c4e5-92ef-4ead-9609-01eb1425318b)
+<div align="center">
+  <img width="636" height="275" alt="image" src="https://github.com/user-attachments/assets/86fe8b5f-96bf-40af-9c11-b207c7a44e8a" />
+</div>
 
 ## Releases and Feature Updates
 
