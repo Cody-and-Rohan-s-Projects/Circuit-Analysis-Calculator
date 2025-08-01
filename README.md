@@ -64,21 +64,18 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 ### Windows:
 <ol>
   <li> The application is compatible with Windows 7, 8, 8.1, 10, and 11.</li>
-  <li> Open the .exe file in the dist, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.</li>
+  <li> Open the executable, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.</li>
   <li> If Windows shows a "Windows protected your PC" warning, click "More info" and then "Run anyway" This is a standard message shown for unsigned applications.</li>
 </ol> 
 
 <div align="center">
-
 <img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/80274084-cba3-4ad7-8169-8e9b9ddd5508"/>
-
 <img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/a1edfd12-106a-4a48-bd6f-ae992554d1a4"/>
-
 </div>
 
 ### Mac:
 <ol>
-  <li> Open the .app file in the dist folder, if it does not open, make sure the "_internal" folder is in the same folder as the .app file.</li>
+  <li> Open the .app file in the folder, if it does not open, make sure the "_internal" folder is in the same folder as the .app file.</li>
   <li> If your Mac shows a security warning, open the Apple menu, then System Settings, then click Privacy & Security in the sidebar (You may need to scroll down). This is a standard message shown for unsigned applications.</li>
   
   <br>
