@@ -82,6 +82,13 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 
 </div>
 
+### Mac
+
+### Linux
+
+### iOS
+
+### Android
 ## About the Calculator
 
 The calculator currently supports solving systems of equations with **1 to 4 variables**.  
