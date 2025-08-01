@@ -4,10 +4,10 @@
 
 This calculator was created by Cody Carter and Rohan Patel, two computer engineering students with a shared goal: to develop an all-in-one application that simplifies and solves nodal analysis equations using a graphical interface—a lightweight and accessible alternative to MATLAB.
 
-Rohan focused on building the backend and implementing additional UI features, while Cody integrated the backend into an intuitive, user-friendly interface.
+Together we built a working backend and intuitive, user-friendly interface to work on Windows, Mac, Linux, iOS, and Android. We then split developent for mobile, where 
+Rohan focused on the Android version using Kotlin, while Cody focused on iOS using Swift.
 
 We built this tool to help students and engineers quickly solve nodal or mesh analysis problems.
-
 
 
 ### Connect with Us:
@@ -155,7 +155,7 @@ Step 4: Here is where our calculator application comes in handy. Normally, to so
 As you can see, while this is a simple example, it still took a bit of calculation by hand. Especially with three or four unknowns it becomes a lot easier to make errors.
 
 ### How Our Circuit Analyzer Calculates 
-1. Using the Python library NumPy, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format. Other libraries are used for the iOS and Android versions. 
+1. Using the Python library NumPy, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format. Due to language differences, an equivalent implementation to NumPy is used for compatibility with iOS and Android versions. 
 <br/>
 
 ![image](https://github.com/user-attachments/assets/998b2028-d892-4e78-aac2-9bcff959ee4f)
@@ -164,7 +164,7 @@ As you can see, while this is a simple example, it still took a bit of calculati
 
 2. The linear system will then be solved using a technique like Cramers Rule from the last example.
   
-3. Using the customtkinter library, a gui was designed for a modern and lightweight look and feel. When calculated, your equations will be displayed so you can check your work, and the currents in amps and polar form for AC analysis.
+3. A gui was designed for a modern and lightweight look and feel. When calculated, your equations will be displayed so you can check your work, and the currents in amps and polar form for AC analysis.
 
 ![image](https://github.com/user-attachments/assets/8370c4e5-92ef-4ead-9609-01eb1425318b)
 
