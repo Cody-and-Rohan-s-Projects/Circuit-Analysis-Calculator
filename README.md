@@ -40,7 +40,7 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
 
 ## Screenshots:
 
-### *Windows:*
+### *Windows, Mac, and Linux:*
 <figure>
   <div align="center">
     <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="1200" alt="Windows Screenshot">
