@@ -110,7 +110,9 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
   <li> Make sure you have the latest and an updated version of XCode and open the Circuit Analysis file or click the .xcodeproj file to open in XCode.</li>
   <li> Connect your iOS device to your Mac and select it as the target device in this menu.</li>
   <br>
-  <img width="302" height="268" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/c2e403ce-c43f-4c7e-8826-8f02b6d7172e" />
+  <div align="center">
+    <img width="302" height="268" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/c2e403ce-c43f-4c7e-8826-8f02b6d7172e" />
+  </div>
   <br><br>
   <li> Click the run button on the top left to build and upload to your iOS device. If prompted, click "Signing and Capabilites" to log in with your Apple Developer account and enter in a bundle identifier.</li>
   <li> After building and uploading, the app should be working on your iOS device.</li>
