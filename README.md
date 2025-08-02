@@ -69,8 +69,8 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 </ol> 
 
 <div align="center">
-<img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/80274084-cba3-4ad7-8169-8e9b9ddd5508"/>
-<img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/a1edfd12-106a-4a48-bd6f-ae992554d1a4"/>
+  <img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/80274084-cba3-4ad7-8169-8e9b9ddd5508"/>
+  <img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/a1edfd12-106a-4a48-bd6f-ae992554d1a4"/>
 </div>
 
 ### Mac:
