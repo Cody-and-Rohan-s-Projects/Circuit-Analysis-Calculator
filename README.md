@@ -4,15 +4,13 @@
 
 This calculator was created by Cody Carter and Rohan Patel, two computer engineering students with a shared goal: to develop an all-in-one application that simplifies and solves nodal analysis equations using a graphical interface—a lightweight and accessible alternative to MATLAB.
 
-Rohan focused on building the backend and implementing additional UI features, while Cody integrated the backend into an intuitive, user-friendly interface.
+Together we built a working backend and intuitive, user-friendly interface to work on Windows, Mac, Linux, iOS, and Android. We then split development for mobile, where 
+Rohan focused on the Android version using Kotlin, while Cody focused on iOS using Swift.
 
 We built this tool to help students and engineers quickly solve nodal or mesh analysis problems.
 
-
-
-### Connect with Us:
-
-<div align="left">
+<!--suppress ALL -->
+<div align="center">
   <h3>Cody Carter</h3>
   <img src="https://github.com/user-attachments/assets/2808f0ad-6c56-464c-abdd-6ece9a4be026" alt="Cody Carter Profile" width="100" style="border-radius:50%">
   <p>
@@ -23,9 +21,7 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
       <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
     </a>
   </p>
-</div>
-
-<div align="left">
+  
   <h3>Rohan Patel</h3>
   <img src="https://github.com/user-attachments/assets/3a4125b1-9be2-477c-8c1a-5b18cee2ed93" alt="Rohan Patel Profile" width="100" style="border-radius:50%">
   <p>
@@ -38,74 +34,70 @@ We built this tool to help students and engineers quickly solve nodal or mesh an
   </p>
 </div>
 
-## Screenshots:
-
-### *Windows:*
-<figure>
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="400" height="1200" alt="Windows Screenshot">
-  </div>
-</figure>
-
-### *iOS:*
-<figure>
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/87cb179c-80bd-4ef9-b7b9-c0b39ad975a5" width="400" height="1200" alt="iOS Screenshot">
-  </div>
-</figure>
-
-### *Android:*
-<figure>
-  <div align="center">
-    <img src="https://github.com/user-attachments/assets/0532a1f4-9d84-4408-a9a7-d4897d41677b" width="400" height="1200" alt="Android Screenshot">
-  </div>
-</figure>
-
-## How to Install and Use
-
-1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab.
-2. Unzip and extract the release into another folder.
-3. Follow the correcorresponding steps based on your operating system.
-
-### Windows:
-<ol>
-  <li> The application is compatible with Windows 7, 8, 8.1, 10, and 11.</li>
-  <li> Open the .exe file, if it does not open, make sure the "_internal" folder is in the same folder as the .exe file.</li>
-  <li> If Windows shows a "Windows protected your PC" warning, click "More info" and then "Run anyway". This is a standard message shown for unsigned applications.</li>
-</ol> 
-
-<div align="center">
-  
-![Screenshot 1](https://github.com/user-attachments/assets/80274084-cba3-4ad7-8169-8e9b9ddd5508)
-
-![Screenshot 2](https://github.com/user-attachments/assets/a1edfd12-106a-4a48-bd6f-ae992554d1a4)
-
-</div>
-
 ## About the Calculator
 
 The calculator currently supports solving systems of equations with **1 to 4 variables**.  
 
-### How to Use:
-- Select the matrix size using the dropdown menu and click **"Set Size."**
-- Enter the coefficient and constant values into the respective matrices.
-- Click **"Solve"** to view results.
-
 ### Features:
 - Supports both **real** and **complex** numbers (in rectangular form).
-- Change the amount of decimal precision and amount of equations to be solved using the dropdown menu.
+- Change the amount of decimal precision and number of equations to be solved using the dropdown menu.
 - Displays results in **rectangular** and **polar** form.
 - Shows **KVL equations** along with the solution.
 - Desktop: Toggle **Dark Mode** and **Always on Top** using the respective sliders.
 
-If invalid input is detected, an error message will be shown.
+### How to Use:
+- Select the matrix size using the dropdown menu and click **"Set Size."**
+- Change the decimal precision of the answer and equations if needed.
+- Enter the coefficient and constant values into the respective matrices.
+- The values can be rectangular, complex or real.
+- If invalid input is detected, an error message will be shown.
+- Click or tap **"Solve"** to view results.
+- Click or tap **"Reset"** or **"Clear"** to reset the inputs and outputs to start over.
+- Click or tap **"Copy to Clipboard"** to copy the output to your clipboard for use in another app.
 
-# About The Calculator
-## The Goal
-For this project, we wanted to create an all-in-one application to simplify and solve nodal analysis linear equations without using MATLAB code. Since it can take time to get MATLAB open, write your program, and execute it, we decided to make an easy to use calculator that can be open at any time while doing circuit analysis problems. 
+## How to Install and Use
 
-## How Nodal Analysis Is Calculated
-Nodal analysis is a really handy circuit analysis technique that allows you to solve unknown currents and voltages.
+1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab.
+
+### Linux:
+<ol>
+  <li> Right click and select "Extract Here".</li>
+    <br>
+  <div align="center">
+    <img width="227" height="304" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/80b2e278-df37-49ce-91cd-db6584709670" />
+  </div>
+    <br>
+  <li> Open the extracted folder and click on the file "install.sh". This will automatically install and move the application to your apps section to be executed.</li>
+  <li> Click "Run".</li>
+    <br>
+  <div align="center">
+    <img width="582" height="158" alt="image" src="https://github.com/user-attachments/assets/66184639-9045-4a33-9616-5d775ee6b067" />
+  </div>
+    <br>
+  <li> You should receive a successful message and the application will be found in your applications.</li>
+<br>
+  <div align="center">
+    <img width="396" height="167" alt="image" src="https://github.com/user-attachments/assets/cbf047aa-8d03-4045-b4c7-841fb08dce46" />
+  </div>
+</ol> 
+
+
+## Screenshots:
+
+### *Desktop Versions:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="600" height="1200" alt="Windows Screenshot">
+  </div>
+</figure>
+
+# Calculator Background
+
+### *The Goal:*
+For this project, we wanted to create an all-in-one application to simplify and solve nodal analysis linear equations without using MATLAB code. Since it can take time to get MATLAB open, write your program, and execute it, we decided to make an easy-to-use calculator that can be open at any time while doing circuit analysis problems. 
+
+### *How Nodal Analysis Is Calculated:*
+Nodal analysis is a handy circuit analysis technique that allows you to solve unknown currents and voltages.
 
 
 ![image](https://github.com/user-attachments/assets/7cf70958-ac26-4d58-a83d-550a72b8d58f)
@@ -118,29 +110,42 @@ Step 2: Pick current directions.
 
 ![Screenshot 2025-06-13 105432](https://github.com/user-attachments/assets/939ad2f2-6051-4fb0-9ddc-8d00e495c9cf)
 
-Step 3. Create KVL equations for each branch of the node in terms of Ohms law.
+Step 3. Create KVL equations for each branch of the node in terms of Ohm's law.
 
 ![equations](https://github.com/user-attachments/assets/a06c1643-5092-4bbc-b3e3-1b3d14302615)
 
-Step 4: Here is where our calculator application comes in handy. Normally, to solve for I1 and I2, you would use solving techniques like Cramers Rule to input the KVL equations into a matrix and solve for I1 and I2. For proof of concept, the steps will be shown in calculation.
+Step 4: Here is where our calculator application comes in handy. Normally, to solve for I1 and I2, you would use solving techniques such as Cramer's Rule to input the KVL equations into a matrix and solve for I1 and I2. For this example, the steps will be shown in calculation.
 
 ![Untitled](https://github.com/user-attachments/assets/bd143e9b-eba4-49e9-9bff-547fdb233763)
 
-As you can see, while this is a simple example, it still took a bit of calculation by hand. Especially with three or four unknowns it becomes a lot easier to make errors.
+As you can see, while this is a simple example, it still took a bit of calculation by hand. Especially with three or four unknowns, it becomes a lot easier to make errors.
 
 ### How Our Circuit Analyzer Calculates 
-1. Using the Python library NumPy, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format. Other libraries are used for the iOS and Android versions. 
-<br/>
+<ol>
+  <li>
+    Using the Python library NumPy, users can enter their constants of their KCL equations into the matrix. Where you enter your constants in this format. Due to language differences, an equivalent implementation to NumPy is used for compatibility with iOS and Android versions.
+    <div align="center">
+      <br>
+      <img width="340" height="315" alt="image" src="https://github.com/user-attachments/assets/6adc539e-e6e4-457b-b419-a4cd3e11b4d4" />
+      <br>
+      <img width="582" height="174" alt="image" src="https://github.com/user-attachments/assets/b9d1b5c2-1986-4645-bef9-bf27a0c0d775" />
+      <br>
+    </div>
+  </li>
 
-![image](https://github.com/user-attachments/assets/998b2028-d892-4e78-aac2-9bcff959ee4f)
-
-![image](https://github.com/user-attachments/assets/07e45435-6115-4944-9634-788291277e7e)
-
-2. The linear system will then be solved using a technique like Cramers Rule from the last example.
-  
-3. Using the customtkinter library, a gui was designed for a modern and lightweight look and feel. When calculated, your equations will be displayed so you can check your work, and the currents in amps and polar form for AC analysis.
-
-![image](https://github.com/user-attachments/assets/8370c4e5-92ef-4ead-9609-01eb1425318b)
+  <li>
+    The linear system will then be solved using a technique like Cramer's Rule from the last example.
+  </li>
+  <br>
+  <li>
+    When calculated, your equations will be displayed so you can check your work. All numbers will have their proper units, and will be shown in both rectangular and polar forms for AC analysis.
+    <div align="center">
+      <br>
+      <img width="636" height="275" alt="image" src="https://github.com/user-attachments/assets/86fe8b5f-96bf-40af-9c11-b207c7a44e8a" />
+      <br>
+    </div>
+  </li>
+</ol>
 
 ## Releases and Feature Updates
 
@@ -148,7 +153,7 @@ Planned features:
 - Support for complex number input in **polar form**.
 - Continued UI improvements and bug fixes.
 
-We welcome suggestions and feedback—feel free let us know of an issue or contact us directly!
+We welcome suggestions and feedback—feel free to let us know of an issue or contact us directly!
 
 
 
