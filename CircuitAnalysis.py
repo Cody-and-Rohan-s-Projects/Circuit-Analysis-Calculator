@@ -16,7 +16,14 @@ root.attributes("-topmost", True)
 root.title("Circuit Analysis Calculator v1.3")
 root.geometry("560x900+0+0")
 
-icon_path = os.path.join(os.path.dirname(__file__), "icon.icns")
+def resource_path(relative_path):
+    try:
+        return os.path.join(sys._MEIPASS, relative_path)
+    except Exception:
+        return os.path.join(os.path.abspath("."), relative_path)
+
+icon_path = resource_path("icon.png")
+
 if os.path.exists(icon_path):
     try:
         root.iconbitmap(icon_path)
@@ -32,13 +39,6 @@ try:
     )
 except Exception:
     github_icon_image = None
-
-
-def resource_path(relative_path):
-    try:
-        return os.path.join(sys._MEIPASS, relative_path)
-    except Exception:
-        return os.path.join(os.path.abspath("."), relative_path)
 
 
 matrix_entries, vector_entries = [], []
@@ -120,7 +120,11 @@ def create_input_fields():
         ctk.CTkLabel(vector_frame, text="[", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=0)
         vector_entries.append(create_entry(vector_frame, f"b{i + 1}", i + 1, 1))
         ctk.CTkLabel(vector_frame, text="]", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=2)
+    button_row = ctk.CTkFrame(scrollable_frame)
+    button_row.pack(pady=10)
 
+    ctk.CTkButton(button_row, text="Solve (Enter)", command=solve_and_display).pack(side="left", padx=10)
+    ctk.CTkButton(button_row, text="Reset (R)", command=create_input_fields).pack(side="left", padx=10)
 
 def parse_complex(value):
     try:
@@ -273,13 +277,6 @@ matrix_frame = ctk.CTkFrame(scrollable_frame)
 matrix_frame.pack(pady=10)
 vector_frame = ctk.CTkFrame(scrollable_frame)
 vector_frame.pack(pady=10)
-
-button_row = ctk.CTkFrame(scrollable_frame)
-button_row.pack(pady=10)
-
-ctk.CTkButton(button_row, text="Solve (Enter)", command=solve_and_display).pack(side="left", padx=10)
-ctk.CTkButton(button_row, text="Reset (R)", command=create_input_fields).pack(side="left", padx=10)
-
 
 def on_key_press(event):
     match event.keysym.lower():

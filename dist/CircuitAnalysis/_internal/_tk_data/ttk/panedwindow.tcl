@@ -22,6 +22,8 @@ bind TPanedwindow <ButtonRelease-1> 	{ ttk::panedwindow::Release %W %x %y }
 bind TPanedwindow <Motion> 		{ ttk::panedwindow::SetCursor %W %x %y }
 bind TPanedwindow <Enter> 		{ ttk::panedwindow::SetCursor %W %x %y }
 bind TPanedwindow <Leave> 		{ ttk::panedwindow::ResetCursor %W }
+# See <<NOTE-PW-LEAVE-NOTIFYINFERIOR>>
+bind TPanedwindow <<EnteredChild>>	{ ttk::panedwindow::ResetCursor %W }
 
 ## Sash movement:
 #
