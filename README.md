@@ -59,6 +59,7 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 
 1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab.
 2. If you download a zip file, unzip and extract the release into another folder.
+3. Follow the corresponding steps based on your operating system.
 
 ### Windows:
 <ol>
@@ -68,10 +69,90 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 </ol> 
 
 <div align="center">
-<img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/80274084-cba3-4ad7-8169-8e9b9ddd5508"/>
-<img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/a1edfd12-106a-4a48-bd6f-ae992554d1a4"/>
+  <img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/80274084-cba3-4ad7-8169-8e9b9ddd5508"/>
+  <img width="480" height="600" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/a1edfd12-106a-4a48-bd6f-ae992554d1a4"/>
 </div>
 
+### Mac:
+<ol>
+  <li> Open the .app file in the folder, if it does not open, make sure the "_internal" folder is in the same folder as the .app file.</li>
+  <li> If your Mac shows a security warning, open the Apple menu, then System Settings, then click Privacy & Security in the sidebar (You may need to scroll down). This is a standard message shown for unsigned applications.</li>
+  
+  <br>
+  <div align="center">
+    <img width="261" height="232" alt="Screenshot 2025-08-01 at 8 53 30 AM" src="https://github.com/user-attachments/assets/b0ba69e9-7153-4af4-940f-0e941490d15a" />
+  </div>
+  <br>
+  
+  <li> Find the message where the application is blocked near the bottom of the page and click the "Open Anyway" button.</li> 
+
+  <br>
+  <div align="center">
+    <img width="472" height="101" alt="Screenshot 2025-08-01 at 8 56 20 AM" src="https://github.com/user-attachments/assets/48581e4a-a50b-4551-a21e-a6b6b9967ad9" />
+  </div>
+  <br>
+  
+  <li> You should now be able to run Circuit Analyser.</li>
+</ol> 
+
+### Linux:
+<ol>
+  <li> Right click and select "Extract Here".</li>
+    <br>
+  <div align="center">
+    <img width="227" height="304" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/80b2e278-df37-49ce-91cd-db6584709670" />
+  </div>
+    <br>
+  <li> Open extracted folder and click on the file "install.sh". This will automatically install and move the application to your apps section to be executed.</li>
+  <li> Click "Run".</li>
+    <br>
+  <div align="center">
+    <img width="582" height="158" alt="image" src="https://github.com/user-attachments/assets/66184639-9045-4a33-9616-5d775ee6b067" />
+  </div>
+    <br>
+  <li> You should receive a successful message and the application will be found in your applications.</li>
+<br>
+  <div align="center">
+    <img width="396" height="167" alt="image" src="https://github.com/user-attachments/assets/cbf047aa-8d03-4045-b4c7-841fb08dce46" />
+  </div>
+</ol> 
+
+### iOS:
+<ol>
+  <li> While we don't have plans to put this on the App Store yet, you can still easily build and upload to your iOS device quickly.</li>
+  <li> Make sure you have the latest and an updated version of XCode and open the Circuit Analysis file or click the .xcodeproj file to open in XCode.</li>
+  <li> Connect your iOS device to your Mac and select it as the target device in this menu.</li>
+  <br>
+  <div align="center">
+    <img width="302" height="268" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/c2e403ce-c43f-4c7e-8826-8f02b6d7172e" />
+  </div>
+  <br><br>
+  <li> Click the run button on the top left to build and upload to your iOS device. If prompted, click "Signing and Capabilities" to log in with your Apple Developer account and enter a bundle identifier. This can be anything, we used "com.companyname.appname" as the standard convention.</li>
+  <li> After building and uploading, the app should be working on your iOS device.</li>
+</ol> 
+
+### Android:
+
+<ol>
+  <li> Try to open the apk file after you download it. Tap "Settings" if you see a message similar to this:</li>
+  <br>
+  <div align="center">
+  <img width="550" height="400" alt="image" src="https://github.com/user-attachments/assets/63df3865-9259-48d6-a4c4-85f956e0934d" />
+  </div>
+  <br><br>
+  <li> Tap "Allow from this source."</li>
+  <br>
+  <div align="center">
+  <img width="300" height="400" alt="image" src="https://github.com/user-attachments/assets/0ab53be3-19aa-4a49-aa91-12715fb02edd" />
+  </div>
+  <br><br>
+  <li> Tap "Install".</li>
+  <br>
+  <div align="center">
+  <img width="300" height="400" alt="image" src="https://github.com/user-attachments/assets/db612d99-25d2-4716-b984-f16942452c48" />
+  </div>
+  <br><br>
+</ol>
 
 ## Screenshots:
 
@@ -81,6 +162,21 @@ The calculator currently supports solving systems of equations with **1 to 4 var
     <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="600" height="1200" alt="Windows Screenshot">
   </div>
 </figure>
+
+### *iOS:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/68d26266-5a07-4da4-9166-c3d1d6f32a02" width="550" height="1200" alt="iOS Screenshot">
+  </div>
+</figure>
+
+### *Android:*
+<figure>
+  <div align="center">
+    <img src="https://github.com/user-attachments/assets/627652b1-22f8-400e-a5e5-caae5df2671e" width="550" height="1200" alt="Android Screenshot">
+  </div>
+</figure>
+
 
 # Calculator Background
 
