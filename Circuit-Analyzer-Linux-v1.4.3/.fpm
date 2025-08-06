@@ -1,0 +1,14 @@
+-C package
+-s dir 
+-t tar
+-n "circuit_analysis"
+-v 1.4.3
+-p Circuit_Analysis_1.4.3_amd64.tar.gz
+--description "A Python-based application for circuit analysis."
+--url "https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analysis-Calculator"
+--license "MIT"
+--category "science"
+--deb-priority "optional"
+--deb-compression "xz"
+--maintainer "Cody Carter and Rohan Patel"
+

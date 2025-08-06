@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.4.3
+Name=Circuit Analysis
+Comment=Analyze electronic circuits
+Exec=/opt/CircuitAnalysis/CircuitAnalysis
+Icon=icon
+Terminal=false
+Type=Application
+Categories=Development;Electronics;
