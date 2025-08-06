@@ -16,14 +16,7 @@ root.attributes("-topmost", True)
 root.title("Circuit Analysis Calculator v1.3")
 root.geometry("560x900+0+0")
 
-def resource_path(relative_path):
-    try:
-        return os.path.join(sys._MEIPASS, relative_path)
-    except Exception:
-        return os.path.join(os.path.abspath("."), relative_path)
-
-icon_path = resource_path("icon.png")
-
+icon_path = os.path.join(os.path.dirname(__file__), "icon.png")
 if os.path.exists(icon_path):
     try:
         root.iconbitmap(icon_path)
@@ -41,8 +34,15 @@ except Exception:
     github_icon_image = None
 
 
+def resource_path(relative_path):
+    try:
+        return os.path.join(sys._MEIPASS, relative_path)
+    except Exception:
+        return os.path.join(os.path.abspath("."), relative_path)
+
+
 matrix_entries, vector_entries = [], []
-matrix_frame = vector_frame = None
+matrix_frame = vector_frame = button_row = None
 precision_var = ctk.StringVar(value="3")
 
 scrollable_frame = ctk.CTkScrollableFrame(root, width=530, height=880)
@@ -70,8 +70,8 @@ def solve_linear_system(A, b):
 
 
 def clear_previous_inputs():
-    global matrix_frame, vector_frame, matrix_entries, vector_entries
-    for frame in [matrix_frame, vector_frame]:
+    global matrix_frame, vector_frame, matrix_entries, vector_entries, button_row
+    for frame in [matrix_frame, vector_frame, button_row]:
         if frame: frame.destroy()
     matrix_entries, vector_entries = [], []
     output_textbox.configure(state="normal")
@@ -87,7 +87,7 @@ def create_entry(parent, text, row, col):
 
 
 def create_input_fields():
-    global matrix_frame, vector_frame, matrix_entries, vector_entries
+    global matrix_frame, vector_frame, matrix_entries, vector_entries, button_row
     try:
         n = int(size_dropdown.get())
         if not 1 <= n <= 4:
@@ -106,7 +106,7 @@ def create_input_fields():
     vector_frame = ctk.CTkFrame(scrollable_frame)
     vector_frame.pack(pady=10)
 
-    ctk.CTkLabel(matrix_frame, text=f"Coefficient Matrix A ({n}x{n}):").grid(row=0, column=0, columnspan=n + 2, pady=5)
+    ctk.CTkLabel(matrix_frame, text=f"Coefficient Matrix A ({n}x{n}):", font=("Arial", 14, "bold")).grid(row=0, column=0, columnspan=n + 2, pady=5)
     for i in range(n):
         row_entries = []
         ctk.CTkLabel(matrix_frame, text="[", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=0)
@@ -115,7 +115,7 @@ def create_input_fields():
         ctk.CTkLabel(matrix_frame, text="]", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=n + 1)
         matrix_entries.append(row_entries)
 
-    ctk.CTkLabel(vector_frame, text=f"Constants Vector b ({n}x1):").grid(row=0, column=0, columnspan=3, pady=5)
+    ctk.CTkLabel(vector_frame, text=f"Constants Vector b ({n}x1):", font=("Arial", 14, "bold")).grid(row=0, column=0, columnspan=3, pady=5)
     for i in range(n):
         ctk.CTkLabel(vector_frame, text="[", font=("Courier", 25, "bold"), width=10).grid(row=i + 1, column=0)
         vector_entries.append(create_entry(vector_frame, f"b{i + 1}", i + 1, 1))
@@ -123,8 +123,8 @@ def create_input_fields():
     button_row = ctk.CTkFrame(scrollable_frame)
     button_row.pack(pady=10)
 
-    ctk.CTkButton(button_row, text="Solve (Enter)", command=solve_and_display).pack(side="left", padx=10)
-    ctk.CTkButton(button_row, text="Reset (R)", command=create_input_fields).pack(side="left", padx=10)
+    ctk.CTkButton(button_row, text="Solve (Enter)", command=solve_and_display, font=("Arial", 12, "bold"), fg_color="#66BB6A", hover_color="#2B4D2C").pack(side="left", padx=10)
+    ctk.CTkButton(button_row, text="Reset (R)", command=create_input_fields, font=("Arial", 12, "bold"), fg_color="#EF5350", hover_color="#692625").pack(side="left", padx=10)
 
 def parse_complex(value):
     try:
@@ -232,7 +232,7 @@ ctk.CTkLabel(scrollable_frame, text="by Cody Carter and Rohan Patel",
              font=("Franklin Gothic Medium", 14)).pack(pady=(0, 5))
 
 ctk.CTkButton(scrollable_frame, text="View On GitHub", image=github_icon_image, compound="left",
-              command=open_github).pack(pady=5)
+              command=open_github, font=("Arial", 12, "bold"), fg_color="#6E6E73", hover_color="#4D4D51").pack(pady=5)
 
 switch_frame = ctk.CTkFrame(scrollable_frame)
 switch_frame.pack(pady=10)
@@ -256,21 +256,21 @@ size_frame.pack(pady=10)
 
 size_row1 = ctk.CTkFrame(size_frame)
 size_row1.pack(pady=5, fill="x")
-ctk.CTkLabel(size_row1, text="Number of Equations:", width=150).pack(side="left", padx=(5, 0))
+ctk.CTkLabel(size_row1, text="Number of Equations:", width=150, font=("Arial", 12, "bold")).pack(side="left", padx=(5, 0))
 size_dropdown = ctk.CTkOptionMenu(size_row1, values=["1", "2", "3", "4"], width=100)
 size_dropdown.set("3")
 size_dropdown.pack(side="left", padx=(5, 0))
-ctk.CTkButton(size_row1, text="    Confirm Matrix Size (R)    ", command=create_input_fields).pack(side="left",
+ctk.CTkButton(size_row1, text="    Confirm Matrix Size (R)    ", font=("Arial", 12, "bold"), command=create_input_fields).pack(side="left",
                                                                                                    padx=(15, 0))
 
 size_row2 = ctk.CTkFrame(size_frame)
 size_row2.pack(pady=5, fill="x")
-ctk.CTkLabel(size_row2, text="Decimal Precision:", width=150).pack(side="left", padx=(5, 0))
+ctk.CTkLabel(size_row2, text="Decimal Precision:", width=150, font=("Arial", 12, "bold")).pack(side="left", padx=(5, 0))
 precision_dropdown = ctk.CTkOptionMenu(size_row2, values=["0", "1", "2", "3", "4", "5", "6"], variable=precision_var,
                                        width=100)
 precision_dropdown.set("2")
 precision_dropdown.pack(side="left", padx=(5, 0))
-ctk.CTkButton(size_row2, text="Copy Result to Clipboard (C)", command=copy_result_to_clipboard).pack(side="left",
+ctk.CTkButton(size_row2, text="Copy Result to Clipboard (C)", command=copy_result_to_clipboard, font=("Arial", 12, "bold")).pack(side="left",
                                                                                                      padx=(15, 0))
 
 matrix_frame = ctk.CTkFrame(scrollable_frame)
@@ -285,10 +285,10 @@ def on_key_press(event):
         case "r" | "R":
             create_input_fields()
         case "a" | "A":
-            topmost_switch.toggle();
+            topmost_switch.toggle()
             toggle_always_on_top()
         case "d" | "D":
-            theme_switch.toggle();
+            theme_switch.toggle()
             toggle_theme()
         case "c" | "C":
             copy_result_to_clipboard()
