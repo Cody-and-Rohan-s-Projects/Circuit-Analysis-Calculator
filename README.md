@@ -57,29 +57,25 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 
 ## How to Install and Use
 
-1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab.
+1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab. Included inside are different installers dependent on what Linux distro you are running, only one needs to be ran.
+
 
 ### Linux:
 <ol>
-  <li> Right click and select "Extract Here".</li>
+  <li> Double click your installer and install for your specific distro once downloaded.</li>
     <br>
   <div align="center">
-    <img width="227" height="304" alt="Screenshot 2025-08-01 at 9 06 20 AM" src="https://github.com/user-attachments/assets/80b2e278-df37-49ce-91cd-db6584709670" />
+    <img width="545" height="443" alt="image" src="https://github.com/user-attachments/assets/7a3f3325-2f4c-4a36-91d9-2a31839b43df" />
   </div>
     <br>
-  <li> Open the extracted folder and click on the file "install.sh". This will automatically install and move the application to your apps section to be executed.</li>
-  <li> Click "Run".</li>
+  <li> Once package is installed, open your applications and you should see Circuit Analysis ready to use.</li>
     <br>
   <div align="center">
-    <img width="582" height="158" alt="image" src="https://github.com/user-attachments/assets/66184639-9045-4a33-9616-5d775ee6b067" />
-  </div>
-    <br>
-  <li> You should receive a successful message and the application will be found in your applications.</li>
-<br>
-  <div align="center">
-    <img width="396" height="167" alt="image" src="https://github.com/user-attachments/assets/cbf047aa-8d03-4045-b4c7-841fb08dce46" />
+    <img width="544" height="449" alt="image" src="https://github.com/user-attachments/assets/4fe51b39-c9f0-48d7-b3a5-0683c8a156f5" />
+    <img width="515" height="247" alt="image" src="https://github.com/user-attachments/assets/76fe68b6-1bb6-4edd-9f4d-de96d97d43b6" />
   </div>
 </ol> 
+
 
 
 ## Screenshots:
