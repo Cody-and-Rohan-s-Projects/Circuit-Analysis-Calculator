@@ -57,7 +57,7 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 
 ## How to Install and Use
 
-1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab. Included inside are different installers dependent on what Linux distro you are running, only one needs to be ran.
+1. Download the latest release from the [Releases](https://github.com/Cody-and-Rohan-s-Projects/Circuit-Analyser/releases) tab. Included inside are different installers dependent on what Linux distro you are running, only one needs to be ran. Currently we provide .deb for Debian based OS, .rpm for Fedora based OS, and a TARBALL for Arch Linux or if you need to build the application from the code.
 
 
 ### Linux:
