@@ -14,12 +14,12 @@ Types if import:
 IMPORTANT: Do NOT post this list to the issue-tracker. Use it as a basis for
             tracking down the missing module yourself. Thanks!
 
-missing module named _winapi - imported by encodings (delayed, conditional, optional), shutil (conditional), ntpath (optional), subprocess (conditional), mimetypes (optional), multiprocessing.connection (optional), multiprocessing.spawn (delayed, conditional), multiprocessing.reduction (conditional), multiprocessing.shared_memory (conditional), multiprocessing.heap (conditional), multiprocessing.popen_spawn_win32 (top-level), asyncio.windows_events (top-level), asyncio.windows_utils (top-level)
+missing module named _winapi - imported by encodings (delayed, conditional, optional), ntpath (optional), shutil (conditional), subprocess (conditional), mimetypes (optional), multiprocessing.connection (optional), multiprocessing.spawn (delayed, conditional), multiprocessing.reduction (conditional), multiprocessing.shared_memory (conditional), multiprocessing.heap (conditional), multiprocessing.popen_spawn_win32 (top-level), asyncio.windows_events (top-level), asyncio.windows_utils (top-level)
 missing module named msvcrt - imported by subprocess (optional), getpass (optional), multiprocessing.spawn (delayed, conditional), multiprocessing.popen_spawn_win32 (top-level), asyncio.windows_events (top-level), asyncio.windows_utils (top-level)
 missing module named _frozen_importlib_external - imported by importlib._bootstrap (delayed), importlib (optional), importlib.abc (optional), zipimport (top-level)
 excluded module named _frozen_importlib - imported by importlib (optional), importlib.abc (optional), zipimport (top-level)
 missing module named winreg - imported by importlib._bootstrap_external (conditional), platform (delayed, optional), mimetypes (optional), urllib.request (delayed, conditional, optional), darkdetect._windows_detect (top-level), setuptools._distutils.compilers.C.msvc (top-level), setuptools.msvc (conditional)
-missing module named nt - imported by shutil (conditional), importlib._bootstrap_external (conditional), ntpath (optional), os (delayed, conditional, optional), ctypes (delayed, conditional)
+missing module named nt - imported by os (delayed, conditional, optional), ntpath (optional), shutil (conditional), importlib._bootstrap_external (conditional), ctypes (delayed, conditional)
 missing module named _scproxy - imported by urllib.request (conditional)
 missing module named multiprocessing.BufferTooShort - imported by multiprocessing (top-level), multiprocessing.connection (top-level)
 missing module named multiprocessing.AuthenticationError - imported by multiprocessing (top-level), multiprocessing.connection (top-level)
@@ -27,7 +27,7 @@ missing module named multiprocessing.get_context - imported by multiprocessing (
 missing module named multiprocessing.TimeoutError - imported by multiprocessing (top-level), multiprocessing.pool (top-level)
 missing module named multiprocessing.set_start_method - imported by multiprocessing (top-level), multiprocessing.spawn (top-level)
 missing module named multiprocessing.get_start_method - imported by multiprocessing (top-level), multiprocessing.spawn (top-level)
-missing module named pyimod02_importers - imported by /home/ccarter/Desktop/Circuit-Analyser/venv/lib/python3.12/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py (delayed)
+missing module named pyimod02_importers - imported by /home/ccarter/Desktop/Circuit-Analysis-Calculator/venv/lib/python3.12/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py (delayed)
 missing module named typing_extensions.Buffer - imported by setuptools._vendor.typing_extensions (top-level), setuptools._vendor.wheel.wheelfile (conditional)
 missing module named typing_extensions.Literal - imported by setuptools._vendor.typing_extensions (top-level), setuptools.config._validate_pyproject.formats (conditional)
 missing module named typing_extensions.Self - imported by setuptools._vendor.typing_extensions (top-level), setuptools.config.expand (conditional), setuptools.config.pyprojecttoml (conditional), setuptools.config._validate_pyproject.error_reporting (conditional)
@@ -236,6 +236,7 @@ missing module named 'numpy_distutils.cpuinfo' - imported by numpy.f2py.diagnose
 missing module named 'numpy_distutils.fcompiler' - imported by numpy.f2py.diagnose (delayed, conditional, optional)
 missing module named 'numpy_distutils.command' - imported by numpy.f2py.diagnose (delayed, conditional, optional)
 missing module named numpy_distutils - imported by numpy.f2py.diagnose (delayed, optional)
+missing module named charset_normalizer - imported by numpy.f2py.crackfortran (optional)
 missing module named numpy.random.RandomState - imported by numpy.random (top-level), numpy.random._generator (top-level)
 missing module named yaml - imported by numpy.__config__ (delayed)
 missing module named numpy._distributor_init_local - imported by numpy (optional), numpy._distributor_init (optional)
