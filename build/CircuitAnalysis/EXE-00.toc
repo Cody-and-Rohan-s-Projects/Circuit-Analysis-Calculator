@@ -61,7 +61,7 @@
  [],
  False,
  False,
- 1754448168,
+ 1754508361,
  [('runw',
    '/Users/penny/Desktop/Circuit-Analysis-Calculator/venv/lib/python3.12/site-packages/PyInstaller/bootloader/Darwin-64bit/runw',
    'EXECUTABLE')],
