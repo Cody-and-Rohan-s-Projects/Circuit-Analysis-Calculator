@@ -5,7 +5,7 @@ a = Analysis(
     ['CircuitAnalysis.py'],
     pathex=[],
     binaries=[],
-    datas=[('icon.ico', '.')],
+    datas=[('C:\\Users\\infot\\Desktop\\Circuit-Analysis-Calculator\\icon.ico', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

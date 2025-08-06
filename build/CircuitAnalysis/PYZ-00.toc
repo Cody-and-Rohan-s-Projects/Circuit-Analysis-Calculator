@@ -1,4 +1,4 @@
-('C:\\Users\\infot\\Circuit-Analysis-Calculator\\build\\CircuitAnalysis\\PYZ-00.pyz',
+('C:\\Users\\infot\\Desktop\\Circuit-Analysis-Calculator\\build\\CircuitAnalysis\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\infot\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\PIL\\__init__.py',
    'PYMODULE-2'),
