@@ -62,6 +62,7 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 
 ### Linux:
 <ol>
+  <li> Select the appropriate package for your distro. ".rpm" for Red Hat systems (such as Fedora), ".deb" for Debian based systems (such as Ubuntu or Linux Mint), and ".tar.gz" for Arch.</li>
   <li> Double click your installer and install for your specific distro once downloaded.</li>
     <br>
   <div align="center">
