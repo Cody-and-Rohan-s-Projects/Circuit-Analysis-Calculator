@@ -160,21 +160,23 @@ The calculator currently supports solving systems of equations with **1 to 4 var
 ### *Desktop Versions:*
 <figure>
   <div align="center">
-    <img src="https://github.com/user-attachments/assets/d4a9eba3-85ae-470d-b1c4-74c24c14dfff" width="600" height="1200" alt="Windows Screenshot">
-  </div>
+    <img src="https://github.com/user-attachments/assets/0cca88b3-94ac-4385-8af3-7af431b2fdd3" width="600" height="1200" alt="Windows Screenshot">
+  </div>"
 </figure>
 
 ### *iOS:*
 <figure>
   <div align="center">
-    <img src="https://github.com/user-attachments/assets/68d26266-5a07-4da4-9166-c3d1d6f32a02" width="550" height="1200" alt="iOS Screenshot">
+    <img width="550" height="1200" alt="IMG_5435" src="https://github.com/user-attachments/assets/9c4ffcd5-4d39-44b1-896f-d124441941ac" />
+    <img width="550" height="1200" alt="IMG_5436" src="https://github.com/user-attachments/assets/1525a2af-6d68-4026-91f1-d6d5fa28dd75" />
   </div>
 </figure>
 
 ### *Android:*
 <figure>
   <div align="center">
-    <img src="https://github.com/user-attachments/assets/627652b1-22f8-400e-a5e5-caae5df2671e" width="550" height="1200" alt="Android Screenshot">
+    <img width="550" height="1200" alt="Screenshot_20250812_180246" src="https://github.com/user-attachments/assets/e1a4c210-bfab-456d-a2b5-f2e2159a31f5" />
+    <img width="550" height="1200" alt="Screenshot_20250812_180301" src="https://github.com/user-attachments/assets/daf9cdb1-bf0e-43b7-a7ee-3c1f225aeafa" />
   </div>
 </figure>
 
